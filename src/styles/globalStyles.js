@@ -4,7 +4,7 @@ const globalStyles = StyleSheet.create({
   screenContainer: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
+    // justifyContent: 'center',
     margin: 10,
   },
 });
