@@ -2,8 +2,7 @@ import React from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {Icon} from '@rneui/base';
 
-const Button = ({navigation, title, onPress, iconName, iconType}) => {
-  console.log(onPress);
+const TripButton = ({navigation, title, onPress, iconName, iconType}) => {
   return (
     <TouchableOpacity onPress={onPress} style={styles.container}>
       <View style={styles.textContainer}>
@@ -16,7 +15,7 @@ const Button = ({navigation, title, onPress, iconName, iconType}) => {
   );
 };
 
-export default Button;
+export default TripButton;
 
 const styles = StyleSheet.create({
   container: {

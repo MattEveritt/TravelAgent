@@ -1,0 +1,101 @@
+name: Travel app deployment
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+      name: Lint, Build and Test
+      runs-on: ubuntu-20.04
+      steps:
+        - uses: actions/checkout@v2
+          with:
+            fetch: 0
+        - uses: actions/setup-node@v2
+          with:
+            node-version: '14'
+        - run: |
+            yarn install --frozen-lockfile
+          
+  dev-android-apk:
+    if: ${{ github.ref == 'refs/heads/main' || github.event_name == 'release' && github.event.release.prerelease }}
+    needs: [build]
+    name: Build Development Android
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0 # Mandatory to use the extract version from tag action
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+      - run: |
+          yarn install --frozen-lockfile
+          cd android
+          ./gradlew assembleRelease
+      - uses: actions/upload-artifact@v2
+        with:
+          name: travel_dev_apk
+          path: android/app/build/outputs/apk/release/app-release.apk
+
+  dev-ios-ipa:
+    if: ${{ github.ref == 'refs/heads/main' || github.event_name == 'release' && github.event.release.prerelease }}
+    needs: [build]
+    name: Build Development iOS
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0 # Mandatory to use the extract version from tag action
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: '14'
+      - name: Restore yarn cache
+        uses: c-hive/gha-yarn-cache@v1
+      - name: Install Dependencies
+        run: |
+          yarn install --frozen-lockfile --network-timeout 100000
+      - name: Install Pods
+        working-directory: ios
+        run: pod install --repo-update
+
+      - name: Build Archive
+        uses: yukiarrr/ios-build-action@v1.5.0
+        with:
+          project-path: ios/TravelAgent.xcodeproj
+          scheme: travel
+          export-method: development
+          certificate-password: ${{ secrets.TRAVEL_BUILD_CERTIFICATE_PASSWORD }}
+          p12-base64: ${{ secrets.TRAVEL_BUILD_CERTIFICATE_BASE64 }}
+          mobileprovision-base64: ${{ secrets.TRAVEL_MOBILEPROVISION_BASE64 }}
+          code-signing-identity: ${{ secrets.TRAVEL_CODE_SIGNING_IDENTITY }}
+          team-id: ${{ secrets.TRAVEL_TEAM_ID }}
+          output-path: artifacts/travel-dev.ipa
+          workspace-path: ios/TravelAgent.xcworkspace
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: travel_dev_ios
+          path: artifacts/travel-dev.ipa
+
+  push-to-appcenter:
+    needs: [dev-android-apk, dev-ios-ipa]
+    name: Push to appCenter
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+      - uses: actions/download-artifact@v2
+      - name: Ipa, Apk & AAB App center push
+        env:
+          APPCENTER_TOKEN: ${{secrets.TRAVEL_APPCENTER_TOKEN}}
+        run: |
+          yarn global add appcenter-cli
+          appcenter login --token $APPCENTER_TOKEN
+          appcenter distribute release -g TravelInternals -f travel_dev_apk/app-release.apk -a cozify/Travel-Dev-Android
+          appcenter distribute release -g TravelInternals -f travel_dev_ios/travel-dev.ipa -a cozify/Travel-Dev-iOS

@@ -3,8 +3,7 @@ import {StyleSheet, Text, ScrollView, View} from 'react-native';
 import {ListItem, Icon, Avatar} from '@rneui/themed';
 import TripInfo from '../components/TripPlanning/TripInfo';
 import globalStyles from '../styles/globalStyles';
-import Button from '../components/travelUI/Button';
-import Theme, {theme} from '../styles/theme';
+import {TripButton} from '../components/travelUI';
 
 const tripPlanning1 = [
   {
@@ -53,7 +52,7 @@ const TripPlanningScreen = ({navigation}) => {
           ))}
         </View>
       </ScrollView>
-      <Button
+      <TripButton
         title="Add new trip"
         onPress={() => console.log('Add trip')}
         iconName="plus-circle-outline"

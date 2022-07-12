@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import Button from '../components/travelUI/Button';
+import {TripButton} from '../components/travelUI';
 import globalStyles from '../styles/globalStyles';
 
 const SettingsScreen = ({navigation}) => {
@@ -11,50 +11,50 @@ const SettingsScreen = ({navigation}) => {
   return (
     <View style={globalStyles.screenContainer}>
       <Text>SettingsScreen</Text>
-      <View style={styles.buttonContainer}>
-        <Button
+      <View style={styles.TripButtonContainer}>
+        <TripButton
           title="Profile"
           onPress={onPressHandler()}
           iconName="chevron-right"
           iconType="material"
         />
-        <Button
+        <TripButton
           title="Travellers"
           onPress={onPressHandler()}
           iconName="chevron-right"
           iconType="material"
         />
-        <Button
+        <TripButton
           title="Account"
           onPress={onPressHandler()}
           iconName="chevron-right"
           iconType="material"
         />
-        <Button
+        <TripButton
           title="Notifications"
           onPress={onPressHandler()}
           iconName="chevron-right"
           iconType="material"
         />
-        <Button
+        <TripButton
           title="Reminders"
           onPress={onPressHandler()}
           iconName="chevron-right"
           iconType="material"
         />
-        <Button
+        <TripButton
           title="Accomodation"
           onPress={onPressHandler()}
           iconName="chevron-right"
           iconType="material"
         />
-        <Button
+        <TripButton
           title="Flights"
           onPress={onPressHandler()}
           iconName="chevron-right"
           iconType="material"
         />
-        <Button
+        <TripButton
           title="Logout"
           onPress={onPressHandler()}
           iconName="chevron-right"
@@ -68,10 +68,10 @@ const SettingsScreen = ({navigation}) => {
 export default SettingsScreen;
 
 const styles = StyleSheet.create({
-  buttonContainer: {
+  TripButtonContainer: {
     width: '100%',
   },
-  button: {
+  TripButton: {
     marginTop: 10,
     backgroundColor: 'orange',
     alignItems: 'center',
