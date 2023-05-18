@@ -2,7 +2,7 @@ import {StyleSheet, Text, View, Modal} from 'react-native';
 import React from 'react';
 import {Icon} from '@rneui/base';
 
-const TripModal = ({modalVisible, setModalVisible, modalContent}) => {
+export const TripModal = ({modalVisible, setModalVisible, modalContent}) => {
   return (
     <View style={styles.centeredView}>
       <Modal
@@ -78,5 +78,3 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
 });
-
-export default TripModal;

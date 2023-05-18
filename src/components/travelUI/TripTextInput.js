@@ -1,23 +1,16 @@
-import {StyleSheet, Text, View, TextInput} from 'react-native';
-import React, {useState} from 'react';
-import TripButton from './TripButton';
+import {StyleSheet, TextInput} from 'react-native';
+import React from 'react';
 
-const TripTextInput = ({currentValue}) => {
-  const [text, setText] = useState();
+export const TripTextInput = ({value, onChangeText, placeHolder}) => {
   return (
-    <View>
-      <TextInput
-        style={styles.input}
-        onChangeText={setText}
-        value={text}
-        placeholder={currentValue}
-      />
-      <TripButton title="Go" onPress={() => console.log('search ', text)} />
-    </View>
+    <TextInput
+      style={styles.input}
+      onChangeText={onChangeText}
+      value={value}
+      placeholder={placeHolder}
+    />
   );
 };
-
-export default TripTextInput;
 
 const styles = StyleSheet.create({
   input: {

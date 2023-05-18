@@ -2,7 +2,13 @@ import React from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {Icon} from '@rneui/base';
 
-const TripButton = ({navigation, title, onPress, iconName, iconType}) => {
+export const TripButton = ({
+  navigation,
+  title,
+  onPress,
+  iconName,
+  iconType,
+}) => {
   return (
     <TouchableOpacity onPress={onPress} style={styles.container}>
       <View style={styles.textContainer}>
@@ -15,16 +21,15 @@ const TripButton = ({navigation, title, onPress, iconName, iconType}) => {
   );
 };
 
-export default TripButton;
-
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     backgroundColor: 'orange',
-    width: '100%',
+    width: '80%',
     height: 50,
     borderRadius: 10,
     marginTop: 10,
+    alignSelf: 'center',
   },
   textContainer: {
     flex: 1,
@@ -34,6 +39,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: 'black',
+    alignSelf: 'center',
   },
   iconContainer: {
     justifyContent: 'center',

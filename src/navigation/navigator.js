@@ -1,5 +1,4 @@
 import React from 'react';
-import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 
@@ -12,12 +11,23 @@ import {
   SplashScreen,
   TripPlanningScreen,
   YourTripScreen,
+  AccomodationSettingsScreen,
+  AccountScreen,
+  FlightSettingsScreen,
+  NotificationsSettingsScreen,
+  ProfileScreen,
+  ReminderSettingsScreen,
+  TravellersScreen,
+  FlightsScreen,
+  ConfirmationScreen,
+  AccomodationScreen,
+  TransportScreen,
 } from '../screens';
 
 const topTab = createMaterialTopTabNavigator();
 const Stack = createNativeStackNavigator();
 
-const TopTabNavigator = () => {
+const BottomTabNavigator = () => {
   return (
     <topTab.Navigator
       screenOptions={({route}) => ({
@@ -38,24 +48,59 @@ const TopTabNavigator = () => {
   );
 };
 
-const ScreenStack = () => {
+const BookingNavigator = () => {
+  return (
+    <topTab.Navigator
+      screenOptions={({route}) => ({
+        headerShown: false,
+        tabBarActiveTintColor: 'black',
+        tabBarInActiveTintColor: 'orange',
+        tabBarIndicatorStyle: {
+          height: 0,
+        },
+        tabBarShowIcon: true,
+      })}
+      tabBarPosition="bottom">
+      <topTab.Screen name="Flights" component={FlightsScreen} />
+      <topTab.Screen name="Accomodation" component={AccomodationScreen} />
+      <topTab.Screen name="Transport" component={TransportScreen} />
+      <topTab.Screen name="Confirmation" component={ConfirmationScreen} />
+    </topTab.Navigator>
+  );
+};
+
+export const AuthStack = () => {
+  return (
+    <Stack.Navigator>
+      {/* <Stack.Screen
+        options={{headerShown: false}}
+        name="Loading screen"
+        component={LoadingScreen}
+      /> */}
+      <Stack.Group>
+        <Stack.Screen
+          options={{headerShown: false}}
+          name="Login"
+          component={LoginScreen}
+        />
+      </Stack.Group>
+    </Stack.Navigator>
+  );
+};
+
+export const AppStack = () => {
   return (
     <Stack.Navigator initialRouteName="Home">
       <Stack.Group>
-        {/* <Stack.Screen
-          options={{headerShown: false}}
-          name="Loading screen"
-          component={LoadingScreen}
-        /> */}
-        {/* <Stack.Screen
-          options={{headerShown: false}}
-          name="Login screen"
-          component={LoginScreen}
-        /> */}
         <Stack.Screen
           options={{headerShown: false}}
           name="Tab navigator"
-          component={TopTabNavigator}
+          component={BottomTabNavigator}
+        />
+        <Stack.Screen
+          options={{headerShown: false}}
+          name="Booking navigator"
+          component={BookingNavigator}
         />
         <Stack.Screen
           options={{headerShown: false}}
@@ -67,17 +112,42 @@ const ScreenStack = () => {
           name="Splash screen"
           component={SplashScreen}
         />
+        <Stack.Screen
+          options={{headerShown: false}}
+          name="ProfileScreen"
+          component={ProfileScreen}
+        />
+        <Stack.Screen
+          options={{headerShown: false}}
+          name="TravellersScreen"
+          component={TravellersScreen}
+        />
+        <Stack.Screen
+          options={{headerShown: false}}
+          name="AccountScreen"
+          component={AccountScreen}
+        />
+        <Stack.Screen
+          options={{headerShown: false}}
+          name="NotificationsSettings"
+          component={NotificationsSettingsScreen}
+        />
+        <Stack.Screen
+          options={{headerShown: false}}
+          name="RemindersSettings"
+          component={ReminderSettingsScreen}
+        />
+        <Stack.Screen
+          options={{headerShown: false}}
+          name="AccomodationSettings"
+          component={AccomodationSettingsScreen}
+        />
+        <Stack.Screen
+          options={{headerShown: false}}
+          name="FlightsSettings"
+          component={FlightSettingsScreen}
+        />
       </Stack.Group>
     </Stack.Navigator>
   );
 };
-
-const Navigator = () => {
-  return (
-    <NavigationContainer>
-      <ScreenStack />
-    </NavigationContainer>
-  );
-};
-
-export default Navigator;

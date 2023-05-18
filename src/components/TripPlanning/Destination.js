@@ -4,7 +4,7 @@ import {Icon} from '@rneui/themed';
 import {GooglePlacesAutocomplete} from 'react-native-google-places-autocomplete';
 import {TripModal, TripText, TripTextInput} from '../travelUI';
 
-const Destination = () => {
+export const Destination = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const [destination, setDestination] = useState();
   return (
@@ -50,8 +50,6 @@ const Destination = () => {
     </View>
   );
 };
-
-export default Destination;
 
 const styles = StyleSheet.create({
   container: {

@@ -1,82 +1,90 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import {TripButton} from '../components/travelUI';
-import globalStyles from '../styles/globalStyles';
+import {useDispatch} from 'react-redux';
+import {TripButton, ScreenContainer} from '../components/travelUI';
+import {setSignOut} from '../redux/auth/authSlice';
 
-const SettingsScreen = ({navigation}) => {
-  const onPressHandler = value => {
-    console.log(value);
-  };
+export const SettingsScreen = ({navigation}) => {
+  const dispatch = useDispatch();
+  const onPressHandler = useCallback(value => {
+    navigation.navigate(value);
+    console.log('hey');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-  return (
-    <View style={globalStyles.screenContainer}>
-      <Text>SettingsScreen</Text>
-      <View style={styles.TripButtonContainer}>
-        <TripButton
-          title="Profile"
-          onPress={onPressHandler()}
-          iconName="chevron-right"
-          iconType="material"
-        />
-        <TripButton
-          title="Travellers"
-          onPress={onPressHandler()}
-          iconName="chevron-right"
-          iconType="material"
-        />
-        <TripButton
-          title="Account"
-          onPress={onPressHandler()}
-          iconName="chevron-right"
-          iconType="material"
-        />
-        <TripButton
-          title="Notifications"
-          onPress={onPressHandler()}
-          iconName="chevron-right"
-          iconType="material"
-        />
-        <TripButton
-          title="Reminders"
-          onPress={onPressHandler()}
-          iconName="chevron-right"
-          iconType="material"
-        />
-        <TripButton
-          title="Accomodation"
-          onPress={onPressHandler()}
-          iconName="chevron-right"
-          iconType="material"
-        />
-        <TripButton
-          title="Flights"
-          onPress={onPressHandler()}
-          iconName="chevron-right"
-          iconType="material"
-        />
-        <TripButton
-          title="Logout"
-          onPress={onPressHandler()}
-          iconName="chevron-right"
-          iconType="material"
-        />
-      </View>
-    </View>
+  const handleLogout = useCallback(() => {
+    dispatch(setSignOut());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const renderSettingsScreen = useCallback(
+    () => (
+      <>
+        <Text style={styles.titleText}>SettingsScreen</Text>
+        <View style={styles.tripButtonContainer}>
+          <TripButton
+            title="Profile"
+            onPress={() => onPressHandler('ProfileScreen')}
+            iconName="chevron-right"
+            iconType="material"
+          />
+          <TripButton
+            title="Travellers"
+            onPress={() => onPressHandler('TravellersScreen')}
+            iconName="chevron-right"
+            iconType="material"
+          />
+          <TripButton
+            title="Account"
+            onPress={() => onPressHandler('AccountScreen')}
+            iconName="chevron-right"
+            iconType="material"
+          />
+          <TripButton
+            title="Notifications"
+            onPress={() => onPressHandler('NotificationsSettings')}
+            iconName="chevron-right"
+            iconType="material"
+          />
+          <TripButton
+            title="Reminders"
+            onPress={() => onPressHandler('RemindersSettings')}
+            iconName="chevron-right"
+            iconType="material"
+          />
+          <TripButton
+            title="Accomodation"
+            onPress={() => onPressHandler('AccomodationSettings')}
+            iconName="chevron-right"
+            iconType="material"
+          />
+          <TripButton
+            title="Flights"
+            onPress={() => onPressHandler('FlightsSettings')}
+            iconName="chevron-right"
+            iconType="material"
+          />
+          <TripButton
+            title="Logout"
+            onPress={handleLogout}
+            iconName="chevron-right"
+            iconType="material"
+          />
+        </View>
+      </>
+    ),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [],
   );
+
+  return <ScreenContainer renderContent={renderSettingsScreen} />;
 };
 
-export default SettingsScreen;
-
 const styles = StyleSheet.create({
-  TripButtonContainer: {
+  tripButtonContainer: {
     width: '100%',
   },
-  TripButton: {
-    marginTop: 10,
-    backgroundColor: 'orange',
-    alignItems: 'center',
-    justifyContent: 'center',
-    height: '10%',
-    borderRadius: 5,
+  titleText: {
+    alignSelf: 'center',
   },
 });

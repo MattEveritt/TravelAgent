@@ -1,12 +1,12 @@
 import React, {useState} from 'react';
 import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
-import {ListItem, Icon, Avatar} from '@rneui/themed';
-import TripButton from '../travelUI';
-import globalStyles from '../../styles/globalStyles';
+import {ListItem} from '@rneui/themed';
 import Constants from '../../constants';
-import {tripPlanningComponents} from '.';
+import * as tripPlanningComponents from './index';
+import {useNavigation} from '@react-navigation/native';
 
-const TripInfo = ({navigation}) => {
+export const TripInfo = () => {
+  const navigation = useNavigation();
   const [expanded, setExpanded] = useState(false);
   return (
     <View style={{width: '100%'}}>
@@ -41,7 +41,8 @@ const TripInfo = ({navigation}) => {
         bottomDivider
         containerStyle={{backgroundColor: '#FFD580'}}>
         <View style={styles.TripButtonContainer}>
-          <TouchableOpacity onPress={() => console.log('open trip')}>
+          <TouchableOpacity
+            onPress={() => navigation.navigate('Booking navigator')}>
             <Text>OPEN</Text>
           </TouchableOpacity>
           <Text>|</Text>
@@ -53,8 +54,6 @@ const TripInfo = ({navigation}) => {
     </View>
   );
 };
-
-export default TripInfo;
 
 const styles = StyleSheet.create({
   accordion: {

@@ -1,9 +1,8 @@
 import React, {useState} from 'react';
 import {StyleSheet, Text, ScrollView, View} from 'react-native';
 import {ListItem, Icon, Avatar} from '@rneui/themed';
-import TripInfo from '../components/TripPlanning/TripInfo';
 import globalStyles from '../styles/globalStyles';
-import {TripButton} from '../components/travelUI';
+import {TripInfo, TripButton} from '../components';
 
 const tripPlanning1 = [
   {
@@ -27,7 +26,7 @@ const tripPlanning1 = [
     iconName: 'globe',
   },
 ];
-const TripPlanningScreen = ({navigation}) => {
+export const TripPlanningScreen = () => {
   const [expanded, setExpanded] = useState(false);
   return (
     <View style={globalStyles.screenContainer}>
@@ -61,8 +60,6 @@ const TripPlanningScreen = ({navigation}) => {
     </View>
   );
 };
-
-export default TripPlanningScreen;
 
 const styles = StyleSheet.create({
   accordion: {

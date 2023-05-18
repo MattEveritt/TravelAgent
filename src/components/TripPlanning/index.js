@@ -1,11 +1,6 @@
-import Destination from './Destination';
-import Budget from './Budget';
-import Dates from './Dates';
-import Travellers from './Travellers';
-
-export const tripPlanningComponents = {
-  Destination,
-  Budget,
-  Dates,
-  Travellers,
-};
+export {Destination} from './Destination';
+export {Budget} from './Budget';
+export {Dates} from './Dates';
+export {Travellers} from './Travellers';
+export {FlightCard} from './FlightCard';
+export {TripInfo} from './TripInfo';

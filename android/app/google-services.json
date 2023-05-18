@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "184975683530",
+    "project_id": "travelpal-dab4a",
+    "storage_bucket": "travelpal-dab4a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:184975683530:android:02b7f42a1a671537b96933",
+        "android_client_info": {
+          "package_name": "com.travelagent"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "184975683530-83sfpqr0uokvhjh7f1d680dpg4pa5tiq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCXNN61VuK9ytAITXqECXBbQU3C4m3RqOg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "184975683530-83sfpqr0uokvhjh7f1d680dpg4pa5tiq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

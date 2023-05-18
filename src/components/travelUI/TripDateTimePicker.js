@@ -2,7 +2,7 @@ import {StyleSheet} from 'react-native';
 import React from 'react';
 import DatepickerRange from 'react-native-range-datepicker';
 
-const TripDateTimePicker = ({
+export const TripDateTimePicker = ({
   startDate,
   setStartDate,
   untilDate,
@@ -21,7 +21,5 @@ const TripDateTimePicker = ({
     />
   );
 };
-
-export default TripDateTimePicker;
 
 const styles = StyleSheet.create({});

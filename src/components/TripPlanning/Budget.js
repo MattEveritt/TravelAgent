@@ -3,7 +3,7 @@ import React, {useState} from 'react';
 import {TripTextInput, TripModal} from '../travelUI';
 import {Icon} from '@rneui/base';
 
-const Budget = () => {
+export const Budget = () => {
   const [modalVisible, setModalVisible] = useState(false);
   return (
     <TouchableOpacity onPress={() => setModalVisible(!modalVisible)}>
@@ -23,8 +23,6 @@ const Budget = () => {
     </TouchableOpacity>
   );
 };
-
-export default Budget;
 
 const styles = StyleSheet.create({
   container: {

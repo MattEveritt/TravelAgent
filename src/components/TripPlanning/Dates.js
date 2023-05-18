@@ -3,7 +3,7 @@ import React, {useState} from 'react';
 import {TripModal, TripDateTimePicker} from '../travelUI';
 import {Icon} from '@rneui/base';
 
-const Dates = () => {
+export const Dates = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const [startDate, setStartDate] = useState(null);
   const [untilDate, setUntilDate] = useState(null);
@@ -37,8 +37,6 @@ const Dates = () => {
     </TouchableOpacity>
   );
 };
-
-export default Dates;
 
 const styles = StyleSheet.create({
   container: {

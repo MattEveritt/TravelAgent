@@ -1,19 +1,23 @@
-import HomeScreen from './HomeScreen';
-import LoadingScreen from './LoadingScreen';
-import LoginScreen from './LoginScreen';
-import OnboardingScreen from './OnboardingScreen';
-import SettingsScreen from './SettingsScreen';
-import SplashScreen from './SplashScreen';
-import TripPlanningScreen from './TripPlanningScreen';
-import YourTripScreen from './YourTripScreen';
-
+export {HomeScreen} from './HomeScreen';
+export {LoadingScreen} from './LoadingScreen';
+export {LoginScreen} from './LoginScreen';
+export {OnboardingScreen} from './OnboardingScreen';
+export {SettingsScreen} from './SettingsScreen';
+export {SplashScreen} from './SplashScreen';
+export {TripPlanningScreen} from './TripPlanningScreen';
+export {YourTripScreen} from './YourTripScreen';
 export {
-  HomeScreen,
-  LoadingScreen,
-  LoginScreen,
-  OnboardingScreen,
-  SettingsScreen,
-  SplashScreen,
-  TripPlanningScreen,
-  YourTripScreen,
-};
+  AccomodationScreen,
+  ConfirmationScreen,
+  FlightsScreen,
+  TransportScreen,
+} from './bookingScreens';
+export {
+  AccomodationSettingsScreen,
+  AccountScreen,
+  FlightSettingsScreen,
+  NotificationsSettingsScreen,
+  ProfileScreen,
+  ReminderSettingsScreen,
+  TravellersScreen,
+} from './settingsScreens';

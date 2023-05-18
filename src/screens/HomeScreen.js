@@ -1,8 +1,10 @@
 import React from 'react';
 import {StyleSheet, Text, View, Button} from 'react-native';
 import globalStyles from '../styles/globalStyles';
+import {useNavigation} from '@react-navigation/native';
 
-const HomeScreen = ({navigation}) => {
+export const HomeScreen = () => {
+  const navigation = useNavigation();
   const planTripHandler = () => {
     console.log('Go to plan trip');
     navigation.navigate('Trip Plan');
@@ -20,5 +22,3 @@ const HomeScreen = ({navigation}) => {
     </View>
   );
 };
-
-export default HomeScreen;
