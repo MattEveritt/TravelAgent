@@ -1,6 +1,7 @@
 import React from 'react';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
-import store from './src/redux/store/store';
+import {PersistGate} from 'redux-persist/integration/react';
+import {store, persistor} from './src/redux/store/store';
 import {Provider as ReduxProvider} from 'react-redux';
 
 import Router from './src/navigation/Router';
@@ -8,9 +9,11 @@ import Router from './src/navigation/Router';
 const App = () => {
   return (
     <ReduxProvider store={store}>
-      <SafeAreaProvider>
-        <Router />
-      </SafeAreaProvider>
+      <PersistGate loading={null} persistor={persistor}>
+        <SafeAreaProvider>
+          <Router />
+        </SafeAreaProvider>
+      </PersistGate>
     </ReduxProvider>
   );
 };

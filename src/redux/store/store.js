@@ -6,19 +6,24 @@ import {
 import appReducer from '../app/app';
 import currentTripReducer from '../currentTrip/currentTrip';
 import tripsReducer from '../trips/trips';
-import axios from 'axios';
 import flightsReducer from '../flights/flights';
 import authReducer from '../auth/authSlice';
-import axiosMiddleware from 'redux-axios-middleware';
+import {
+  persistStore,
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from 'redux-persist';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const client = axios.create({
-  baseURL: 'http://localhost:3000/api',
-  responseType: 'json',
-});
-
-const axiosInstance = axiosMiddleware(client);
-
-const middleware = [...getDefaultMiddleware(), axiosInstance];
+const persistConfig = {
+  key: 'root',
+  storage: AsyncStorage,
+};
 
 const rootReducer = combineReducers({
   app: appReducer,
@@ -28,7 +33,16 @@ const rootReducer = combineReducers({
   userAuth: authReducer,
 });
 
-export default configureStore({
-  reducer: rootReducer,
-  middleware,
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+
+const store = configureStore({
+  reducer: persistedReducer,
+  middleware: getDefaultMiddleware({
+    serializableCheck: {
+      ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+    },
+  }),
 });
+const persistor = persistStore(store);
+
+export {store, persistor};

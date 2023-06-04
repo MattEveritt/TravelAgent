@@ -1,9 +1,11 @@
 import {createSlice} from '@reduxjs/toolkit';
+import {login, loginCases} from './thunks/login';
 
 const initialState = {
   isLoggedIn: false,
   email: null,
   userName: null,
+  logInError: undefined,
 };
 
 const authSlice = createSlice({
@@ -20,6 +22,9 @@ const authSlice = createSlice({
       state.userName = null;
       state.isLoggedIn = false;
     },
+  },
+  extraReducers: builder => {
+    builder.addCase(login.fulfilled, loginCases.fulfilled);
   },
 });
 

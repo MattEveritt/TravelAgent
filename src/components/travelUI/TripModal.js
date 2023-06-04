@@ -21,7 +21,7 @@ export const TripModal = ({modalVisible, setModalVisible, modalContent}) => {
               />
             </View>
             <View
-              style={{width: '100%', height: '100%'}}
+              style={{width: '100%'}}
               keyboardShouldPersistTaps="always"
               listViewDisplayed={false}>
               {modalContent}
@@ -35,13 +35,10 @@ export const TripModal = ({modalVisible, setModalVisible, modalContent}) => {
 
 const styles = StyleSheet.create({
   centeredView: {
-    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    // marginTop: 22,
   },
   modalView: {
-    flex: 1,
     margin: 20,
     backgroundColor: 'white',
     borderRadius: 20,

@@ -1,7 +1,7 @@
 import React, {useCallback, useState} from 'react';
 import {StyleSheet, Text} from 'react-native';
-import {useDispatch} from 'react-redux';
-import {setSignIn} from '../redux/auth/authSlice';
+import {useSelector} from 'react-redux';
+import {useLogin} from '../hooks/useLogin';
 import {
   ScreenContainer,
   TripButton,
@@ -9,18 +9,13 @@ import {
 } from '../components/travelUI';
 
 export const LoginScreen = () => {
-  const dispatch = useDispatch();
+  const {runLogin} = useLogin();
   const [userNameInput, setUserNameInput] = useState();
   const [passwordInput, setPasswordInput] = useState();
+  const logInError = useSelector(state => state.userAuth.logInError);
 
   const handleLogin = useCallback(() => {
-    const user = {
-      isLoggedIn: true,
-      email: 'jdoe@test.com',
-      userName: 'johnDoe',
-    };
-
-    dispatch(setSignIn(user));
+    runLogin(userNameInput, passwordInput);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userNameInput, passwordInput]);
 
@@ -31,18 +26,21 @@ export const LoginScreen = () => {
         <TripTextInput
           value={userNameInput}
           onChangeText={setUserNameInput}
-          placeHolder="Password"
+          placeHolder="Username"
         />
         <TripTextInput
           value={passwordInput}
           onChangeText={setPasswordInput}
-          placeHolder="Username"
+          placeHolder="Password"
         />
         <TripButton title="Login" onPress={handleLogin} />
+        {logInError ? (
+          <Text style={styles.loginErrorText}>{logInError}</Text>
+        ) : null}
       </>
     ),
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [passwordInput, userNameInput],
+    [passwordInput, userNameInput, logInError],
   );
 
   return <ScreenContainer renderContent={renderLoginScreen} />;
@@ -52,5 +50,10 @@ const styles = StyleSheet.create({
   titleText: {
     textAlign: 'center',
     paddingBottom: 50,
+  },
+  loginErrorText: {
+    paddingVertical: 20,
+    color: 'red',
+    textAlign: 'center',
   },
 });
