@@ -1,51 +1,39 @@
-import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
-import React, {useState} from 'react';
+import {StyleSheet, View, TouchableOpacity} from 'react-native';
+import React, {useState, useCallback} from 'react';
 import {Icon} from '@rneui/themed';
-import {GooglePlacesAutocomplete} from 'react-native-google-places-autocomplete';
-import {TripModal, TripText, TripTextInput} from '../travelUI';
+import {TripText} from '../travelUI';
+import {useDispatch} from 'react-redux';
+import {updateTrip} from '../../redux/trips/thunks/updateTrip';
+import {DestinationSearchModal} from './DestinationSearchModal';
 
-export const Destination = () => {
+export const Destination = ({trip}) => {
+  const dispatch = useDispatch();
   const [modalVisible, setModalVisible] = useState(false);
-  const [destination, setDestination] = useState();
+  const [destination, setDestination] = useState(trip.destination);
+
+  const handleSaveTrip = useCallback(() => {
+    dispatch(updateTrip({...trip, destination: destination}));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [destination]);
+
   return (
     <View>
       <TouchableOpacity onPress={() => setModalVisible(!modalVisible)}>
         <View style={styles.container}>
           <View style={styles.titleContainer}>
-            <TripText text={destination} />
+            <TripText text={trip.destination} />
           </View>
           <View style={styles.iconContainer}>
             <Icon name="edit" />
           </View>
         </View>
       </TouchableOpacity>
-      <TripModal
+      <DestinationSearchModal
+        destination={destination}
+        setDestination={setDestination}
         modalVisible={modalVisible}
         setModalVisible={setModalVisible}
-        modalContent={
-          <GooglePlacesAutocomplete
-            placeholder={destination ? destination : 'Search'}
-            onPress={(data, details) => {
-              setDestination(data.description);
-              setModalVisible(!modalVisible);
-            }}
-            query={{
-              key: 'AIzaSyANUA6WMry0OJax7qCOyZlaUHaMs8aV-7o',
-              language: 'en',
-              types: '(cities)',
-            }}
-            enablePoweredByContainer={false}
-            listUnderlayColor="blue"
-            keepResultsAfterBlur={true}
-            listEmptyComponent={() => {
-              return (
-                <View style={{flex: 1, width: '100%', height: '100%'}}>
-                  <TripText text="No results found" />
-                </View>
-              );
-            }}
-          />
-        }
+        onPress={handleSaveTrip}
       />
     </View>
   );

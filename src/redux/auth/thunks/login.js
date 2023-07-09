@@ -20,6 +20,7 @@ export const login = createAsyncThunk('userAuth/login', async action => {
     }
     return data;
   } catch (e) {
+    console.log(e);
     return e.response.status;
   }
 });

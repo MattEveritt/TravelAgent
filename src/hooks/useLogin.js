@@ -1,5 +1,5 @@
 import {login} from '../redux/auth/thunks/login';
-import {getTrips} from '../redux/trips/thunks/getTrips';
+import {getTrips, getTravellers} from '../redux';
 import {useDispatch} from 'react-redux';
 
 export const useLogin = () => {
@@ -8,6 +8,7 @@ export const useLogin = () => {
     dispatch(login({username, password})).then(action => {
       if (action.payload.userId) {
         dispatch(getTrips(action.payload.userId));
+        dispatch(getTravellers(action.payload.userId));
       }
     });
   };

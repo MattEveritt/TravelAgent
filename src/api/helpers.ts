@@ -1,6 +1,8 @@
 import {store} from '../redux/store/store';
-import {refresh} from '../redux/auth/thunks/refresh';
+import {refreshAccessToken} from '../redux/auth/thunks/refreshAccessToken';
 import * as SecureStore from 'expo-secure-store';
+import {URL} from '@env';
+import { axiosPost } from '.';
 
 export const getAccessToken = () => {
   const token = store.getState().userAuth?.accessToken;
@@ -16,15 +18,21 @@ export const getRefreshToken = async () => {
   }
 };
 
-export const errorHandler = error => {
+export const errorHandler = async error => {
+  if (error.response?.status === 401) {
+    try {
+      await store.dispatch(refreshAccessToken());
+      const newRequest = { ...error.config };
+      newRequest.headers.Authorization = `Bearer ${getAccessToken()}`;
+      return axiosPost(newRequest);
+    } catch (refreshError) {
+      console.log('Error while refreshing access token: ', refreshError);
+    }
+  }
   return Promise.reject(error);
 };
 
-export const responseHandler = async response => {
-  if (response.status === 401) {
-    await store.dispatch(refresh());
-    console.log(response);
-  }
+export const responseHandler = response => {
   return response;
 };
 
@@ -35,4 +43,4 @@ export const setAuthHeader = config => {
   return config;
 };
 
-export const baseURL = 'http://10.0.2.2:3001/api';
+export const baseURL = `${URL}/api`;

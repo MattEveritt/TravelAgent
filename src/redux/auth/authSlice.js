@@ -1,5 +1,10 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {login, loginCases} from './thunks/login';
+import {
+  refreshAccessToken,
+  refreshAccessTokenCases,
+} from './thunks/refreshAccessToken';
+import {register, registerCases} from './thunks/register';
 
 const initialState = {
   isLoggedIn: false,
@@ -25,6 +30,15 @@ const authSlice = createSlice({
   },
   extraReducers: builder => {
     builder.addCase(login.fulfilled, loginCases.fulfilled);
+    builder.addCase(
+      refreshAccessToken.fulfilled,
+      refreshAccessTokenCases.fulfilled,
+    );
+    builder.addCase(
+      register.fulfilled,
+      registerCases.fulfilled,
+      registerCases.rejected,
+    );
   },
 });
 

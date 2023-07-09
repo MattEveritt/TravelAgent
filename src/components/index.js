@@ -14,4 +14,5 @@ export {
   Travellers,
   FlightCard,
   TripInfo,
+  Trips,
 } from './TripPlanning';

@@ -6,6 +6,7 @@ import {
 import appReducer from '../app/app';
 import currentTripReducer from '../currentTrip/currentTrip';
 import tripsReducer from '../trips/trips';
+import travellersReducer from '../travellers/travellers';
 import flightsReducer from '../flights/flights';
 import authReducer from '../auth/authSlice';
 import {
@@ -29,6 +30,7 @@ const rootReducer = combineReducers({
   app: appReducer,
   currentTrip: currentTripReducer,
   trips: tripsReducer,
+  travellers: travellersReducer,
   flights: flightsReducer,
   userAuth: authReducer,
 });
@@ -44,5 +46,7 @@ const store = configureStore({
   }),
 });
 const persistor = persistStore(store);
+
+export type RootState = ReturnType<typeof rootReducer>;
 
 export {store, persistor};
