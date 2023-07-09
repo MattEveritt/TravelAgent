@@ -1,5 +1,6 @@
 import React, {useCallback, useState} from 'react';
 import {StyleSheet, Text} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
 import {useLogin} from '../hooks/useLogin';
 import {
@@ -9,6 +10,7 @@ import {
 } from '../components/travelUI';
 
 export const LoginScreen = () => {
+  const navigation = useNavigation();
   const {runLogin} = useLogin();
   const [userNameInput, setUserNameInput] = useState();
   const [passwordInput, setPasswordInput] = useState();
@@ -18,6 +20,11 @@ export const LoginScreen = () => {
     runLogin(userNameInput, passwordInput);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userNameInput, passwordInput]);
+
+  const handleRegister = useCallback(() => {
+    navigation.navigate('Register');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const renderLoginScreen = useCallback(
     () => (
@@ -37,6 +44,7 @@ export const LoginScreen = () => {
         {logInError ? (
           <Text style={styles.loginErrorText}>{logInError}</Text>
         ) : null}
+        <TripButton title="Register" onPress={handleRegister} />
       </>
     ),
     // eslint-disable-next-line react-hooks/exhaustive-deps

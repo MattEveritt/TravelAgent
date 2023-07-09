@@ -7,6 +7,7 @@ export const saveTrip = createAsyncThunk(
     try {
       const userId = getState().userAuth.userId;
       const {data} = await axiosTripsService({
+        url: '/saveTrip',
         data: {
           destination: action.destination,
           budget: action.budget,
@@ -18,27 +19,19 @@ export const saveTrip = createAsyncThunk(
       });
       return data;
     } catch (e) {
-      console.log(e);
-      return e.response.status;
+      throw new Error(e);
     }
   },
 );
 
 export const saveTripCases = {
   fulfilled: (state, action) => {
-    if (!action.payload.token) {
-      if (action.payload === 401) {
-        return {
-          ...state,
-          isLoggedIn: false,
-        };
-      }
-    }
-    if (action.payload.token) {
-      return {
-        ...state,
-        accessToken: action.payload.token,
-      };
-    }
+    return {
+      ...state,
+      trips: [...state.trips, action.payload],
+    };
+  },
+  rejected: (state, action) => {
+    console.log('saveTrip rejected');
   },
 };

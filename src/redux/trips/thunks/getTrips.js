@@ -13,10 +13,8 @@ export const getTrips = createAsyncThunk(
           userId: userId,
         },
       });
-      console.log(data);
       return data;
     } catch (e) {
-      console.log(e);
       return e.message;
     }
   },
@@ -24,7 +22,7 @@ export const getTrips = createAsyncThunk(
 
 export const getTripsCases = {
   fulfilled: (state, action) => {
-    if (action.payload.e.error) {
+    if (action.payload.e) {
       console.error(action.payload.e);
     }
     return {

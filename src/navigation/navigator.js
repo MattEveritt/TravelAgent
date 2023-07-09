@@ -5,6 +5,7 @@ import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs
 import {
   HomeScreen,
   LoadingScreen,
+  RegisterScreen,
   LoginScreen,
   OnboardingScreen,
   SettingsScreen,
@@ -82,6 +83,11 @@ export const AuthStack = () => {
           options={{headerShown: false}}
           name="Login"
           component={LoginScreen}
+        />
+        <Stack.Screen
+          options={{headerShown: false}}
+          name="Register"
+          component={RegisterScreen}
         />
       </Stack.Group>
     </Stack.Navigator>

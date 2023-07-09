@@ -1,13 +1,21 @@
-import React, {useState} from 'react';
+import React, {useCallback, useState} from 'react';
 import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
+import {useDispatch} from 'react-redux';
+import {deleteTrip} from '../../redux/trips/thunks/deleteTrip';
 import {ListItem} from '@rneui/themed';
 import Constants from '../../constants';
 import * as tripPlanningComponents from './index';
 import {useNavigation} from '@react-navigation/native';
 
-export const TripInfo = () => {
+export const TripInfo = ({trip, i}) => {
+  const dispatch = useDispatch();
   const navigation = useNavigation();
   const [expanded, setExpanded] = useState(false);
+
+  const handleDeleteTrip = useCallback(() => {
+    dispatch(deleteTrip(trip.id));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return (
     <View style={{width: '100%'}}>
       {Object.values(Constants.PLANNING_CATEGORIES).map((l, i) => {
@@ -26,12 +34,8 @@ export const TripInfo = () => {
             }}
             style={styles.accordion}
             containerStyle={styles.accordion}>
-            <ListItem
-              onPress={() => console.log('pressed')}
-              bottomDivider
-              // style={{width: '100%'}}
-            >
-              <Component />
+            <ListItem bottomDivider style={{width: '100%'}}>
+              <Component trip={trip} />
             </ListItem>
           </ListItem.Accordion>
         );
@@ -46,7 +50,7 @@ export const TripInfo = () => {
             <Text>OPEN</Text>
           </TouchableOpacity>
           <Text>|</Text>
-          <TouchableOpacity onPress={() => console.log('delete trip')}>
+          <TouchableOpacity onPress={handleDeleteTrip}>
             <Text>DELETE</Text>
           </TouchableOpacity>
         </View>

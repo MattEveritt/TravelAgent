@@ -2,13 +2,15 @@ import React from 'react';
 import {StyleSheet, Text, View, Button} from 'react-native';
 import globalStyles from '../styles/globalStyles';
 import {useNavigation} from '@react-navigation/native';
+import {useCallback} from 'react';
 
 export const HomeScreen = () => {
   const navigation = useNavigation();
-  const planTripHandler = () => {
+  const planTripHandler = useCallback(() => {
     console.log('Go to plan trip');
     navigation.navigate('Trip Plan');
-  };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <View style={globalStyles.screenContainer}>

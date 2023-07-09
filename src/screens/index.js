@@ -1,6 +1,7 @@
 export {HomeScreen} from './HomeScreen';
 export {LoadingScreen} from './LoadingScreen';
 export {LoginScreen} from './LoginScreen';
+export {RegisterScreen} from './RegisterScreen';
 export {OnboardingScreen} from './OnboardingScreen';
 export {SettingsScreen} from './SettingsScreen';
 export {SplashScreen} from './SplashScreen';

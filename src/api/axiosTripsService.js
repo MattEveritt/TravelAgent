@@ -2,7 +2,7 @@ import axios from 'axios';
 import {baseURL, responseHandler, errorHandler, setAuthHeader} from './helpers';
 
 const axiosTripsService = axios.create({
-  baseURL: `${baseURL}/trips/saveTrip`,
+  baseURL: `${baseURL}/trips`,
   method: 'post',
   headers: {
     'Content-Type': 'application/json',

@@ -1,15 +1,28 @@
 import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
-import React, {useState} from 'react';
-import {TripTextInput, TripModal} from '../travelUI';
+import React, {useCallback, useState} from 'react';
+import {useDispatch} from 'react-redux';
+import {updateTrip} from '../../redux/trips/thunks/updateTrip';
+import {TripTextInput, TripModal, TripButton} from '../travelUI';
 import {Icon} from '@rneui/base';
 
-export const Budget = () => {
+export const Budget = ({trip}) => {
+  const dispatch = useDispatch();
   const [modalVisible, setModalVisible] = useState(false);
+  const [budget, setBudget] = useState(trip.budget);
+
+  const handleSave = useCallback(() => {
+    const updatedTrip = {...trip};
+    updatedTrip.budget = budget;
+
+    dispatch(updateTrip(updatedTrip));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [budget, trip]);
+
   return (
     <TouchableOpacity onPress={() => setModalVisible(!modalVisible)}>
       <View style={styles.container}>
         <View style={styles.titleContainer}>
-          <Text>500.00 Euros</Text>
+          <Text>{budget ? budget : '0.00'} €</Text>
         </View>
         <View style={styles.iconContainer}>
           <Icon name="edit" />
@@ -18,7 +31,16 @@ export const Budget = () => {
       <TripModal
         modalVisible={modalVisible}
         setModalVisible={setModalVisible}
-        modalContent={<TripTextInput currentValue="500.00" />}
+        modalContent={
+          <>
+            <TripTextInput
+              value={budget}
+              onChangeText={setBudget}
+              placeHolder="€"
+            />
+            <TripButton title="Save" onPress={handleSave} />
+          </>
+        }
       />
     </TouchableOpacity>
   );

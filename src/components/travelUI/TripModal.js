@@ -35,7 +35,7 @@ export const TripModal = ({modalVisible, setModalVisible, modalContent}) => {
 
 const styles = StyleSheet.create({
   centeredView: {
-    justifyContent: 'center',
+    // justifyContent: 'center',
     alignItems: 'center',
   },
   modalView: {
@@ -53,6 +53,7 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 5,
     width: '90%',
+    height: '90%',
   },
   button: {
     borderRadius: 20,

@@ -14,9 +14,4 @@ const axiosPost = axios.create({
   },
 });
 
-// axiosPost.interceptors.response.use(
-//   response => responseHandler(response),
-//   error => errorHandler(error),
-// );
-
 export default axiosPost;
