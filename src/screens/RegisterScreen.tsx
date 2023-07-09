@@ -13,6 +13,7 @@ export const RegisterScreen = () => {
   const [emailInput, setEmailInput] = useState();
   const [userNameInput, setUserNameInput] = useState();
   const [passwordInput, setPasswordInput] = useState();
+  // @ts-expect-error TS(2571): Object is of type 'unknown'.
   const logInError = useSelector(state => state.userAuth.logInError);
 
   const handleRegister = () => {

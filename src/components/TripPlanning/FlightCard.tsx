@@ -3,13 +3,14 @@ import React from 'react';
 import {useSelector} from 'react-redux';
 import {TripButton} from '../travelUI/index';
 
-export const FlightCard = ({flight}) => {
+export const FlightCard = ({flight}: any) => {
+  // @ts-expect-error TS(2571): Object is of type 'unknown'.
   const airline = useSelector(state => state.flights.dictionaries.carriers);
   return (
     <View style={styles.container}>
       <Text>{flight.id}</Text>
       <Text>{flight.price.grandTotal}</Text>
-      {flight.itineraries.map(itinerary => (
+      {flight.itineraries.map((itinerary: any) => (
         <View
           style={{
             flexDirection: 'row',
@@ -20,7 +21,8 @@ export const FlightCard = ({flight}) => {
             style={{
               flexDirection: 'row',
             }}>
-            {itinerary.segments.map((segment, index) => {
+            // @ts-expect-error TS(7030): Not all code paths return a value.
+            {itinerary.segments.map((segment: any, index: any) => {
               if (index === 0 && index === itinerary.segments.length - 1) {
                 return (
                   <>
@@ -35,6 +37,7 @@ export const FlightCard = ({flight}) => {
               if (index === itinerary.segments.length - 1) {
                 return <Text>{segment.arrival.at.substring(11, 16)}</Text>;
               }
+              return null;
             })}
           </View>
           <Text>

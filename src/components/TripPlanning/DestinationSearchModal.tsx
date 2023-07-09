@@ -11,7 +11,7 @@ export const DestinationSearchModal = ({
   destination,
   setDestination,
   onPress,
-}) => {
+}: any) => {
   return (
     <TripModal
       modalVisible={modalVisible}

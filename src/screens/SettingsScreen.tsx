@@ -4,9 +4,9 @@ import {useDispatch} from 'react-redux';
 import {TripButton, ScreenContainer} from '../components/travelUI';
 import {setSignOut} from '../redux/auth/authSlice';
 
-export const SettingsScreen = ({navigation}) => {
+export const SettingsScreen = ({navigation}: any) => {
   const dispatch = useDispatch();
-  const onPressHandler = useCallback(value => {
+  const onPressHandler = useCallback((value: any) => {
     navigation.navigate(value);
     console.log('hey');
     // eslint-disable-next-line react-hooks/exhaustive-deps

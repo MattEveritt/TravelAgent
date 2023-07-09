@@ -5,6 +5,7 @@ export const getTrips = createAsyncThunk(
   'trips/getTrips',
   async (action, {getState}) => {
     try {
+      // @ts-expect-error TS(2571): Object is of type 'unknown'.
       const userId = getState().userAuth.userId;
       const {data} = await axiosUsersService({
         url: '/trips',
@@ -15,13 +16,14 @@ export const getTrips = createAsyncThunk(
       });
       return data;
     } catch (e) {
+      // @ts-expect-error TS(2571): Object is of type 'unknown'.
       return e.message;
     }
   },
 );
 
 export const getTripsCases = {
-  fulfilled: (state, action) => {
+  fulfilled: (state: any, action: any) => {
     if (action.payload.e) {
       console.error(action.payload.e);
     }

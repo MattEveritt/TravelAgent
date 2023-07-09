@@ -5,7 +5,7 @@ import {updateTrip} from '../../redux/trips/thunks/updateTrip';
 import {TripTextInput, TripModal, TripButton} from '../travelUI';
 import {Icon} from '@rneui/base';
 
-export const Budget = ({trip}) => {
+export const Budget = ({trip}: any) => {
   const dispatch = useDispatch();
   const [modalVisible, setModalVisible] = useState(false);
   const [budget, setBudget] = useState(trip.budget);
@@ -14,6 +14,7 @@ export const Budget = ({trip}) => {
     const updatedTrip = {...trip};
     updatedTrip.budget = budget;
 
+    // @ts-expect-error TS(2345): Argument of type 'AsyncThunkAction<void, void, Asy... Remove this comment to see the full error message
     dispatch(updateTrip(updatedTrip));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [budget, trip]);

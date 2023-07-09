@@ -1,12 +1,30 @@
-import {createAsyncThunk} from '@reduxjs/toolkit';
+import {createAsyncThunk, SerializedError} from '@reduxjs/toolkit';
 import {axiosTravellersService} from '../../../api';
+import { RootState } from '../../store/store';
+import { AxiosResponse } from 'axios';
 
-export const saveTraveller = createAsyncThunk(
+interface SaveTravellerPayload {
+  name: string | undefined,
+  surname: string | undefined,
+}
+
+interface SaveTravellerResponse {
+  data: any;
+}
+
+export const saveTraveller = createAsyncThunk<
+  SaveTravellerResponse, 
+  SaveTravellerPayload, 
+  {
+    state: RootState,
+    rejectValue: AxiosResponse 
+  }
+>(
   'travellers/saveTraveller',
   async (action, {getState, rejectWithValue}) => {
-    const userId = getState().userAuth.userId;
+    const userId: string | undefined = getState().userAuth.userId;
     console.log(action);
-    const res = await axiosTravellersService({
+    const res: AxiosResponse = await axiosTravellersService({
       url: '/savetraveller',
       data: {
         name: action.name,
@@ -22,13 +40,13 @@ export const saveTraveller = createAsyncThunk(
 );
 
 export const saveTravellerCases = {
-  fulfilled: (state, action) => {
+  fulfilled: (state: any, action: any) => {
     return {
       ...state,
       travellers: [...state.travellers, {...action.payload}],
     };
   },
-  rejected: (state, action) => {
+  rejected: (state: any, action: any) => {
     console.error('Save traveller request failed: ', action.payload.status);
   },
 };

@@ -11,6 +11,7 @@ const initialState = {
   email: null,
   userName: null,
   logInError: undefined,
+  userId: undefined,
 };
 
 const authSlice = createSlice({
@@ -37,6 +38,7 @@ const authSlice = createSlice({
     builder.addCase(
       register.fulfilled,
       registerCases.fulfilled,
+      // @ts-expect-error TS(2554): Expected 2 arguments, but got 3.
       registerCases.rejected,
     );
   },
@@ -44,8 +46,8 @@ const authSlice = createSlice({
 
 export const {setSignIn, setSignOut} = authSlice.actions;
 
-export const selectIsLoggedIn = state => state.userAuth.isLoggedIn;
-export const selectEmail = state => state.userAuth.email;
-export const selectUserName = state => state.userAuth.userName;
+export const selectIsLoggedIn = (state: any) => state.userAuth.isLoggedIn;
+export const selectEmail = (state: any) => state.userAuth.email;
+export const selectUserName = (state: any) => state.userAuth.userName;
 
 export default authSlice.reducer;

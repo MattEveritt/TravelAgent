@@ -4,6 +4,7 @@ import {axiosUsersService} from '../../../api';
 export const getTravellers = createAsyncThunk(
   'travellers/getTravellers',
   async (action, {getState, rejectWithValue}) => {
+    // @ts-expect-error TS(2571): Object is of type 'unknown'.
     const userId = getState().userAuth.userId;
     const res = await axiosUsersService({
       url: '/travellers',
@@ -20,13 +21,13 @@ export const getTravellers = createAsyncThunk(
 );
 
 export const getTravellersCases = {
-  fulfilled: (state, action) => {
+  fulfilled: (state: any, action: any) => {
     return {
       ...state,
       travellers: action.payload,
     };
   },
-  rejected: (state, action) => {
+  rejected: (state: any, action: any) => {
     console.error('get travellers request failed: ', action.payload.status);
   },
 };

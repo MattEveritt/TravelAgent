@@ -1,19 +1,18 @@
-import { useState, useCallback } from "react";
+import React, { useState, useCallback } from "react";
 import { View } from "react-native";
-import { useDispatch } from "react-redux";
+import { useAppDispatch } from "../../redux/store/store";
 import { saveTraveller } from "../../redux";
 import { TripTextInput, TripButton } from "../travelUI";
 
 interface AddTravellerFormProps {}
 
-export const AddTravellerForm: React.FC<AddTravellerFormProps> = ({}) => {
-    const dispatch = useDispatch();
+export const AddTravellerForm: React.FC<AddTravellerFormProps> = () => {
+    const dispatch = useAppDispatch();
     const [name, setName] = useState<string | undefined>();
     const [surname, setSurname] = useState<string | undefined>();
   
     const handleSaveTraveller = useCallback(() => {
       dispatch(saveTraveller({name, surname}));
-      // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [name, surname]);
   
     return (

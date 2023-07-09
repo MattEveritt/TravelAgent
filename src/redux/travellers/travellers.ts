@@ -6,14 +6,18 @@ import {
   saveTravellerCases,
 } from './thunks';
 
-const initialState = {
+type SliceState = {
+  travellers: Array<{}>,
+}
+
+const initialState: SliceState = {
   travellers: [],
-  value: 0,
 };
 
 const travellersSlice = createSlice({
   name: 'travellers',
   initialState,
+  reducers: {},
   extraReducers: builder => {
     builder.addCase(getTravellers.fulfilled, getTravellersCases.fulfilled);
     builder.addCase(saveTraveller.fulfilled, saveTravellerCases.fulfilled);

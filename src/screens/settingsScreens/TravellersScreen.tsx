@@ -11,11 +11,11 @@ import {
   TripTextInput,
 } from '../../components/travelUI';
 
-const TravellersAccordion = ({travellers}) => {
+const TravellersAccordion = ({travellers}: any) => {
   const [expanded, setExpanded] = useState(false);
   console.log('travellers: ', travellers);
 
-  return travellers.map((traveller, i) => (
+  return travellers.map((traveller: any, i: any) => (
     <ListItem.Accordion
       content={
         <ListItem.Title style={{flex: 9, color: 'black'}}>
@@ -60,6 +60,7 @@ export const TravellersScreen = () => {
         <TripModal
           modalVisible={modalVisible}
           setModalVisible={setModalVisible}
+          // @ts-expect-error TS(2304): Cannot find name 'AddTravellerForm'.
           modalContent={<AddTravellerForm />}
         />
       </View>

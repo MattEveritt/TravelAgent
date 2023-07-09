@@ -1,7 +1,7 @@
 import {StyleSheet, TextInput} from 'react-native';
 import React from 'react';
 
-export const TripTextInput = ({value, onChangeText, placeHolder}) => {
+export const TripTextInput = ({value, onChangeText, placeHolder}: any) => {
   return (
     <TextInput
       style={styles.input}

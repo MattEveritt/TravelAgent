@@ -14,6 +14,7 @@ export const LoginScreen = () => {
   const {runLogin} = useLogin();
   const [userNameInput, setUserNameInput] = useState();
   const [passwordInput, setPasswordInput] = useState();
+  // @ts-expect-error TS(2571): Object is of type 'unknown'.
   const logInError = useSelector(state => state.userAuth.logInError);
 
   const handleLogin = useCallback(() => {
@@ -22,6 +23,7 @@ export const LoginScreen = () => {
   }, [userNameInput, passwordInput]);
 
   const handleRegister = useCallback(() => {
+    // @ts-expect-error TS(2769): No overload matches this call.
     navigation.navigate('Register');
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

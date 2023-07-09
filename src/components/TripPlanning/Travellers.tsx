@@ -4,8 +4,8 @@ import {selectAllTravellers} from '../../redux';
 import {useSelector} from 'react-redux';
 import {Traveller} from './Traveller';
 
-const renderTravellers = travellers => {
-  const travellersList = travellers.map(traveller => (
+const renderTravellers = (travellers: any) => {
+  const travellersList = travellers.map((traveller: any) => (
     <Traveller traveller={traveller} key={traveller.id} />
   ));
 

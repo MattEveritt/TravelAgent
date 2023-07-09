@@ -5,7 +5,7 @@ import {updateTrip} from '../../redux/trips/thunks/updateTrip';
 import {TripModal, TripDateTimePicker} from '../travelUI';
 import {Icon} from '@rneui/base';
 
-export const Dates = ({trip}) => {
+export const Dates = ({trip}: any) => {
   const [modalVisible, setModalVisible] = useState(false);
   const [startDate, setStartDate] = useState(trip.from);
   const [untilDate, setUntilDate] = useState(trip.to);
