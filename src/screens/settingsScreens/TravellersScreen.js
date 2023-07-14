@@ -2,33 +2,30 @@ import React, {useState, useCallback} from 'react';
 import {StyleSheet, Text, ScrollView, View} from 'react-native';
 import {ListItem} from '@rneui/themed';
 import globalStyles from '../../styles/globalStyles';
-import {saveTraveller, selectAllTravellers} from '../../redux';
-import {TripInfo, TripButton} from '../../components';
-import {useDispatch, useSelector} from 'react-redux';
-import {
-  ScreenContainer,
-  TripModal,
-  TripTextInput,
-} from '../../components/travelUI';
+import {selectAllTravellers} from '../../redux';
+import {TripButton, AddTravellerForm, TravellerInfo} from '../../components';
+import {useSelector} from 'react-redux';
+import {ScreenContainer, TripModal} from '../../components/travelUI';
 
 const TravellersAccordion = ({travellers}) => {
   const [expanded, setExpanded] = useState(false);
-  console.log('travellers: ', travellers);
 
-  return travellers.map((traveller, i) => (
+  return Object.keys(travellers).map((key, i) => (
     <ListItem.Accordion
       content={
         <ListItem.Title style={{flex: 9, color: 'black'}}>
-          {traveller.name} {traveller.surname}
+          {travellers[key].name} {travellers[key].surname}
         </ListItem.Title>
       }
       key={i}
-      isExpanded={expanded === traveller.id ? true : false}
+      isExpanded={expanded === travellers[key].id ? true : false}
       onPress={() => {
-        setExpanded(expanded === traveller.id ? false : traveller.id);
+        setExpanded(
+          expanded === travellers[key].id ? false : travellers[key].id,
+        );
       }}
       containerStyle={styles.accordion}>
-      <TripInfo traveller={traveller} index={i} />
+      <TravellerInfo traveller={travellers[key]} index={i} />
     </ListItem.Accordion>
   ));
 };

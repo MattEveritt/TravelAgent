@@ -1,2 +1,7 @@
-export {getTravellers, saveTraveller} from './thunks';
+export {
+  getTravellers,
+  saveTraveller,
+  deleteTraveller,
+  updateTraveller,
+} from './thunks';
 export {selectAllTravellers} from './selectors';

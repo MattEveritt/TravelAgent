@@ -4,6 +4,10 @@ import {
   getTravellersCases,
   saveTraveller,
   saveTravellerCases,
+  deleteTraveller,
+  deleteTravellerCases,
+  updateTraveller,
+  updateTravellerCases,
 } from './thunks';
 
 const initialState = {
@@ -16,7 +20,21 @@ const travellersSlice = createSlice({
   initialState,
   extraReducers: builder => {
     builder.addCase(getTravellers.fulfilled, getTravellersCases.fulfilled);
-    builder.addCase(saveTraveller.fulfilled, saveTravellerCases.fulfilled);
+    builder.addCase(
+      saveTraveller.fulfilled,
+      saveTravellerCases.fulfilled,
+      saveTravellerCases.rejected,
+    );
+    builder.addCase(
+      deleteTraveller.fulfilled,
+      deleteTravellerCases.fulfilled,
+      deleteTravellerCases.rejected,
+    );
+    builder.addCase(
+      updateTraveller.fulfilled,
+      updateTravellerCases.fulfilled,
+      updateTravellerCases.rejected,
+    );
   },
 });
 

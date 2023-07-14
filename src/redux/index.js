@@ -1,4 +1,9 @@
-export {getTravellers, saveTraveller, selectAllTravellers} from './travellers';
+export {
+  getTravellers,
+  saveTraveller,
+  deleteTraveller,
+  selectAllTravellers,
+} from './travellers';
 export {
   getTrips,
   updateTrip,

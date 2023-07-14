@@ -16,3 +16,5 @@ export {
   TripInfo,
   Trips,
 } from './TripPlanning';
+
+export {AddTravellerForm, TravellerInfo} from './Settings';
