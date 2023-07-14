@@ -1,8 +1,9 @@
 import {store} from '../redux/store/store';
 import {refreshAccessToken} from '../redux/auth/thunks/refreshAccessToken';
 import * as SecureStore from 'expo-secure-store';
-import {URL} from '@env';
-import { axiosPost } from '.';
+import {axiosPost} from '.';
+
+const URL = 'http://10.0.2.2:3001';
 
 export const getAccessToken = () => {
   const token = store.getState().userAuth?.accessToken;
@@ -22,7 +23,7 @@ export const errorHandler = async error => {
   if (error.response?.status === 401) {
     try {
       await store.dispatch(refreshAccessToken());
-      const newRequest = { ...error.config };
+      const newRequest = {...error.config};
       newRequest.headers.Authorization = `Bearer ${getAccessToken()}`;
       return axiosPost(newRequest);
     } catch (refreshError) {

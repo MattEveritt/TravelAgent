@@ -21,6 +21,7 @@ export const getTravellers = createAsyncThunk(
 
 export const getTravellersCases = {
   fulfilled: (state, action) => {
+    console.log(action.payload);
     return {
       ...state,
       travellers: action.payload,
