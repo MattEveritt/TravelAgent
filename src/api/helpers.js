@@ -1,9 +1,8 @@
+import Config from 'react-native-config';
 import {store} from '../redux/store/store';
 import {refreshAccessToken} from '../redux/auth/thunks/refreshAccessToken';
 import * as SecureStore from 'expo-secure-store';
 import {axiosPost} from '.';
-
-const URL = 'http://10.0.2.2:3001';
 
 export const getAccessToken = () => {
   const token = store.getState().userAuth?.accessToken;
@@ -44,4 +43,4 @@ export const setAuthHeader = config => {
   return config;
 };
 
-export const baseURL = `${URL}/api`;
+export const baseURL = `${Config.API_URL}/api`;
