@@ -4,18 +4,16 @@ import {selectAllTravellers} from '../../redux';
 import {useSelector} from 'react-redux';
 import {Traveller} from './Traveller';
 
-const renderTravellers = travellers => {
-  const travellersList = travellers.map(traveller => (
-    <Traveller traveller={traveller} key={traveller.id} />
-  ));
-
-  return travellersList;
-};
-
 export const Travellers = () => {
   const travellers = useSelector(selectAllTravellers());
 
-  return <View style={{width: '100%'}}>{renderTravellers(travellers)}</View>;
+  return (
+    <View style={{width: '100%'}}>
+      {Object.keys(travellers).map(traveller => (
+        <Traveller traveller={travellers[traveller]} key={traveller} />
+      ))}
+    </View>
+  )
 };
 
 const styles = StyleSheet.create({});
