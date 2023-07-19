@@ -3,10 +3,10 @@ import {axiosUsersService} from '../../../api';
 
 export const resetPassword = createAsyncThunk(
   'userAuth/resetPassword',
-  async (action, {rejectWithValue}) => {
+  async (action) => {
     try {
       const {status} = await axiosUsersService({
-        url:'/resetPassword',
+        url:'/resetpassword',
         data: {
           email: action,
         },
