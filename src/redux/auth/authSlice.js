@@ -38,6 +38,8 @@ const authSlice = createSlice({
     builder.addCase(
       register.fulfilled,
       registerCases.fulfilled,
+    ).addCase(
+      register.rejected,
       registerCases.rejected,
     );
     builder.addCase(

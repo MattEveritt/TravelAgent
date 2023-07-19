@@ -1,5 +1,5 @@
 import React, {useCallback, useMemo, useState} from 'react';
-import {StyleSheet, Text, TouchableOpacity} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
 import {useLogin} from '../hooks/useLogin';
@@ -14,12 +14,21 @@ export const LoginScreen = () => {
   const {runLogin} = useLogin();
   const [userNameInput, setUserNameInput] = useState();
   const [passwordInput, setPasswordInput] = useState();
+  const [isValidInput, setIsValidInput] = useState(true);
   const logInError = useSelector(state => state.userAuth.logInError);
 
   const handleLogin = useCallback(() => {
-    runLogin(userNameInput, passwordInput);
+    if (!userNameInput || !passwordInput) {
+      setIsValidInput(false);
+    } else {
+      if (isValidInput === false) {
+        setIsValidInput(true)
+      }
+      runLogin(userNameInput, passwordInput);
+    }
+    
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [userNameInput, passwordInput]);
+  }, [userNameInput, passwordInput, isValidInput]);
 
   const handleRegister = useCallback(() => {
     navigation.navigate('Register');
@@ -45,17 +54,20 @@ export const LoginScreen = () => {
           placeHolder="Password"
         />
         <TripButton title="Login" onPress={handleLogin} />
-        {logInError ? (
-          <Text style={styles.loginErrorText}>{logInError}</Text>
-        ) : null}
         <TripButton title="Register" onPress={handleRegister} />
-        <TouchableOpacity style={styles.forgotPasswordContainer} onPress={handleForgotPassword}>
-          <Text>Forgot Password?</Text>
-        </TouchableOpacity>
+        <Text style={styles.loginErrorText}>
+          {isValidInput === false ? 'Please input a valid username and password' : null}
+          {logInError && isValidInput && logInError}
+        </Text>
+        <View style={styles.forgotPasswordContainer}>
+          <TouchableOpacity onPress={handleForgotPassword}>
+            <Text>Forgot Password?</Text>
+          </TouchableOpacity>
+        </View>
       </>
     ),
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [passwordInput, userNameInput, logInError],
+    [passwordInput, userNameInput, logInError, isValidInput],
   );
 
   return <ScreenContainer renderContent={renderLoginScreen} />;
@@ -73,8 +85,8 @@ const styles = StyleSheet.create({
   },
   forgotPasswordContainer: {
     width: '100%', 
-    height: '100%', 
+    height: '50%', 
     alignItems:'center', 
-    justifyContent: 'center'
+    justifyContent: 'center',
   }
 });
