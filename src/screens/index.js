@@ -7,6 +7,7 @@ export {SettingsScreen} from './SettingsScreen';
 export {SplashScreen} from './SplashScreen';
 export {TripPlanningScreen} from './TripPlanningScreen';
 export {YourTripScreen} from './YourTripScreen';
+export {ForgotPasswordScreen} from './ForgotPasswordScreen';
 export {
   AccomodationScreen,
   ConfirmationScreen,

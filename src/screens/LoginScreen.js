@@ -1,5 +1,5 @@
-import React, {useCallback, useState} from 'react';
-import {StyleSheet, Text} from 'react-native';
+import React, {useCallback, useMemo, useState} from 'react';
+import {StyleSheet, Text, TouchableOpacity} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
 import {useLogin} from '../hooks/useLogin';
@@ -26,6 +26,10 @@ export const LoginScreen = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const handleForgotPassword = useCallback(() => {
+    navigation.navigate('Forgot Password');
+  }, [])
+
   const renderLoginScreen = useCallback(
     () => (
       <>
@@ -45,6 +49,9 @@ export const LoginScreen = () => {
           <Text style={styles.loginErrorText}>{logInError}</Text>
         ) : null}
         <TripButton title="Register" onPress={handleRegister} />
+        <TouchableOpacity style={styles.forgotPasswordContainer} onPress={handleForgotPassword}>
+          <Text>Forgot Password?</Text>
+        </TouchableOpacity>
       </>
     ),
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -64,4 +71,10 @@ const styles = StyleSheet.create({
     color: 'red',
     textAlign: 'center',
   },
+  forgotPasswordContainer: {
+    width: '100%', 
+    height: '100%', 
+    alignItems:'center', 
+    justifyContent: 'center'
+  }
 });

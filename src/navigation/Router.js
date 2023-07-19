@@ -7,10 +7,6 @@ import {AppStack, AuthStack} from './navigator';
 export const Router = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
-  // useEffect(() => {
-  //   checkToken();
-  // }, []);
-
   if (isLoggedIn) {
     return (
       <NavigationContainer>

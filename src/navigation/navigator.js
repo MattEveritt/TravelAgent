@@ -23,6 +23,7 @@ import {
   ConfirmationScreen,
   AccomodationScreen,
   TransportScreen,
+  ForgotPasswordScreen,
 } from '../screens';
 
 const topTab = createMaterialTopTabNavigator();
@@ -88,6 +89,11 @@ export const AuthStack = () => {
           options={{headerShown: false}}
           name="Register"
           component={RegisterScreen}
+        />
+        <Stack.Screen
+          options={{headerShown: false}}
+          name="Forgot Password"
+          component={ForgotPasswordScreen}
         />
       </Stack.Group>
     </Stack.Navigator>

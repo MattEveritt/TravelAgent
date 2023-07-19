@@ -5,6 +5,7 @@ import {
   refreshAccessTokenCases,
 } from './thunks/refreshAccessToken';
 import {register, registerCases} from './thunks/register';
+import { resetPassword, resetPasswordCases } from './thunks';
 
 const initialState = {
   isLoggedIn: false,
@@ -39,6 +40,13 @@ const authSlice = createSlice({
       registerCases.fulfilled,
       registerCases.rejected,
     );
+    builder.addCase(
+      resetPassword.fulfilled,
+      resetPasswordCases.fulfilled,
+    ).addCase(
+      resetPassword.rejected,
+      resetPasswordCases.rejected,
+    )
   },
 });
 
