@@ -11,3 +11,6 @@ export {
   saveTrip,
   selectAllTrips,
 } from './trips';
+export {
+  resetPassword,
+} from './auth'
