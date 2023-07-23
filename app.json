@@ -1,4 +1,7 @@
 {
   "name": "Faycay",
-  "displayName": "Faycay"
+  "displayName": "Faycay",
+  "plugins": [
+    "expo-localization"
+  ]
 }
