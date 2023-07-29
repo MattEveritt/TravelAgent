@@ -7,8 +7,8 @@ export const TripButton = ({
   title,
   onPress,
   iconName,
-  iconType,
-}) => {
+  iconType
+}: any) => {
   return (
     <TouchableOpacity onPress={onPress} style={styles.container}>
       <View style={styles.textContainer}>

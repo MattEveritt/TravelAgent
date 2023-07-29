@@ -16,7 +16,7 @@ export const RegisterScreen = () => {
   const [userNameInput, setUserNameInput] = useState();
   const [passwordInput, setPasswordInput] = useState();
   const [error, setError] = useState('');
-  const logInError = useSelector(state => state.userAuth.logInError);
+  const logInError = useSelector(state => (state as any).userAuth.logInError);
 
   const handleRegister = useCallback(async () => {
     const isEmailValid = validateEmail(emailInput);

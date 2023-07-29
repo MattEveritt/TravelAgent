@@ -7,7 +7,9 @@ import {TripButton, AddTravellerForm, TravellerInfo} from '../../components';
 import {useSelector} from 'react-redux';
 import {ScreenContainer, TripModal} from '../../components/travelUI';
 
-const TravellersAccordion = ({travellers}) => {
+const TravellersAccordion = ({
+  travellers
+}: any) => {
   const [expanded, setExpanded] = useState(false);
 
   return Object.keys(travellers).map((key, i) => (
@@ -45,6 +47,7 @@ export const TravellersScreen = () => {
         <ScrollView keyboardShouldPersistTaps="always" style={{width: '100%'}}>
           <Text>TravellersScreen</Text>
           <View style={{width: '100%'}}>
+            {/* @ts-expect-error TS(2786): 'TravellersAccordion' cannot be used as a JSX comp... Remove this comment to see the full error message */}
             <TravellersAccordion travellers={travellers} />
           </View>
         </ScrollView>

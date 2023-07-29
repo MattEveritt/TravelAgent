@@ -20,14 +20,14 @@ export const deleteTrip = createAsyncThunk(
 );
 
 export const deleteTripCases = {
-  fulfilled: (state, action) => {
-    const newTrips = state.trips.filter(trip => trip.id !== action.payload);
+  fulfilled: (state: any, action: any) => {
+    const newTrips = state.trips.filter((trip: any) => trip.id !== action.payload);
     return {
       ...state,
       trips: newTrips,
     };
   },
-  rejected: (state, action) => {
+  rejected: (state: any, action: any) => {
     console.log(action.payload);
     console.log('deleteTrip rejected');
   },

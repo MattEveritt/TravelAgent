@@ -4,8 +4,9 @@ import {axiosTravellersService} from '../../../api';
 export const updateTraveller = createAsyncThunk(
   'travellers/updateTraveller',
   async (action, {getState, rejectWithValue}) => {
+    // @ts-expect-error TS(2339): Property 'name' does not exist on type 'void'.
     const {name, surname, middleNames, birthdate, travellerId} = action;
-    const userId = getState().userAuth.userId;
+    const userId = (getState as any)().userAuth.userId;
     const res = await axiosTravellersService({
       url: '/updatetraveller',
       method: 'put',
@@ -26,7 +27,7 @@ export const updateTraveller = createAsyncThunk(
 );
 
 export const updateTravellerCases = {
-  fulfilled: (state, action) => {
+  fulfilled: (state: any, action: any) => {
     return {
       ...state,
       travellers: {
@@ -35,7 +36,7 @@ export const updateTravellerCases = {
       },
     };
   },
-  rejected: (state, action) => {
+  rejected: (state: any, action: any) => {
     console.error('Update traveller request failed: ', action.payload.status);
   },
 };

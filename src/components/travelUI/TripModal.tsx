@@ -2,7 +2,11 @@ import {StyleSheet, Text, View, Modal} from 'react-native';
 import React from 'react';
 import {Icon} from '@rneui/base';
 
-export const TripModal = ({modalVisible, setModalVisible, modalContent}) => {
+export const TripModal = ({
+  modalVisible,
+  setModalVisible,
+  modalContent
+}: any) => {
   return (
     <View style={styles.centeredView}>
       <Modal
@@ -22,6 +26,7 @@ export const TripModal = ({modalVisible, setModalVisible, modalContent}) => {
             </View>
             <View
               style={{width: '100%'}}
+              // @ts-expect-error TS(2769): No overload matches this call.
               keyboardShouldPersistTaps="always"
               listViewDisplayed={false}>
               {modalContent}

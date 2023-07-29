@@ -13,7 +13,9 @@ export const ForgotPasswordScreen = () => {
     const handleOnPress = useCallback(async () => {
         const isValid = validateEmail(value);
         if (isValid) {
+            // @ts-expect-error TS(2345): Argument of type 'true' is not assignable to param... Remove this comment to see the full error message
             setIsValidEmail(true);
+            // @ts-expect-error TS(2345): Argument of type 'AsyncThunkAction<any, void, Asyn... Remove this comment to see the full error message
             const res = await dispatch(resetPassword(value)).unwrap()
             if (res === 200) {
                 Alert.alert('' ,`Reset password link sent to ${value}`)
@@ -21,10 +23,12 @@ export const ForgotPasswordScreen = () => {
                 Alert.alert('', `The email address ${value}, does not belong to any registered account`)
             }
         } else {
+            // @ts-expect-error TS(2345): Argument of type 'false' is not assignable to para... Remove this comment to see the full error message
             setIsValidEmail(false);
         }
     }, [value]);
 
+    // @ts-expect-error TS(2554): Expected 2 arguments, but got 1.
     const renderForgotPasswordScreen = useCallback(() => (
         <View>
             <TripText text={'please enter your email address so that we can send you a new password link'} />

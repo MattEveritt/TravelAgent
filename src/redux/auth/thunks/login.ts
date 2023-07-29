@@ -3,6 +3,7 @@ import * as SecureStore from 'expo-secure-store';
 import {axiosLogin} from '../../../api';
 
 export const login = createAsyncThunk('userAuth/login', async action => {
+  // @ts-expect-error TS(2339): Property 'username' does not exist on type 'void'.
   const {username, password} = action;
   try {
     const {data} = await axiosLogin({
@@ -21,12 +22,12 @@ export const login = createAsyncThunk('userAuth/login', async action => {
     return data;
   } catch (e) {
     console.log(e);
-    return e.response.status;
+    return (e as any).response.status;
   }
 });
 
 export const loginCases = {
-  fulfilled: (state, action) => {
+  fulfilled: (state: any, action: any) => {
     if (!action.payload.token) {
       if (action.payload === 401) {
         return {

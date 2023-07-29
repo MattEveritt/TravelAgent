@@ -5,7 +5,7 @@ export const getTrips = createAsyncThunk(
   'trips/getTrips',
   async (action, {getState}) => {
     try {
-      const userId = getState().userAuth.userId;
+      const userId = (getState as any)().userAuth.userId;
       const {data} = await axiosUsersService({
         url: '/trips',
         method: 'get',
@@ -15,13 +15,13 @@ export const getTrips = createAsyncThunk(
       });
       return data;
     } catch (e) {
-      return e.message;
+      return (e as any).message;
     }
   },
 );
 
 export const getTripsCases = {
-  fulfilled: (state, action) => {
+  fulfilled: (state: any, action: any) => {
     if (action.payload.e) {
       console.error(action.payload.e);
     }

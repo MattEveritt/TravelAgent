@@ -8,6 +8,7 @@ import { FCLocalized, init } from '../localization/FCLocalized';
 export const HomeScreen = () => {
   const navigation = useNavigation();
   const planTripHandler = useCallback(() => {
+    // @ts-expect-error TS(2769): No overload matches this call.
     navigation.navigate('Trip Plan');
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

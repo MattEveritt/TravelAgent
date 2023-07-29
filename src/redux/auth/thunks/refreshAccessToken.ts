@@ -30,13 +30,13 @@ export const refreshAccessToken = createAsyncThunk(
 );
 
 export const refreshAccessTokenCases = {
-  fulfilled: (state, action) => {
+  fulfilled: (state: any, action: any) => {
     return {
       ...state,
       accessToken: action.payload.token,
     };
   },
-  rejected: (state, action) => {
+  rejected: (state: any, action: any) => {
     if (action.payload === 401) {
       return {
         ...state,

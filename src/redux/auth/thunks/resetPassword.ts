@@ -13,13 +13,13 @@ export const resetPassword = createAsyncThunk(
       });
       return status;
     } catch (e) {
-      return e.response.status;
+      return (e as any).response.status;
     }
       
     }
 );
 
 export const resetPasswordCases = {
-  fulfilled: (state, action) => {},
-  rejected: (state, action) => {},
+  fulfilled: (state: any, action: any) => {},
+  rejected: (state: any, action: any) => {},
 };

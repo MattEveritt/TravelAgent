@@ -10,6 +10,7 @@ export const AddTravellerForm = ({}) => {
   const [surname, setSurname] = useState();
 
   const handleSaveTraveller = useCallback(() => {
+    // @ts-expect-error TS(2345): Argument of type 'AsyncThunkAction<any, void, Asyn... Remove this comment to see the full error message
     dispatch(saveTraveller({name, surname}));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [name, surname]);

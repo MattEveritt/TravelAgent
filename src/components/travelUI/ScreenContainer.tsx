@@ -1,7 +1,9 @@
 import {StyleSheet, View} from 'react-native';
 import React from 'react';
 
-export const ScreenContainer = ({renderContent}) => {
+export const ScreenContainer = ({
+  renderContent
+}: any) => {
   return <View style={styles.screenContainer}>{renderContent()}</View>;
 };
 

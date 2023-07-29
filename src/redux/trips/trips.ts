@@ -9,6 +9,7 @@ const initialState = {
   value: 0,
 };
 
+// @ts-expect-error TS(2345): Argument of type '{ name: "trips"; initialState: {... Remove this comment to see the full error message
 const tripsSlice = createSlice({
   name: 'trips',
   initialState,
@@ -17,16 +18,19 @@ const tripsSlice = createSlice({
     builder.addCase(
       saveTrip.fulfilled,
       saveTripCases.fulfilled,
+      // @ts-expect-error TS(2554): Expected 2 arguments, but got 3.
       saveTripCases.rejected,
     );
     builder.addCase(
       deleteTrip.fulfilled,
       deleteTripCases.fulfilled,
+      // @ts-expect-error TS(2554): Expected 2 arguments, but got 3.
       deleteTripCases.rejected,
     );
     builder.addCase(
       updateTrip.fulfilled,
       updateTripCases.fulfilled,
+      // @ts-expect-error TS(2554): Expected 2 arguments, but got 3.
       updateTripCases.rejected,
     );
   },

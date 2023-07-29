@@ -54,8 +54,8 @@ const authSlice = createSlice({
 
 export const {setSignIn, setSignOut} = authSlice.actions;
 
-export const selectIsLoggedIn = state => state.userAuth.isLoggedIn;
-export const selectEmail = state => state.userAuth.email;
-export const selectUserName = state => state.userAuth.userName;
+export const selectIsLoggedIn = (state: any) => state.userAuth.isLoggedIn;
+export const selectEmail = (state: any) => state.userAuth.email;
+export const selectUserName = (state: any) => state.userAuth.userName;
 
 export default authSlice.reducer;

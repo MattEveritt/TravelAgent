@@ -4,7 +4,7 @@ import {axiosUsersService} from '../../../api';
 export const getTravellers = createAsyncThunk(
   'travellers/getTravellers',
   async (action, {getState, rejectWithValue}) => {
-    const userId = getState().userAuth.userId;
+    const userId = (getState as any)().userAuth.userId;
     const res = await axiosUsersService({
       url: '/travellers',
       method: 'get',
@@ -20,14 +20,14 @@ export const getTravellers = createAsyncThunk(
 );
 
 export const getTravellersCases = {
-  fulfilled: (state, action) => {
+  fulfilled: (state: any, action: any) => {
     console.log(action.payload);
     return {
       ...state,
       travellers: action.payload,
     };
   },
-  rejected: (state, action) => {
+  rejected: (state: any, action: any) => {
     console.error('get travellers request failed: ', action.payload.status);
   },
 };

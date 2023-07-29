@@ -15,7 +15,7 @@ export const LoginScreen = () => {
   const [userNameInput, setUserNameInput] = useState();
   const [passwordInput, setPasswordInput] = useState();
   const [isValidInput, setIsValidInput] = useState(true);
-  const logInError = useSelector(state => state.userAuth.logInError);
+  const logInError = useSelector(state => (state as any).userAuth.logInError);
 
   const handleLogin = useCallback(() => {
     if (!userNameInput || !passwordInput) {
@@ -31,11 +31,13 @@ export const LoginScreen = () => {
   }, [userNameInput, passwordInput, isValidInput]);
 
   const handleRegister = useCallback(() => {
+    // @ts-expect-error TS(2769): No overload matches this call.
     navigation.navigate('Register');
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleForgotPassword = useCallback(() => {
+    // @ts-expect-error TS(2769): No overload matches this call.
     navigation.navigate('Forgot Password');
   }, [])
 

@@ -10,8 +10,8 @@ export const DestinationSearchModal = ({
   setModalVisible,
   destination,
   setDestination,
-  onPress,
-}) => {
+  onPress
+}: any) => {
   return (
     <TripModal
       modalVisible={modalVisible}
