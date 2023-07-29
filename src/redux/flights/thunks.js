@@ -1,9 +1,9 @@
 import {createAsyncThunk} from '@reduxjs/toolkit';
-import axios from 'axios';
+import { axiosFlightsService } from '../../api';
 
 const getFlights = () =>
-  axios.get('https://test.api.amadeus.com/v2/shopping/flight-offers', {
-    headers: {Authorization: 'Bearer qDabd6eMhfQgP20iaGAZi48J4eAM'},
+  axiosFlightsService({
+    url: '/getflights',
     params: {
       originLocationCode: 'HEL',
       destinationLocationCode: 'AGP',
@@ -18,7 +18,7 @@ export const fetchFlights = createAsyncThunk(
   async () => {
     try {
       const res = await getFlights();
-      // console.log('res: ', res.data);
+      console.log('res: ', res.data);
       return res.data;
     } catch (e) {
       console.log('error: ', e);

@@ -5,6 +5,7 @@ import axiosPost from './axiosPost';
 import axiosTripsService from './axiosTripsService';
 import axiosUsersService from './axiosUsersService';
 import axiosTravellersService from './axiosTravellersService';
+import axiosFlightsService from './axiosFlightsService';
 
 export {
   axiosLogin,
@@ -14,4 +15,5 @@ export {
   axiosTripsService,
   axiosUsersService,
   axiosTravellersService,
+  axiosFlightsService,
 };
