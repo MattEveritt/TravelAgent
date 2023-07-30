@@ -5,8 +5,7 @@ import {CheckBox} from '@rneui/base';
 export const Traveller = ({
   traveller
 }: any) => {
-  const [checked, setChecked] = useState();
-  // @ts-expect-error TS(2345): Argument of type 'true' is not assignable to param... Remove this comment to see the full error message
+  const [checked, setChecked] = useState(false);
   const toggleCheckbox = () => setChecked(!checked);
   return (
     <View style={styles.container}>
@@ -14,7 +13,6 @@ export const Traveller = ({
         {traveller.name} {traveller.surname}
       </Text>
       <CheckBox
-        // @ts-expect-error TS(2322): Type 'undefined' is not assignable to type 'boolea... Remove this comment to see the full error message
         checked={checked}
         onPress={toggleCheckbox}
         size={18}

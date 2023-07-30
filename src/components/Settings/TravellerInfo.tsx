@@ -1,19 +1,16 @@
 import React, {useCallback, useState} from 'react';
 import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import {useDispatch} from 'react-redux';
-import {deleteTraveller} from '../../redux';
+import {deleteTraveller, useAppDispatch} from '../../redux';
 import {ListItem} from '@rneui/themed';
-// @ts-expect-error TS(7016): Could not find a declaration file for module 'reac... Remove this comment to see the full error message
-import {SingleDatepicker} from 'react-native-range-datepicker';
 
 export const TravellerInfo = ({
   traveller,
   i
 }: any) => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const handleDeleteTraveller = useCallback(() => {
-    // @ts-expect-error TS(2345): Argument of type 'AsyncThunkAction<void, void, Asy... Remove this comment to see the full error message
     dispatch(deleteTraveller(traveller.id));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

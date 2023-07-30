@@ -1,5 +1,5 @@
 import {createAsyncThunk} from '@reduxjs/toolkit';
-import { axiosFlightsService } from '../../api';
+import { axiosFlightsService } from '../../../api';
 
 const getFlights = () =>
   axiosFlightsService({

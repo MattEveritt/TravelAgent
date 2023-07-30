@@ -1,16 +1,14 @@
 import React, {useState, useCallback} from 'react';
 import {StyleSheet, View} from 'react-native';
-import {useDispatch} from 'react-redux';
-import {saveTraveller} from '../../redux';
+import {saveTraveller, useAppDispatch} from '../../redux';
 import {TripTextInput, TripButton} from '../travelUI';
 
 export const AddTravellerForm = ({}) => {
-  const dispatch = useDispatch();
-  const [name, setName] = useState();
-  const [surname, setSurname] = useState();
+  const dispatch = useAppDispatch();
+  const [name, setName] = useState('');
+  const [surname, setSurname] = useState('');
 
   const handleSaveTraveller = useCallback(() => {
-    // @ts-expect-error TS(2345): Argument of type 'AsyncThunkAction<any, void, Asyn... Remove this comment to see the full error message
     dispatch(saveTraveller({name, surname}));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [name, surname]);

@@ -3,7 +3,7 @@ import {axiosTripsService} from '../../../api';
 
 export const deleteTrip = createAsyncThunk(
   'trips/deleteTrip',
-  async (action, {rejectWithValue}) => {
+  async (action: {}, {rejectWithValue}) => {
     const {status} = await axiosTripsService({
       url: '/deleteTrip',
       method: 'delete',

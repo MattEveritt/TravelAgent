@@ -1,16 +1,19 @@
 import {createAsyncThunk} from '@reduxjs/toolkit';
 import {axiosTravellersService} from '../../../api';
 
+type ActionPayload = {
+  name: string,
+  surname: string,
+}
 export const saveTraveller = createAsyncThunk(
   'travellers/saveTraveller',
-  async (action, {getState, rejectWithValue}) => {
+  async (action: ActionPayload, {getState, rejectWithValue}) => {
     const userId = (getState as any)().userAuth.userId;
-    console.log(action);
     const res = await axiosTravellersService({
     url: '/savetraveller',
     data: {
-        name: (action as any).name,
-        surname: (action as any).surname,
+        name: action.name,
+        surname: action.surname,
         userId: userId,
     },
 });
@@ -20,15 +23,3 @@ export const saveTraveller = createAsyncThunk(
     return res.data;
   },
 );
-
-export const saveTravellerCases = {
-  fulfilled: (state: any, action: any) => {
-    return {
-      ...state,
-      travellers: [...state.travellers, {...action.payload}],
-    };
-  },
-  rejected: (state: any, action: any) => {
-    console.error('Save traveller request failed: ', action.payload.status);
-  },
-};
