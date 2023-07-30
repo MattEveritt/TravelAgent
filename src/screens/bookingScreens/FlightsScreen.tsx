@@ -2,7 +2,7 @@ import {View, Text, FlatList} from 'react-native';
 import React, {useCallback, useEffect, useMemo} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {ScreenContainer, FlightCard} from '../../components';
-import {fetchFlights} from '../../redux/flights/thunks';
+import {fetchFlights} from '../../redux/flights/thunks/fetchFlights';
 
 export const FlightsScreen = () => {
   const dispatch = useDispatch();

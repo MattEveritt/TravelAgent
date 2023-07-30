@@ -21,7 +21,6 @@ export const FlightCard = ({
           style={{
             flexDirection: 'row',
           }}>
-          {/* @ts-expect-error TS(7030): Not all code paths return a value. */}
           {itinerary.segments.map((segment: any, index: any) => {
             if (index === 0 && index === itinerary.segments.length - 1) {
               return (
@@ -30,12 +29,12 @@ export const FlightCard = ({
                   <Text>{segment.arrival.at.substring(11, 16)}</Text>
                 </>
               );
-            }
-            if (index === 0) {
+            } else if (index === 0) {
               return <Text>{segment.departure.at.substring(11, 16)} - </Text>;
-            }
-            if (index === itinerary.segments.length - 1) {
+            } else if (index === itinerary.segments.length - 1) {
               return <Text>{segment.arrival.at.substring(11, 16)}</Text>;
+            } else {
+              return null
             }
           })}
         </View>

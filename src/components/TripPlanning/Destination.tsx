@@ -3,18 +3,17 @@ import React, {useState, useCallback} from 'react';
 import {Icon} from '@rneui/themed';
 import {TripText} from '../travelUI';
 import {useDispatch} from 'react-redux';
-import {updateTrip} from '../../redux/trips/thunks/updateTrip';
+import {updateTrip, useAppDispatch} from '../../redux';
 import {DestinationSearchModal} from './DestinationSearchModal';
 
 export const Destination = ({
   trip
 }: any) => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const [modalVisible, setModalVisible] = useState(false);
   const [destination, setDestination] = useState(trip.destination);
 
   const handleSaveTrip = useCallback(() => {
-    // @ts-expect-error TS(2345): Argument of type 'AsyncThunkAction<void, void, Asy... Remove this comment to see the full error message
     dispatch(updateTrip({...trip, destination: destination}));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [destination]);

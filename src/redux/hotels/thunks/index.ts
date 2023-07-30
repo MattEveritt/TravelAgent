@@ -1,0 +1,1 @@
+export {fetchHotels} from './fetchHotels';

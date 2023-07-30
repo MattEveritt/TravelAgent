@@ -1,11 +1,10 @@
 import {createAsyncThunk} from '@reduxjs/toolkit';
 import {axiosTravellersService} from '../../../api';
-// @ts-expect-error TS(7016): Could not find a declaration file for module 'loda... Remove this comment to see the full error message
 import {filter} from 'lodash';
 
 export const deleteTraveller = createAsyncThunk(
   'travellers/deleteTraveller',
-  async (action, {getState, rejectWithValue}) => {
+  async (action: string, {getState, rejectWithValue}) => {
     const userId = (getState as any)().userAuth.userId;
     try {
       await axiosTravellersService({
@@ -18,7 +17,7 @@ export const deleteTraveller = createAsyncThunk(
       });
       return action;
     } catch (e) {
-      rejectWithValue((e as any).message);
+      return rejectWithValue((e as any).message);
     }
   },
 );

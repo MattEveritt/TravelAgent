@@ -12,5 +12,18 @@ export {
   selectAllTrips,
 } from './trips';
 export {
+  fetchFlights
+} from './flights';
+export {
+  fetchHotels
+} from './hotels';
+export {
+  fetchTransfers
+} from './transfers';
+export {
   resetPassword,
-} from './auth'
+} from './auth';
+export {
+  useAppSelector,
+  useAppDispatch,
+} from './store/hooks';

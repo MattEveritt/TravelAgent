@@ -1,7 +1,6 @@
 import React, {useCallback, useState} from 'react';
 import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
-import {useDispatch} from 'react-redux';
-import {deleteTrip} from '../../redux/trips/thunks/deleteTrip';
+import {deleteTrip, useAppDispatch} from '../../redux';
 import {ListItem} from '@rneui/themed';
 import Constants from '../../constants';
 import * as tripPlanningComponents from './index';
@@ -11,19 +10,17 @@ export const TripInfo = ({
   trip,
   i
 }: any) => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const navigation = useNavigation();
-  const [expanded, setExpanded] = useState(false);
+  const [expanded, setExpanded] = useState('');
 
   const handleDeleteTrip = useCallback(() => {
-    // @ts-expect-error TS(2345): Argument of type 'AsyncThunkAction<void, void, Asy... Remove this comment to see the full error message
     dispatch(deleteTrip(trip.id));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <View style={{width: '100%'}}>
       {Object.values(Constants.PLANNING_CATEGORIES).map((l, i) => {
-        // @ts-expect-error TS(7053): Element implicitly has an 'any' type because expre... Remove this comment to see the full error message
+        // @ts-expect-error
         const Component = tripPlanningComponents[l];
         return (
           <ListItem.Accordion
@@ -33,11 +30,9 @@ export const TripInfo = ({
               </ListItem.Title>
             }
             key={i}
-            // @ts-expect-error TS(2367): This condition will always return 'false' since th... Remove this comment to see the full error message
             isExpanded={expanded === l ? true : false}
             onPress={() => {
-              // @ts-expect-error TS(2367): This condition will always return 'false' since th... Remove this comment to see the full error message
-              setExpanded(expanded === l ? false : l);
+              setExpanded(expanded === l ? '' : l);
             }}
             style={styles.accordion}
             containerStyle={styles.accordion}>
@@ -53,7 +48,7 @@ export const TripInfo = ({
         containerStyle={{backgroundColor: '#FFD580'}}>
         <View style={styles.TripButtonContainer}>
           <TouchableOpacity
-            // @ts-expect-error TS(2769): No overload matches this call.
+          // @ts-expect-error
             onPress={() => navigation.navigate('Booking navigator')}>
             <Text>OPEN</Text>
           </TouchableOpacity>

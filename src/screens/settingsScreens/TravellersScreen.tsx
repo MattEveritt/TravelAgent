@@ -12,24 +12,27 @@ const TravellersAccordion = ({
 }: any) => {
   const [expanded, setExpanded] = useState(false);
 
-  return Object.keys(travellers).map((key, i) => (
-    <ListItem.Accordion
-      content={
-        <ListItem.Title style={{flex: 9, color: 'black'}}>
-          {travellers[key].name} {travellers[key].surname}
-        </ListItem.Title>
-      }
-      key={i}
-      isExpanded={expanded === travellers[key].id ? true : false}
-      onPress={() => {
-        setExpanded(
-          expanded === travellers[key].id ? false : travellers[key].id,
-        );
-      }}
-      containerStyle={styles.accordion}>
-      <TravellerInfo traveller={travellers[key]} index={i} />
-    </ListItem.Accordion>
-  ));
+  return (
+      <>{Object.keys(travellers).map((key, i) => (
+        <ListItem.Accordion
+          content={
+            <ListItem.Title style={{flex: 9, color: 'black'}}>
+              {travellers[key].name} {travellers[key].surname}
+            </ListItem.Title>
+          }
+          key={i}
+          isExpanded={expanded === travellers[key].id ? true : false}
+          onPress={() => {
+            setExpanded(
+              expanded === travellers[key].id ? false : travellers[key].id,
+            );
+          }}
+          containerStyle={styles.accordion}>
+          <TravellerInfo traveller={travellers[key]} index={i} />
+        </ListItem.Accordion>
+      ))}
+    </>
+  );
 };
 
 export const TravellersScreen = () => {
@@ -47,7 +50,6 @@ export const TravellersScreen = () => {
         <ScrollView keyboardShouldPersistTaps="always" style={{width: '100%'}}>
           <Text>TravellersScreen</Text>
           <View style={{width: '100%'}}>
-            {/* @ts-expect-error TS(2786): 'TravellersAccordion' cannot be used as a JSX comp... Remove this comment to see the full error message */}
             <TravellersAccordion travellers={travellers} />
           </View>
         </ScrollView>

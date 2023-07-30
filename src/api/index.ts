@@ -6,6 +6,8 @@ import axiosTripsService from './axiosTripsService';
 import axiosUsersService from './axiosUsersService';
 import axiosTravellersService from './axiosTravellersService';
 import axiosFlightsService from './axiosFlightsService';
+import axiosHotelsService from './axiosHotelsService';
+import axiosTransfersService from './axiosTransfersService';
 
 export {
   axiosLogin,
@@ -16,4 +18,6 @@ export {
   axiosUsersService,
   axiosTravellersService,
   axiosFlightsService,
+  axiosHotelsService,
+  axiosTransfersService,
 };

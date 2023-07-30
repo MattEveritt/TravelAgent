@@ -27,7 +27,6 @@ export const TripPlanningScreen = () => {
       <ScrollView keyboardShouldPersistTaps="always" style={{width: '100%'}}>
         <Text>TripPlanningScreen</Text>
         <View style={{width: '100%'}}>
-          {/* @ts-expect-error TS(2786): 'Trips' cannot be used as a JSX component. */}
           <Trips />
         </View>
       </ScrollView>
