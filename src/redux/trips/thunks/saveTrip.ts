@@ -1,25 +1,32 @@
 import {createAsyncThunk} from '@reduxjs/toolkit';
 import {axiosTripsService} from '../../../api';
 
+interface ActionPayload {
+  destination: string,
+  budget: number,
+  dates: string,
+  travellers: [],
+  users: [],
+}
+
 export const saveTrip = createAsyncThunk(
   'trips/saveTrip',
-  async (action, {getState}) => {
+  async (action: ActionPayload, {getState}) => {
     try {
       const userId = (getState as any)().userAuth.userId;
       const { data } = await axiosTripsService({
     url: '/saveTrip',
     data: {
-        destination: (action as any).destination,
-        budget: (action as any).budget,
-        dates: (action as any).dates,
-        travellers: (action as any).travellers,
-        users: (action as any).users,
+        destination: action.destination,
+        budget: action.budget,
+        dates: action.dates,
+        travellers: action.travellers,
+        users: action.users,
         userId: userId,
     },
 });
       return data;
-    } catch (e) {
-      // @ts-expect-error TS(2769): No overload matches this call.
+    } catch (e: any) {
       throw new Error(e);
     }
   },

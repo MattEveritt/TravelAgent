@@ -5,20 +5,24 @@ import {selectAllTrips} from '../../redux';
 import {TripInfo} from './TripInfo';
 import {ListItem} from '@rneui/themed';
 
+interface Trip {
+  destination: string,
+  id: string,
+};
+
 export const Trips = () => {
-  const [expanded, setExpanded] = useState(false);
+  const [expanded, setExpanded] = useState('');
   const trips = useSelector(selectAllTrips());
 
   return (
     <>
-      {trips.map((trip, i) => (
+      {trips.map((trip: Trip, i) => (
         <ListItem.Accordion 
-      content={<ListItem.Title style={{ flex: 9, color: 'black' }}>{(trip as any).destination}</ListItem.Title>} 
+      content={<ListItem.Title style={{ flex: 9, color: 'black' }}>{trip.destination}</ListItem.Title>} 
       key={i} 
-      isExpanded={expanded === (trip as any).id ? true : false} 
+      isExpanded={expanded === trip.id ? true : false} 
       onPress={() => {
-        // @ts-expect-error TS(2339): Property 'id' does not exist on type 'never'.
-        setExpanded(expanded === trip.id ? false : trip.id);
+        setExpanded(expanded === trip.id ? '' : trip.id);
       }} 
       containerStyle={styles.accordion}>
       <TripInfo trip={trip} index={i}/>

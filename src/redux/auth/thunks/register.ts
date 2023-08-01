@@ -4,8 +4,7 @@ import {login} from './login';
 
 export const register = createAsyncThunk(
   'userAuth/register',
-  async (action, {rejectWithValue, dispatch}) => {
-    // @ts-expect-error TS(2339): Property 'email' does not exist on type 'void'.
+  async (action: {email: string, username: string, password: string}, {rejectWithValue, dispatch}) => {
     const {email, username, password} = action;
     try {
       const res = await axiosUsersService({
@@ -16,12 +15,11 @@ export const register = createAsyncThunk(
         },
       });
       if (res.status === 201) {
-        // @ts-expect-error TS(2554): Expected 0 arguments, but got 1.
         dispatch(login({username, password}));
         return res.data;
       }
-    } catch (e) {
-      return (e as any).response.status;
+    } catch (e: any) {
+      return e.response.status;
     }
   },
 );

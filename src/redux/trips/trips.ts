@@ -4,35 +4,26 @@ import {saveTrip, saveTripCases} from './thunks/saveTrip';
 import {deleteTrip, deleteTripCases} from './thunks/deleteTrip';
 import {updateTrip, updateTripCases} from './thunks/updateTrip';
 
-const initialState = {
+interface InitialState{
+  trips: []
+}
+
+const initialState: InitialState = {
   trips: [],
-  value: 0,
 };
 
-// @ts-expect-error TS(2345): Argument of type '{ name: "trips"; initialState: {... Remove this comment to see the full error message
 const tripsSlice = createSlice({
   name: 'trips',
   initialState,
+  reducers: {},
   extraReducers: builder => {
-    builder.addCase(getTrips.fulfilled, getTripsCases.fulfilled);
-    builder.addCase(
-      saveTrip.fulfilled,
-      saveTripCases.fulfilled,
-      // @ts-expect-error TS(2554): Expected 2 arguments, but got 3.
-      saveTripCases.rejected,
-    );
-    builder.addCase(
-      deleteTrip.fulfilled,
-      deleteTripCases.fulfilled,
-      // @ts-expect-error TS(2554): Expected 2 arguments, but got 3.
-      deleteTripCases.rejected,
-    );
-    builder.addCase(
-      updateTrip.fulfilled,
-      updateTripCases.fulfilled,
-      // @ts-expect-error TS(2554): Expected 2 arguments, but got 3.
-      updateTripCases.rejected,
-    );
+    builder.addCase(getTrips.fulfilled, getTripsCases.fulfilled),
+    builder.addCase(saveTrip.fulfilled, saveTripCases.fulfilled),
+    builder.addCase(saveTrip.rejected, saveTripCases.rejected),
+    builder.addCase(deleteTrip.fulfilled, deleteTripCases.fulfilled),
+    builder.addCase(deleteTrip.rejected, deleteTripCases.rejected),
+    builder.addCase(updateTrip.fulfilled, updateTripCases.fulfilled),
+    builder.addCase(updateTrip.rejected, updateTripCases.rejected)
   },
 });
 

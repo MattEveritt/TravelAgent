@@ -1,10 +1,17 @@
 import {createAsyncThunk} from '@reduxjs/toolkit';
 import {axiosTravellersService} from '../../../api';
 
+interface ActionPayload{
+  name: string,
+  surname: string,
+  middleNames: string,
+  birthdate: string,
+  travellerId: string,
+}
+
 export const updateTraveller = createAsyncThunk(
   'travellers/updateTraveller',
-  async (action, {getState, rejectWithValue}) => {
-    // @ts-expect-error TS(2339): Property 'name' does not exist on type 'void'.
+  async (action: ActionPayload, {getState, rejectWithValue}) => {
     const {name, surname, middleNames, birthdate, travellerId} = action;
     const userId = (getState as any)().userAuth.userId;
     const res = await axiosTravellersService({

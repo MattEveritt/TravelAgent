@@ -36,15 +36,17 @@ const travellersSlice = createSlice({
     builder.addCase(
       deleteTraveller.fulfilled,
       deleteTravellerCases.fulfilled,
-      // @ts-expect-error TS(2554): Expected 2 arguments, but got 3.
-      deleteTravellerCases.rejected,
-    );
+    ),
+    builder.addCase(
+      deleteTraveller.rejected, deleteTravellerCases.rejected
+    ),
     builder.addCase(
       updateTraveller.fulfilled,
       updateTravellerCases.fulfilled,
-      // @ts-expect-error TS(2554): Expected 2 arguments, but got 3.
-      updateTravellerCases.rejected,
-    );
+    ),
+    builder.addCase(
+      updateTraveller.rejected, updateTravellerCases.rejected
+    )
   },
 });
 
