@@ -6,6 +6,7 @@ import { bookFlight } from './thunks/bookFlight';
 const initialState = {
   itineraries: null,
   bookedFlights: [],
+  flightOffers: [],
 };
 
 const flightsSlice = createSlice({
