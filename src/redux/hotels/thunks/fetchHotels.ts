@@ -1,19 +1,31 @@
 import {createAsyncThunk} from '@reduxjs/toolkit';
 import { axiosHotelsService } from '../../../api';
 
-const getHotels = (cityCode: string) =>
+const getHotels = (searchType: string, cityCode: string | undefined, lat: number | undefined, long: number | undefined) =>
   axiosHotelsService({
     url: '/gethotels',
-    params: {
-        cityCode
+    method: 'get',
+    data: {
+      searchType,
+      cityCode,
+      lat,
+      long,
     },
   });
 
+interface ActionPayload {
+  searchType: string,
+  cityCode: string | undefined,
+  lat: number | undefined,
+  long: number | undefined,
+}
+
 export const fetchHotels = createAsyncThunk(
   'hotels/fetchHotels',
-  async (cityCode: string) => {
+  async (action: ActionPayload) => {
+    const {searchType, cityCode, lat, long} = action;
     try {
-      const res = await getHotels(cityCode);
+      const res = await getHotels(searchType, cityCode, lat, long);
       console.log('res: ', res.data);
       return res.data;
     } catch (e) {
