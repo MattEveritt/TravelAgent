@@ -25,10 +25,3 @@ export const fetchFlights = createAsyncThunk(
     }
   },
 );
-
-export const fetchFlightsCases = {
-  fulfilled: (state: any, action: any) => {
-    state.dictionaries = action.payload.dictionaries;
-    state.flightOffers = [...action.payload.data];
-  },
-};
