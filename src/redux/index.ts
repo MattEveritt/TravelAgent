@@ -12,10 +12,31 @@ export {
   selectAllTrips,
 } from './trips';
 export {
-  fetchFlights
+  fetchFlights,
+  fetchFlightUpsells,
+  fetchSeatMap,
+  bookFlight,
+  confirmFlightPrice,
+  fetchClosestAirport,
+  fetchBooking,
+  fetchCheapestDates,
+  fetchPriceAnalysis,
+  deleteBooking,
+  airlineNameLookup,
+  searchCity,
 } from './flights';
 export {
-  fetchHotels
+  fetchHotels, 
+  fetchHotelRatings,
+  hotelNameAutocomplete,
+  locationRating,
+  bookHotel,
+  fetchHotelOffers,
+  fetchPointsOfInterest,
+  fetchPOIInfo,
+  fetchSafetyRating,
+  fetchTourOrActivityInfo,
+  fetchToursAndActivities
 } from './hotels';
 export {
   fetchTransfers
