@@ -1,3 +1,3 @@
-import { RootState } from "../../store/store";
+import { RootState } from '../../store/store';
 
 export const selectSelf = (state: RootState) => state.trips;

@@ -18,6 +18,7 @@ jobs:
             node-version: '18'
         - run: |
             yarn install --frozen-lockfile
+            yarn lint
           
   # dev-android-apk:
   #   if: ${{ github.ref == 'refs/heads/main' || github.event_name == 'release' && github.event.release.prerelease }}
