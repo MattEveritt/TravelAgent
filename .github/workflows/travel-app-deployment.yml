@@ -6,7 +6,6 @@ on:
 
 jobs:
   build:
-      # if: ${{ github.ref == 'refs/heads/master' || github.event_name == 'release' && github.event.release.prerelease }}
       name: Lint, Build and Test
       runs-on: ubuntu-20.04
       steps:
@@ -16,10 +15,12 @@ jobs:
         - uses: actions/setup-node@v2
           with:
             node-version: '18'
-        - name: yarn install
+        - name: Install dependencies
           run: yarn install --frozen-lockfile
-        - name: yarn lint
+        - name: Lint
           run: yarn lint
+        - name: Build
+          run: yarn android
           
   # dev-android-apk:
   #   if: ${{ github.ref == 'refs/heads/main' || github.event_name == 'release' && github.event.release.prerelease }}
