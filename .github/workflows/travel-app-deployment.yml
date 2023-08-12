@@ -15,7 +15,7 @@ jobs:
             fetch: 0
         - uses: actions/setup-node@v2
           with:
-            node-version: '14'
+            node-version: '18'
         - run: |
             yarn install --frozen-lockfile
           
