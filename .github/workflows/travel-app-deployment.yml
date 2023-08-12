@@ -20,7 +20,7 @@ jobs:
         - name: Lint
           run: yarn lint
         - name: Build
-          run: yarn android
+          run: yarn android:dev
           
   # dev-android-apk:
   #   if: ${{ github.ref == 'refs/heads/main' || github.event_name == 'release' && github.event.release.prerelease }}
