@@ -5,7 +5,7 @@ export const TripText = ({
   text,
   style
 }: any) => {
-  return <Text style={style ? style : styles.text}>{text}</Text>;
+  return <Text style={[styles.text, style]}>{text}</Text>;
 };
 
 const styles = StyleSheet.create({

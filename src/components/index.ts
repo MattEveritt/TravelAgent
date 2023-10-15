@@ -13,7 +13,6 @@ export {
   Dates,
   Travellers,
   FlightCard,
-  TripInfo,
   Trips,
 } from './TripPlanning';
 

@@ -1,12 +1,10 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
+import { Icon } from '@rneui/base';
 
 import {
   HomeScreen,
-  LoadingScreen,
-  RegisterScreen,
-  LoginScreen,
   OnboardingScreen,
   SettingsScreen,
   SplashScreen,
@@ -23,8 +21,11 @@ import {
   ConfirmationScreen,
   AccomodationScreen,
   TransportScreen,
-  ForgotPasswordScreen,
+  CreateTripScreen,
 } from '../screens';
+import { theme } from '../styles/theme';
+import { Text } from 'react-native';
+import { FCLocalized } from '../localization/FCLocalized';
 
 const topTab = createMaterialTopTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -33,23 +34,49 @@ const BottomTabNavigator = () => {
   return (
     <topTab.Navigator
       screenOptions={({route}) => ({
-        headerShown: false,
-        tabBarActiveTintColor: 'black',
-        tabBarInActiveTintColor: 'orange',
         tabBarIndicatorStyle: {
           height: 0,
         },
+        tabBarActiveTintColor: theme.PRIMARY_COLOR,
         tabBarShowIcon: true,
       })}
       tabBarPosition="bottom">
-      <topTab.Screen name="Home" component={HomeScreen} />
-      <topTab.Screen name="Trip Plan" component={TripPlanningScreen} />
-      <topTab.Screen name="Your Trip" component={YourTripScreen} />
-      <topTab.Screen name="Settings" component={SettingsScreen} />
+      <topTab.Screen 
+        name="Explore" 
+        component={HomeScreen}
+        options={{
+          tabBarIcon: ({focused}) => <Icon name='explore' color={focused ? theme.PRIMARY_COLOR : theme.BLACK} />,
+          tabBarLabel: ({focused}) => <Text style={{color: focused ? theme.PRIMARY_COLOR : theme.BLACK}} >{FCLocalized('Explore')}</Text>,
+        }}
+      />
+      <topTab.Screen 
+        name="Book" 
+        component={TripPlanningScreen} 
+        options={{
+          tabBarIcon: ({focused}) => <Icon name='airplane' type='material-community' color={focused ? theme.PRIMARY_COLOR : theme.BLACK} />,
+          tabBarLabel: ({focused}) => <Text style={{color: focused ? theme.PRIMARY_COLOR : theme.BLACK}} >{FCLocalized('Book')}</Text>
+        }} 
+      />
+      <topTab.Screen 
+        name="Current trip" 
+        component={YourTripScreen} 
+        options={{
+          tabBarIcon: ({focused}) => <Icon name='format-list-bulleted' type='material-community' color={focused ? theme.PRIMARY_COLOR : theme.BLACK} />,
+          tabBarLabel: ({focused}) => <Text style={{color: focused ? theme.PRIMARY_COLOR : theme.BLACK}} >{FCLocalized('Current trip')}</Text>
+        }} 
+      />
+      <topTab.Screen 
+        name="Settings" 
+        component={SettingsScreen} 
+        options={{
+          tabBarIcon: ({focused}) => <Icon name='account-cog' type='material-community' color={focused ? theme.PRIMARY_COLOR : theme.BLACK} />,
+          tabBarLabel: ({focused}) => <Text style={{color: focused ? theme.PRIMARY_COLOR : theme.BLACK}} >{FCLocalized('Settings')}</Text>
+        }} 
+      />
     </topTab.Navigator>
   );
 };
-
+  
 const BookingNavigator = () => {
   return (
     <topTab.Navigator
@@ -68,35 +95,6 @@ const BookingNavigator = () => {
       <topTab.Screen name="Transport" component={TransportScreen} />
       <topTab.Screen name="Confirmation" component={ConfirmationScreen} />
     </topTab.Navigator>
-  );
-};
-
-export const AuthStack = () => {
-  return (
-    <Stack.Navigator>
-      {/* <Stack.Screen
-        options={{headerShown: false}}
-        name="Loading screen"
-        component={LoadingScreen}
-      /> */}
-      <Stack.Group>
-        <Stack.Screen
-          options={{headerShown: false}}
-          name="Login"
-          component={LoginScreen}
-        />
-        <Stack.Screen
-          options={{headerShown: false}}
-          name="Register"
-          component={RegisterScreen}
-        />
-        <Stack.Screen
-          options={{headerShown: false}}
-          name="Forgot Password"
-          component={ForgotPasswordScreen}
-        />
-      </Stack.Group>
-    </Stack.Navigator>
   );
 };
 
@@ -123,6 +121,11 @@ export const AppStack = () => {
           options={{headerShown: false}}
           name="Splash screen"
           component={SplashScreen}
+        />
+        <Stack.Screen
+          options={{headerShown: false}}
+          name="CreateTripScreen"
+          component={CreateTripScreen}
         />
         <Stack.Screen
           options={{headerShown: false}}
@@ -163,3 +166,4 @@ export const AppStack = () => {
     </Stack.Navigator>
   );
 };
+  

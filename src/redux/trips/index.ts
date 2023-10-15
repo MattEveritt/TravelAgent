@@ -1,2 +1,3 @@
 export {getTrips, updateTrip, deleteTrip, saveTrip} from './thunks';
-export {selectAllTrips} from './selectors';
+export {selectAllTrips, selectIsBooking} from './selectors';
+export {toggleBookingFlow} from './trips';
