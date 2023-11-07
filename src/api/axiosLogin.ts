@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {baseURL, responseHandler, errorHandler} from './helpers';
+import { baseURL, responseHandler, errorHandler } from './helpers';
 
 const axiosLogin = axios.create({
   baseURL: `${baseURL}/login`,

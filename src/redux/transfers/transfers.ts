@@ -11,9 +11,9 @@ const transfersSlice = createSlice({
   reducers: {},
   extraReducers: builder => {
     builder.addCase(fetchTransfers.fulfilled, (state: any, action: any) => {
-        state.dictionaries = action.payload.dictionaries;
-        state.hotelOffers = [...action.payload.data];
-      },);
+      state.dictionaries = action.payload.dictionaries;
+      state.hotelOffers = [...action.payload.data];
+    },);
   },
 });
 

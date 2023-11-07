@@ -1,4 +1,4 @@
-export {fetchFlights} from './fetchFlights';
+export { fetchFlights } from './fetchFlights';
 export {fetchFlightUpsells} from './fetchFlightUpsells';
 export {fetchSeatMap} from './fetchSeatMap';
 export {bookFlight} from './bookFlight';
@@ -10,4 +10,5 @@ export {searchCity} from './searchCity';
 export {fetchBooking} from './fetchBooking';
 export {deleteBooking} from './deleteBooking';
 export {airlineNameLookup} from './airlineNameLookup';
-
+export { fetchNearestAirport } from './fetchNearestAirport';
+export { searchAirport } from './searchAirport';

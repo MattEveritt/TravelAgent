@@ -1,10 +1,10 @@
-import {createSlice} from '@reduxjs/toolkit';
-import {login, loginCases} from './thunks/login';
+import { createSlice } from '@reduxjs/toolkit';
+import { login, loginCases } from './thunks/login';
 import {
   refreshAccessToken,
   refreshAccessTokenCases,
 } from './thunks/refreshAccessToken';
-import {register, registerCases} from './thunks/register';
+import { register, registerCases } from './thunks/register';
 import { resetPassword, resetPasswordCases } from './thunks';
 
 const initialState = {
@@ -12,6 +12,7 @@ const initialState = {
   email: null,
   userName: null,
   logInError: undefined,
+  userId: undefined,
 };
 
 const authSlice = createSlice({
@@ -48,11 +49,11 @@ const authSlice = createSlice({
     ).addCase(
       resetPassword.rejected,
       resetPasswordCases.rejected,
-    )
+    );
   },
 });
 
-export const {setSignIn, setSignOut} = authSlice.actions;
+export const { setSignIn, setSignOut } = authSlice.actions;
 
 export const selectIsLoggedIn = (state: any) => state.userAuth.isLoggedIn;
 export const selectEmail = (state: any) => state.userAuth.email;

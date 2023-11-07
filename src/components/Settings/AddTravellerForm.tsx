@@ -10,7 +10,6 @@ export const AddTravellerForm = ({}) => {
 
   const handleSaveTraveller = useCallback(() => {
     dispatch(saveTraveller({name, surname}));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [name, surname]);
 
   return (

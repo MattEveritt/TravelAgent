@@ -15,7 +15,7 @@ const hotelsSlice = createSlice({
     builder.addCase(fetchHotels.fulfilled, (state: any, action: any) => {
       state.dictionaries = action.payload.dictionaries;
       state.hotelOffers = [...action.payload.data];
-    })
+    });
   },
 });
 

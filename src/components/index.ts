@@ -5,16 +5,18 @@ export {
   TripTextInput,
   ScreenContainer,
   TripText,
+  Card,
 } from './travelUI';
 
 export {
-  Destination,
-  Budget,
-  Dates,
-  Travellers,
+  DestinationCard,
+  DatesSelector,
+  MultiCityDateSelector,
+  TravellersCard,
   FlightCard,
-  TripInfo,
   Trips,
-} from './TripPlanning';
+  TransportCard,
+  DatesCard,
+} from './createTripComponents';
 
-export {AddTravellerForm, TravellerInfo} from './Settings';
+export { AddTravellerForm, TravellerInfo } from './Settings';

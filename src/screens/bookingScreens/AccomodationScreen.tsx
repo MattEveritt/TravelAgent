@@ -1,15 +1,15 @@
-import {View, Text} from 'react-native';
-import React, {useCallback} from 'react';
-import {ScreenContainer} from '../../components/travelUI';
+import { View, Text } from 'react-native';
+import React from 'react';
+import { ScreenContainer } from '../../components/travelUI';
+import { FCLocalized } from '../../localization/FCLocalized';
 
 export const AccomodationScreen = () => {
-  const renderAccomodation = useCallback(
-    () => (
+
+  return (
+    <ScreenContainer headerType='BookingNavHeader' headerTitle={FCLocalized('Hotels')}>
       <View>
         <Text>AccomodationScreen</Text>
       </View>
-    ),
-    [],
+    </ScreenContainer>
   );
-  return <ScreenContainer renderContent={renderAccomodation} />;
 };

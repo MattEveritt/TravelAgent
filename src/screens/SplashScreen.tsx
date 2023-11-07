@@ -1,13 +1,14 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import globalStyles from '../styles/globalStyles';
+import { ScreenContainer } from '../components';
 
 export const SplashScreen = ({
   navigation
 }: any) => {
   return (
-    <View style={globalStyles.screenContainer}>
+    <ScreenContainer headerDisabled>
       <Text>SplashScreen</Text>
-    </View>
+    </ScreenContainer>
   );
 };

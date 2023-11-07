@@ -1,15 +1,16 @@
-import {StyleSheet, Text} from 'react-native';
+import { StyleSheet, Text } from 'react-native';
 import React from 'react';
+import { theme } from '../../styles/theme';
 
 export const TripText = ({
   text,
   style
 }: any) => {
-  return <Text style={style ? style : styles.text}>{text}</Text>;
+  return <Text style={[styles.text, style]}>{text}</Text>;
 };
 
 const styles = StyleSheet.create({
   text: {
-    color: 'black'
+    color: theme.BLACK
   }
 });

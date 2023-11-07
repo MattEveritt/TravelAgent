@@ -1,6 +1,6 @@
 {
-  "name": "Faycay",
-  "displayName": "Faycay",
+  "name": "travelApp",
+  "displayName": "travelApp",
   "plugins": [
     "expo-localization"
   ]

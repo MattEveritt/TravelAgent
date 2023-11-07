@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">Faycay</string>
+  <string name="app_name">travelApp</string>
+  <string name="ExpoLocalization_supportsRTL" translatable="false">undefined</string>
 </resources>
