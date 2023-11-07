@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {baseURL, responseHandler, errorHandler, setAuthHeader} from './helpers';
+import { baseURL, responseHandler, errorHandler, setAuthHeader } from './helpers';
 
 const axiosUsersService = axios.create({
   baseURL: `${baseURL}/users`,

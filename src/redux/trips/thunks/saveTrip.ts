@@ -1,30 +1,34 @@
-import {createAsyncThunk} from '@reduxjs/toolkit';
-import {axiosTripsService} from '../../../api';
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import { axiosTripsService } from '../../../api';
 
 interface ActionPayload {
-  destination?: string,
-  budget?: number,
-  dates?: string,
-  travellers?: [],
-  users?: [],
+  type: string,
+  departureAirport: {},
+  destinations: {}[],
+  dates: {}[],
+  travellers: [],
+  transport: string,
 }
 
 export const saveTrip = createAsyncThunk(
   'trips/saveTrip',
-  async (action: ActionPayload, {getState}) => {
+  async (action: ActionPayload, { getState }) => {
     try {
       const userId = (getState as any)().userAuth.userId;
+      console.log(action);
       const { data } = await axiosTripsService({
         url: '/saveTrip',
         data: {
-          destination: action.destination,
-          budget: action.budget,
+          type: action.type,
+          departureAirport: action.departureAirport,
+          destinations: action.destinations,
           dates: action.dates,
           travellers: action.travellers,
-          users: action.users,
+          transport: action.transport,
           userId: userId,
         },
       });
+      console.log(data);
       return data;
     } catch (e: any) {
       throw new Error(e);

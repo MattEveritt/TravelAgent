@@ -1,8 +1,9 @@
-import {createSlice} from '@reduxjs/toolkit';
-import {getTrips, getTripsCases} from './thunks/getTrips';
-import {saveTrip, saveTripCases} from './thunks/saveTrip';
-import {deleteTrip, deleteTripCases} from './thunks/deleteTrip';
-import {updateTrip, updateTripCases} from './thunks/updateTrip';
+import { createSlice } from '@reduxjs/toolkit';
+import { getTrips, getTripsCases } from './thunks/getTrips';
+import { saveTrip, saveTripCases } from './thunks/saveTrip';
+import { deleteTrip, deleteTripCases } from './thunks/deleteTrip';
+import { updateTrip, updateTripCases } from './thunks/updateTrip';
+import { getDestinationImg } from './thunks';
 
 interface InitialState{
   trips: [],
@@ -30,8 +31,9 @@ const tripsSlice = createSlice({
     builder.addCase(deleteTrip.rejected, deleteTripCases.rejected),
     builder.addCase(updateTrip.fulfilled, updateTripCases.fulfilled),
     builder.addCase(updateTrip.rejected, updateTripCases.rejected);
+    builder.addCase(getDestinationImg.fulfilled, () => {});
   },
 });
 
-export const {toggleBookingFlow} = tripsSlice.actions;
+export const { toggleBookingFlow } = tripsSlice.actions;
 export default tripsSlice.reducer;

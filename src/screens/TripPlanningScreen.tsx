@@ -1,15 +1,14 @@
-import React, {useState} from 'react';
-import {Text, ScrollView, View, StyleSheet, Dimensions} from 'react-native';
-import globalStyles from '../styles/globalStyles';
-import {saveTrip, useAppDispatch} from '../redux';
-import {DestinationSearchModal} from '../components/TripPlanning/DestinationSearchModal';
-import {Trips, TripButton, ScreenContainer} from '../components';
+import React, { useState } from 'react';
+import { ScrollView, StyleSheet, Dimensions } from 'react-native';
+import { saveTrip, useAppDispatch } from '../redux';
+import { DestinationSearchModal } from '../components/createTripComponents/DestinationSearchModal';
+import { Trips, TripButton, ScreenContainer } from '../components';
 import { FCLocalized } from '../localization/FCLocalized';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, ParamListBase, NavigationProp } from '@react-navigation/native';
 
 const windowHeight = Dimensions.get('window').height;
 export const TripPlanningScreen = () => {
-  const navigation = useNavigation();
+  const navigation: NavigationProp<ParamListBase> = useNavigation();
   const dispatch = useAppDispatch();
   const [modalVisible, setModalVisible] = useState(false);
   const [destination, setDestination] = useState<string>('');
@@ -19,7 +18,7 @@ export const TripPlanningScreen = () => {
   };
 
   const handleSaveTrip = () => {
-    dispatch(saveTrip({destination: destination}));
+    dispatch(saveTrip({ destination: destination }));
   };
 
   return (
@@ -52,13 +51,11 @@ const styles = StyleSheet.create({
   scrollviewStyle: {
     marginTop: -16,
     marginHorizontal: -16,
-    marginBottom: -80,
-    paddingBottom: 100,
-    height: windowHeight
+    marginBottom: -(windowHeight / 100 * 10),
   },
   contentContainerStyle: {
     paddingHorizontal: 16,
     paddingTop: 16,
-    height: windowHeight
+    height: windowHeight + (windowHeight / 100 * 34),
   }
 });

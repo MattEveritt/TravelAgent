@@ -1,5 +1,5 @@
 export {
-    fetchFlights,
+     fetchFlights,
     fetchFlightUpsells,
     fetchSeatMap,
     bookFlight,
@@ -11,4 +11,6 @@ export {
     deleteBooking,
     airlineNameLookup,
     searchCity,
+    fetchNearestAirport, 
+    searchAirport 
 } from './thunks';

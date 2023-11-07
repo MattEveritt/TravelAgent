@@ -1,4 +1,4 @@
-import {StyleSheet, View, KeyboardAvoidingView} from 'react-native';
+import { StyleSheet, View, KeyboardAvoidingView } from 'react-native';
 import React, { ReactNode } from 'react';
 import * as Headers from '../Header';
 
@@ -7,11 +7,16 @@ type HeaderTypes = {
 };
 
 type PropTypes = {
-  children?: ReactNode, extraStyles?: {}, headerType?: string, headerTitle?: string, headerDisabled?: boolean,
+  children?: ReactNode,
+  extraStyles?: {}, 
+  headerType?: string,
+  headerTitle?: string,
+  headerDisabled?: boolean,
+  onBackPressExtra?: () => void | undefined,
 }
 
 export const ScreenContainer = ({
-  children, extraStyles, headerType = 'TitleOnlyHeader', headerTitle, headerDisabled = false,
+  children, extraStyles, headerType = 'TitleOnlyHeader', headerTitle, headerDisabled = false, onBackPressExtra = undefined,
 }: PropTypes) => {
 
   const HeaderComponent = (Headers as HeaderTypes)[headerType];
@@ -22,6 +27,7 @@ export const ScreenContainer = ({
         <HeaderComponent 
           titleText={headerTitle} 
           headerDisabled={headerDisabled}
+          onBackPressExtra={onBackPressExtra}
         />
       }
       <KeyboardAvoidingView behavior='height' enabled={false} style={[styles.screenContainer, extraStyles]}>

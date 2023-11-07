@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {baseURL} from './helpers';
+import { baseURL } from './helpers';
 
 const axiosRefresh = axios.create({
   baseURL: `${baseURL}/refresh`,

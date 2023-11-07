@@ -1,17 +1,20 @@
 import { TouchableOpacity, StyleSheet, Dimensions, View } from 'react-native';
 import { Icon } from '@rneui/base';
-import {Header} from './Header';
+import { Header } from './Header';
 import { TripText } from '../travelUI';
 import { theme } from '../../styles/theme';
 import { useNavigation } from '@react-navigation/native';
 
 const screenWidth = Dimensions.get('screen').width;
 
-export const BackHeader = ({headerDisabled, titleText}: {headerDisabled: boolean, titleText: string}) => {
+export const BackHeader = ({ headerDisabled, titleText, onBackPressExtra }: {headerDisabled: boolean, titleText: string, onBackPressExtra: () => void}) => {
   const navigation = useNavigation();
 
   const backButtonHandler = () => {
-    navigation.goBack();      
+    if (onBackPressExtra) {
+      onBackPressExtra();
+    }
+    navigation.goBack();    
   };
 
   return (

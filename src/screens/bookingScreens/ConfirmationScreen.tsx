@@ -1,15 +1,13 @@
-import {View, Text} from 'react-native';
-import React, {useCallback} from 'react';
-import {ScreenContainer} from '../../components/travelUI';
+import { View, Text } from 'react-native';
+import React, { useCallback } from 'react';
+import { ScreenContainer } from '../../components/travelUI';
 
 export const ConfirmationScreen = () => {
-  const renderConfirmationScreen = useCallback(
-    () => (
+  return (
+    <ScreenContainer headerType='CloseHeader' headerTitle='Confirmation'>
       <View>
         <Text>ConfirmationScreen</Text>
       </View>
-    ),
-    [],
+    </ScreenContainer>
   );
-  return <ScreenContainer renderContent={renderConfirmationScreen} />;
 };

@@ -1,7 +1,7 @@
 export const theme = {
   PRIMARY_COLOR: '#89D5ED',
   SECONDARY_COLOR: 'grey',
-  ACCENT: 'light-orange',
+  ACCENT: '#051341',
   BLACK: '#000000',
   WHITE: '#ffffff',
   LIGHT_GREY: '#EDEDED',

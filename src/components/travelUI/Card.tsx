@@ -2,9 +2,10 @@ import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import React, { ReactNode } from 'react';
 import { theme } from '../../styles/theme';
 
-export const Card = ({children, onPress}: {children: ReactNode, onPress?: () => void}) => {
+export const Card = ({children, onPress, pressDisabled = true, extraStyles}: 
+{children: ReactNode, onPress?: () => void, pressDisabled?: boolean, extraStyles?: {}}) => {
   return (
-    <TouchableOpacity style={styles.container} onPress={onPress}>
+    <TouchableOpacity style={[styles.container, extraStyles]} onPress={onPress} disabled={pressDisabled}>
       {children}
     </TouchableOpacity>
   );

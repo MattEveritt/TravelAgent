@@ -1,4 +1,4 @@
-import {createSlice} from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 import {
   getTravellers,
   getTravellersCases,
@@ -27,7 +27,7 @@ const travellersSlice = createSlice({
     builder.addCase(saveTraveller.fulfilled, (state: any, action) => {
       return {
         ...state,
-        travellers: [...state.travellers, {...action.payload}],
+        travellers: [...state.travellers, { ...action.payload }],
       };
     });
     builder.addCase(saveTraveller.rejected, (state: any, action: any) => {
@@ -46,7 +46,7 @@ const travellersSlice = createSlice({
     ),
     builder.addCase(
       updateTraveller.rejected, updateTravellerCases.rejected
-    )
+    );
   },
 });
 

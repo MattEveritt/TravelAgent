@@ -12,9 +12,12 @@ export {
   selectAllTrips,
   toggleBookingFlow,
   selectIsBooking,
+  getDestinationImg,
 } from './trips';
 export {
   fetchFlights,
+  fetchNearestAirport,
+  searchAirport,
   fetchFlightUpsells,
   fetchSeatMap,
   bookFlight,
@@ -46,7 +49,31 @@ export {
 export {
   resetPassword,
   selectIsLoggedIn,
+  selectUserId,
 } from './auth';
+export {
+  setTripType,
+  setBookingDates,
+  setBookingDestinations,
+  addBookingDate,
+  removeBookingDate,
+  setBookingTransport,
+  setDepartureAirport,
+  clearTripBookingState,
+  setDatesValidity,
+  setDepartureAirportValidity,
+  setDestinationsValidity,
+  selectBookingDates,
+  selectBookingDestinations,
+  selectTripType,
+  selectBookingTravellers,
+  selectBookingTransport,
+  selectDepartureAirport,
+  selectBookingTrip,
+  selectDatesValidity,
+  selectDepartureAirportValidity,
+  selectDestinationsValidity,
+} from './booking';
 export {
   useAppSelector,
   useAppDispatch,

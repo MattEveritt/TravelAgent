@@ -11,6 +11,7 @@ import flightsReducer from '../flights/flights';
 import hotelsReducer from '../hotels/hotels';
 import transfersReducer from '../transfers/transfers';
 import authReducer from '../auth/authSlice';
+import bookingReducer from '../booking/bookingSlice';
 import {
   persistStore,
   persistReducer,
@@ -37,6 +38,7 @@ const rootReducer = combineReducers({
   hotels: hotelsReducer,
   transfers: transfersReducer,
   userAuth: authReducer,
+  booking: bookingReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
@@ -54,4 +56,4 @@ const persistor = persistStore(store);
 export type RootState = ReturnType<typeof rootReducer>;
 export type AppDispatch = typeof store.dispatch;
 
-export {store, persistor};
+export { store, persistor };

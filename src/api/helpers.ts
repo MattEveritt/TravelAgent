@@ -1,11 +1,11 @@
 import Config from 'react-native-config';
-import {store} from '../redux/store/store';
-import {refreshAccessToken} from '../redux/auth/thunks/refreshAccessToken';
+import { store } from '../redux/store/store';
+import { refreshAccessToken } from '../redux/auth/thunks/refreshAccessToken';
 import * as SecureStore from 'expo-secure-store';
-import {axiosPost} from '.';
+import { axiosPost } from '.';
 
 export const getAccessToken = () => {
-  const token = (store.getState().userAuth as any)?.accessToken;
+  const token = (store?.getState().userAuth as any)?.accessToken;
   return token;
 };
 
@@ -22,7 +22,7 @@ export const errorHandler = async (error: any) => {
   if (error.response?.status === 401) {
     try {
       await store.dispatch(refreshAccessToken());
-      const newRequest = {...error.config};
+      const newRequest = { ...error.config };
       newRequest.headers.Authorization = `Bearer ${getAccessToken()}`;
       return axiosPost(newRequest);
     } catch (refreshError) {
@@ -42,5 +42,5 @@ export const setAuthHeader = (config: any) => {
 
   return config;
 };
-
+console.log(Config.API_URL);
 export const baseURL = `${Config.API_URL}/api`;
