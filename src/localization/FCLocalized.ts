@@ -21,7 +21,6 @@ export const FCLocalized = memoize(
   (key: string, config: any) => (config ? key + JSON.stringify(config) : key),
 );
 export const init = () => {
-    
   let localeLanguageTag = Localization.locale;
   let isRTL = Localization.isRTL;
   if (!FCLocalized.cache.clear) return null;
@@ -30,9 +29,14 @@ export const init = () => {
   I18nManager.forceRTL(isRTL);
 
   if (!i18n || !translationGetters || !localeLanguageTag) return null;
+
+  if (!translationGetters[localeLanguageTag]) {
+    console.error(`Locale language tag '${localeLanguageTag}' not found in translationGetters`);
+    localeLanguageTag = 'en-US';
+  }
+
   // set i18n-js config
   i18n.translations = {
-    // @ts-expect-error
     [localeLanguageTag]: translationGetters[localeLanguageTag](),
   };
   i18n.locale = localeLanguageTag;
