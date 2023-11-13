@@ -74,7 +74,7 @@ const BottomTabNavigator = () => {
       <topTab.Screen
         name="Settings"
         component={SettingsScreen}
-        options={getMainTabScreenOptions('settings', 'Settings')}
+        options={getMainTabScreenOptions('account-cog', 'Settings')}
       />
     </topTab.Navigator>
   );

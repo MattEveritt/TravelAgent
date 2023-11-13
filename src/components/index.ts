@@ -14,9 +14,10 @@ export {
   MultiCityDateSelector,
   TravellersCard,
   FlightCard,
-  Trips,
   TransportCard,
   DatesCard,
 } from './createTripComponents';
+
+export { Trips, RequestUserLogin } from './trips';
 
 export { AddTravellerForm, TravellerInfo } from './settings';

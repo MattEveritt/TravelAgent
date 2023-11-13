@@ -36,26 +36,17 @@ const authSlice = createSlice({
       refreshAccessToken.fulfilled,
       refreshAccessTokenCases.fulfilled,
     );
-    builder.addCase(
-      register.fulfilled,
-      registerCases.fulfilled,
-    ).addCase(
-      register.rejected,
-      registerCases.rejected,
-    );
-    builder.addCase(
-      resetPassword.fulfilled,
-      resetPasswordCases.fulfilled,
-    ).addCase(
-      resetPassword.rejected,
-      resetPasswordCases.rejected,
-    );
+    builder
+      .addCase(register.fulfilled, registerCases.fulfilled)
+      .addCase(register.rejected, registerCases.rejected);
+    builder
+      .addCase(resetPassword.fulfilled, resetPasswordCases.fulfilled)
+      .addCase(resetPassword.rejected, resetPasswordCases.rejected);
   },
 });
 
 export const { setSignIn, setSignOut } = authSlice.actions;
 
-export const selectIsLoggedIn = (state: any) => state.userAuth.isLoggedIn;
 export const selectEmail = (state: any) => state.userAuth.email;
 export const selectUserName = (state: any) => state.userAuth.userName;
 

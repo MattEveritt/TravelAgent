@@ -1,10 +1,11 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import * as SecureStore from 'expo-secure-store';
 import { axiosLogin } from '../../../api';
+import { setIsInApp } from '../../app';
 
 export const login = createAsyncThunk(
   'userAuth/login',
-  async (action: { username: string; password: string }) => {
+  async (action: { username: string; password: string }, { dispatch }) => {
     const { username, password } = action;
     try {
       const { data } = await axiosLogin({
@@ -20,8 +21,11 @@ export const login = createAsyncThunk(
           },
         );
       }
+      if (data.token && data.userId) {
+        dispatch(setIsInApp(true));
+      }
       return data;
-    } catch (e) {
+    } catch (e: any) {
       console.log(e.response);
       return (e as any).response.status;
     }
