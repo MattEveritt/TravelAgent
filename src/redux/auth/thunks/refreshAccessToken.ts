@@ -1,5 +1,5 @@
 import {createAsyncThunk} from '@reduxjs/toolkit';
-import {axiosRefresh} from '../../../api';
+import axiosRefresh from '../../../api/axiosRefresh';
 import * as SecureStore from 'expo-secure-store';
 
 export const refreshAccessToken = createAsyncThunk(

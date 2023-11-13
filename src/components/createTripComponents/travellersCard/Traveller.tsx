@@ -1,8 +1,8 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import React, { useState } from 'react';
 import { CheckBox } from '@rneui/base';
-import { TripText } from '../travelUI';
-import { formatTravellersName } from './TravellersCard';
+import { TripText } from '../../travelUI';
+import { formatTravellersName } from '../../../utils/formatTravellersName';
 
 export const Traveller = ({
   traveller,

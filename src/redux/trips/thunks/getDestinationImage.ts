@@ -4,7 +4,7 @@ import Config from 'react-native-config';
 
 export const getDestinationImg = createAsyncThunk(
   'trips/getDestinationImg',
-  async (action, { getState }) => {
+  async (action: string, { getState }) => {
     try {
       const { data } = await axios.get(
         `https://maps.googleapis.com/maps/api/place/details/json?place_id=${action}&fields=photo&key=${Config.GOOGLE_API_KEY}`

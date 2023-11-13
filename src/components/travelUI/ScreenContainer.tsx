@@ -1,6 +1,6 @@
 import { StyleSheet, View, KeyboardAvoidingView } from 'react-native';
 import React, { ReactNode } from 'react';
-import * as Headers from '../Header';
+import * as Headers from '../header';
 
 type HeaderTypes = {
   [key: string]: React.ComponentType<any>;

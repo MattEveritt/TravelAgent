@@ -1,15 +1,17 @@
 import { TouchableOpacity, StyleSheet, View } from 'react-native';
 import { Icon } from '@rneui/base';
-import { Header } from './Header';
 import { theme } from '../../styles/theme';
 import { useNavigation } from '@react-navigation/native';
-import { TripModal, TripText } from '../travelUI';
+import { TripText } from '../travelUI/TripText';
+import { TripModal } from '../travelUI/TripModal';
 import { FCLocalized } from '../../localization/FCLocalized';
 import { useState } from 'react';
 
 export const BookingNavHeader = ({ headerDisabled, titleText }: {headerDisabled: boolean, titleText: string}) => {
   const [modalVisible, setModalVisible] = useState(false);
   const navigation = useNavigation();
+
+  if (headerDisabled) return null;
 
   const onCancelPress = () => {
     setModalVisible(false);
@@ -25,7 +27,7 @@ export const BookingNavHeader = ({ headerDisabled, titleText }: {headerDisabled:
   };
 
   return (
-    <Header headerDisabled={headerDisabled}>
+    <View style={styles.headerContainer}>
       <View style={styles.leftContainer}>
         <TouchableOpacity style={styles.buttonContainer} onPress={() => backButtonHandler()}>
           <Icon name='close' type='ionicon' color={theme.BLACK} size={30}/>
@@ -53,11 +55,18 @@ export const BookingNavHeader = ({ headerDisabled, titleText }: {headerDisabled:
         alertText={FCLocalized('If you leave now your progress will be saved but prices might change.')}
         onOkPress={onOkPress} 
       />
-    </Header>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
+  headerContainer: {
+    height: '8.75%',
+    width: '100%', 
+    backgroundColor: theme.PRIMARY_COLOR,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
   leftContainer: {
     height: '100%',
     width: '30%',

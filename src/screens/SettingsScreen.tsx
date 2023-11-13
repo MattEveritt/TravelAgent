@@ -1,8 +1,9 @@
-import React, {useCallback} from 'react';
+import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {useDispatch} from 'react-redux';
 import {TripButton, ScreenContainer} from '../components/travelUI';
 import {setSignOut} from '../redux/auth/authSlice';
+import { setIsInApp } from '../redux';
 
 export const SettingsScreen = ({
   navigation
@@ -64,7 +65,7 @@ export const SettingsScreen = ({
         />
         <TripButton
           title="Logout"
-          onPress={handleLogout}
+          onPress={() => handleLogout()}
           iconName="chevron-right"
           iconType="material"
         />

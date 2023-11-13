@@ -1,10 +1,8 @@
 import axios from 'axios';
 import {
-  baseURL,
   getAccessToken,
-  responseHandler,
-  errorHandler,
-} from './helpers';
+} from './helpers/getAccessToken';
+import { baseURL } from './helpers/baseURL';
 
 const axiosPost = axios.create({
   baseURL: baseURL,

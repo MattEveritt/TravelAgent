@@ -1,6 +1,9 @@
 import axios from 'axios';
-import { baseURL, responseHandler, errorHandler } from './helpers';
+import { responseHandler } from './helpers/responseHandler';
+import { errorHandler } from './helpers/errorHandler';
+import { baseURL } from './helpers/baseURL';
 
+console.log('baseURL: ', baseURL);
 const axiosLogin = axios.create({
   baseURL: `${baseURL}/login`,
   method: 'post',

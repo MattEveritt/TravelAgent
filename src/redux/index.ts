@@ -75,6 +75,10 @@ export {
   selectDestinationsValidity,
 } from './booking';
 export {
+  setIsInApp,
+  selectIsInApp,
+} from './app';
+export {
   useAppSelector,
   useAppDispatch,
 } from './store/hooks';
