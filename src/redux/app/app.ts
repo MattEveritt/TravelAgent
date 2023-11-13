@@ -1,17 +1,20 @@
 import {createSlice} from '@reduxjs/toolkit';
 
-const initialState = {};
+type InitialState = {
+  isInApp: boolean;
+};
+
+const initialState: InitialState = {
+  isInApp: false,
+};
 
 const appSlice = createSlice({
   name: 'app',
   initialState,
   reducers: {
-    // connectedIdUpdated(state, action) {
-    //   state.connectedId = action.payload.profileId;
-    //   if (action.payload.deviceId) {
-    //     state.deviceId = action.payload.deviceId;
-    //   }
-    // },
+    setIsInApp(state, action) {
+      state.isInApp = action.payload;
+    },
     // resetAccountReducerBackendError(state, action) {
     //   if (state.backendError !== null) {
     //     state.backendError = null;
@@ -20,7 +23,7 @@ const appSlice = createSlice({
   },
 });
 
-// export const {connectedIdUpdated, resetAccountReducerBackendError} =
-//   accountSlice.actions;
+export const { setIsInApp } =
+  appSlice.actions;
 
 export default appSlice.reducer;

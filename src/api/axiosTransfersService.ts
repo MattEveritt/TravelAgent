@@ -1,5 +1,8 @@
 import axios from 'axios';
-import { baseURL, responseHandler, errorHandler, setAuthHeader } from './helpers';
+import { responseHandler } from './helpers/responseHandler';
+import { errorHandler } from './helpers/errorHandler';
+import { setAuthHeader } from './helpers/setAuthHeader';
+import { baseURL } from './helpers/baseURL';
 
 const axiosTransfersService = axios.create({
   baseURL: `${baseURL}/transfers`,

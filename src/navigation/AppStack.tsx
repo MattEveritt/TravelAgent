@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { Icon } from '@rneui/base';
@@ -41,55 +41,108 @@ const BottomTabNavigator = () => {
         tabBarShowIcon: true,
       })}
       tabBarPosition="bottom">
-      <topTab.Screen 
-        name="Explore" 
+      <topTab.Screen
+        name="Explore"
         component={HomeScreen}
         options={{
-          tabBarIcon: ({ focused }) => <Icon name='explore' color={focused ? theme.PRIMARY_COLOR : theme.BLACK} />,
-          tabBarLabel: ({ focused }) => <Text style={{ color: focused ? theme.PRIMARY_COLOR : theme.BLACK }} >{FCLocalized('Explore')}</Text>,
+          tabBarIcon: ({ focused }) => (
+            <Icon
+              name="explore"
+              color={focused ? theme.PRIMARY_COLOR : theme.BLACK}
+            />
+          ),
+          tabBarLabel: ({ focused }) => (
+            <Text
+              style={{ color: focused ? theme.PRIMARY_COLOR : theme.BLACK }}>
+              {FCLocalized('Explore')}
+            </Text>
+          ),
         }}
       />
-      <topTab.Screen 
-        name="Book" 
-        component={TripPlanningScreen} 
+      <topTab.Screen
+        name="Book"
+        component={TripPlanningScreen}
         options={{
-          tabBarIcon: ({ focused }) => <Icon name='airplane' type='material-community' color={focused ? theme.PRIMARY_COLOR : theme.BLACK} />,
-          tabBarLabel: ({ focused }) => <Text style={{ color: focused ? theme.PRIMARY_COLOR : theme.BLACK }} >{FCLocalized('Book')}</Text>
-        }} 
+          tabBarIcon: ({ focused }) => (
+            <Icon
+              name="airplane"
+              type="material-community"
+              color={focused ? theme.PRIMARY_COLOR : theme.BLACK}
+            />
+          ),
+          tabBarLabel: ({ focused }) => (
+            <Text
+              style={{ color: focused ? theme.PRIMARY_COLOR : theme.BLACK }}>
+              {FCLocalized('Book')}
+            </Text>
+          ),
+        }}
       />
-      <topTab.Screen 
-        name="Current trip" 
-        component={YourTripScreen} 
+      <topTab.Screen
+        name="Current trip"
+        component={YourTripScreen}
         options={{
-          tabBarIcon: ({ focused }) => <Icon name='format-list-bulleted' type='material-community' color={focused ? theme.PRIMARY_COLOR : theme.BLACK} />,
-          tabBarLabel: ({ focused }) => <Text style={{ color: focused ? theme.PRIMARY_COLOR : theme.BLACK }} >{FCLocalized('Current trip')}</Text>
-        }} 
+          tabBarIcon: ({ focused }) => (
+            <Icon
+              name="format-list-bulleted"
+              type="material-community"
+              color={focused ? theme.PRIMARY_COLOR : theme.BLACK}
+            />
+          ),
+          tabBarLabel: ({ focused }) => (
+            <Text
+              style={{ color: focused ? theme.PRIMARY_COLOR : theme.BLACK }}>
+              {FCLocalized('Current trip')}
+            </Text>
+          ),
+        }}
       />
-      <topTab.Screen 
-        name="Settings" 
-        component={SettingsScreen} 
+      <topTab.Screen
+        name="Settings"
+        component={SettingsScreen}
         options={{
-          tabBarIcon: ({ focused }) => <Icon name='account-cog' type='material-community' color={focused ? theme.PRIMARY_COLOR : theme.BLACK} />,
-          tabBarLabel: ({ focused }) => <Text style={{ color: focused ? theme.PRIMARY_COLOR : theme.BLACK }} >{FCLocalized('Settings')}</Text>
-        }} 
+          tabBarIcon: ({ focused }) => (
+            <Icon
+              name="account-cog"
+              type="material-community"
+              color={focused ? theme.PRIMARY_COLOR : theme.BLACK}
+            />
+          ),
+          tabBarLabel: ({ focused }) => (
+            <Text
+              style={{ color: focused ? theme.PRIMARY_COLOR : theme.BLACK }}>
+              {FCLocalized('Settings')}
+            </Text>
+          ),
+        }}
       />
     </topTab.Navigator>
   );
 };
 
-const TabBarLabel = ({ focused, screen, icon }: {focused: boolean, screen: string, icon: string}) => {
+const TabBarLabel = ({
+  focused,
+  screen,
+  icon,
+}: {
+  focused: boolean;
+  screen: string;
+  icon: string;
+}) => {
   return (
     <View style={{ height: '100%' }}>
-      <Icon name={icon} type='material-community' color={focused ? theme.BLACK : theme.SECONDARY_COLOR} />
-      <Text 
-        style={{ color: focused ? theme.BLACK : theme.SECONDARY_COLOR }}
-      >
+      <Icon
+        name={icon}
+        type="material-community"
+        color={focused ? theme.BLACK : theme.SECONDARY_COLOR}
+      />
+      <Text style={{ color: focused ? theme.BLACK : theme.SECONDARY_COLOR }}>
         {FCLocalized(screen)}
       </Text>
     </View>
   );
 };
-  
+
 const BookingNavigator = () => {
   return (
     <topTab.Navigator
@@ -102,37 +155,45 @@ const BookingNavigator = () => {
       })}
       tabBarPosition="bottom">
       <topTab.Screen
-        name="Flights" 
+        name="Flights"
         component={FlightsScreen}
         options={{
           tabBarLabel: ({ focused, children }) => (
-            <TabBarLabel focused={focused} screen={children} icon='airplane'/>
-          )
-        }} />
+            <TabBarLabel focused={focused} screen={children} icon="airplane" />
+          ),
+        }}
+      />
       <topTab.Screen
         name="Hotels"
         component={AccomodationScreen}
         options={{
           tabBarLabel: ({ focused, children }) => (
-            <TabBarLabel focused={focused} screen={children} icon='home'/>
-          )
-        }} />
+            <TabBarLabel focused={focused} screen={children} icon="home" />
+          ),
+        }}
+      />
       <topTab.Screen
         name="Transport"
         component={TransportScreen}
         options={{
           tabBarLabel: ({ focused, children }) => (
-            <TabBarLabel focused={focused} screen={children} icon='car'/>
-          )
-        }} />
+            <TabBarLabel focused={focused} screen={children} icon="car" />
+          ),
+        }}
+      />
       <topTab.Screen
-        name="Confirm" 
-        component={ConfirmationScreen} 
+        name="Confirm"
+        component={ConfirmationScreen}
         options={{
           tabBarLabel: ({ focused, children }) => (
-            <TabBarLabel focused={focused} screen={children} icon='format-list-checks'/>
-          )
-        }} />
+            <TabBarLabel
+              focused={focused}
+              screen={children}
+              icon="format-list-checks"
+            />
+          ),
+        }}
+      />
     </topTab.Navigator>
   );
 };
@@ -205,4 +266,3 @@ export const AppStack = () => {
     </Stack.Navigator>
   );
 };
-  

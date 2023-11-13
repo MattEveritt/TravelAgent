@@ -1,5 +1,8 @@
 module.exports = {
   root: true,
+  env: {
+    jest: true, // Add this line
+  },
   extends: ['@react-native', 'plugin:prettier/recommended'],
   parser: '@typescript-eslint/parser',
   plugins: ['@typescript-eslint', 'react', 'react-hooks', 'prettier'],

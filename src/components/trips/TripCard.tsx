@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { deleteTrip, getDestinationImg, selectAllTrips } from '../../redux';
-import { StyleSheet, View, Alert } from 'react-native';
+import { deleteTrip, getDestinationImg } from '../../redux';
+import { View, StyleSheet } from 'react-native';
 import { useAppDispatch } from '../../redux';
 import { useNavigation, NavigationProp, ParamListBase } from '@react-navigation/native';
 import { Card, TripModal, TripText } from '../travelUI';
@@ -9,37 +8,22 @@ import { Icon, Image } from '@rneui/base';
 import { theme } from '../../styles/theme';
 import { FCLocalized } from '../../localization/FCLocalized';
 import Config from 'react-native-config';
+import { getTripCardTitle } from './utils/getTripCardTitle';
 
-type TripParam =  {
-  destinations: 
-  {
-    destination: string}[], 
-    dates: 
-    {untilDate: string, startDate: string}[]
-  }
-const getTripCardTitle = (trip: TripParam, i: number) => {
-  const destinationNameArray: string[] | undefined = trip.destinations[i]?.destination.split(', ');
-  const cityName = destinationNameArray && destinationNameArray[0];
-
-
-  const startDate = new Date(trip.dates[i]?.startDate).toLocaleString('default', { month: 'short', day: '2-digit' });
-  let untilDate = '';
-
-  if (trip.dates[i]?.untilDate !== 'Inbound') {
-    untilDate = ` - ${new Date(trip.dates[i]?.startDate).toLocaleString('default', { month: 'short', day: '2-digit' })}`;
-  }
-
-  //@ts-ignore
-  const dates = `${startDate}${untilDate}`;
-  return `${cityName} ${dates}`;
+export interface Trip {
+  id: string, 
+  destinations: {
+    googlePlaceId: string, 
+    destination: string
+  }[]
+  dates: {
+    startDate: string, 
+    untilDate: string
+  }[],
+  flights: {}
 };
 
-interface Trip {
-  destination: string,
-  id: string,
-};
-
-const TripCard = ({ trip }: {trip: {id: string, destination: string}}) => {
+export const TripCard = ({ trip }: {trip: Trip}) => {
   const dispatch = useAppDispatch();
   const navigation: NavigationProp<ParamListBase> = useNavigation();
   const [photoReference, setPhotoReference] = useState();
@@ -104,15 +88,6 @@ const TripCard = ({ trip }: {trip: {id: string, destination: string}}) => {
         onCancelPress={onCancelPress}
       />
     </Card>
-  );
-};
-
-export const Trips = () => {
-  const trips = useSelector(selectAllTrips());
-  return (
-    <View style={styles.container}>
-      {trips?.map((trip: Trip, i) => <TripCard trip={trip} key={i}/>)}
-    </View>
   );
 };
 

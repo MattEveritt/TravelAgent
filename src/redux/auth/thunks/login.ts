@@ -22,7 +22,7 @@ export const login = createAsyncThunk(
       }
       return data;
     } catch (e) {
-      console.log(e);
+      console.log(e.response);
       return (e as any).response.status;
     }
   },

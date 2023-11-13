@@ -19,4 +19,4 @@ export {
   DatesCard,
 } from './createTripComponents';
 
-export { AddTravellerForm, TravellerInfo } from './Settings';
+export { AddTravellerForm, TravellerInfo } from './settings';
