@@ -31,7 +31,7 @@ export {
   searchCity,
 } from './flights';
 export {
-  fetchHotels, 
+  fetchHotels,
   fetchHotelRatings,
   hotelNameAutocomplete,
   locationRating,
@@ -41,16 +41,10 @@ export {
   fetchPOIInfo,
   fetchSafetyRating,
   fetchTourOrActivityInfo,
-  fetchToursAndActivities
+  fetchToursAndActivities,
 } from './hotels';
-export {
-  fetchTransfers
-} from './transfers';
-export {
-  resetPassword,
-  selectIsLoggedIn,
-  selectUserId,
-} from './auth';
+export { fetchTransfers } from './transfers';
+export { resetPassword, selectIsLoggedIn, selectUserId } from './auth';
 export {
   setTripType,
   setBookingDates,
@@ -76,9 +70,8 @@ export {
 } from './booking';
 export {
   setIsInApp,
+  setShowOnboarding,
   selectIsInApp,
+  selectShowOnboarding,
 } from './app';
-export {
-  useAppSelector,
-  useAppDispatch,
-} from './store/hooks';
+export { useAppSelector, useAppDispatch } from './store/hooks';

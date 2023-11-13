@@ -1,12 +1,20 @@
+import React from 'react';
 import { TouchableOpacity, StyleSheet, Dimensions, View } from 'react-native';
 import { Icon } from '@rneui/base';
 import { theme } from '../../styles/theme';
 import { useNavigation } from '@react-navigation/native';
 import { TripText } from '../travelUI/TripText';
+import { HEADER_HEIGHT_PERCENTAGE, HEADER_COLOR } from './constants';
 
 const screenWidth = Dimensions.get('screen').width;
 
-export const CloseHeader = ({ headerDisabled, titleText }: {headerDisabled: boolean, titleText: string}) => {
+export const CloseHeader = ({
+  headerDisabled,
+  titleText,
+}: {
+  headerDisabled: boolean;
+  titleText: string;
+}) => {
   const navigation = useNavigation();
 
   if (headerDisabled) return null;
@@ -14,13 +22,15 @@ export const CloseHeader = ({ headerDisabled, titleText }: {headerDisabled: bool
   const backButtonHandler = () => {
     navigation.goBack();
   };
-  
+
   return (
     <View style={styles.headerContainer}>
-      <TouchableOpacity style={styles.buttonContainer} onPress={() => backButtonHandler()}>
-        <Icon name='close' type='ionicon' color={theme.BLACK}/>
+      <TouchableOpacity
+        style={styles.buttonContainer}
+        onPress={() => backButtonHandler()}>
+        <Icon name="close" type="ionicon" color={theme.BLACK} />
       </TouchableOpacity>
-      <TripText text={titleText} style={styles.title}/>
+      <TripText text={titleText} style={styles.title} />
     </View>
   );
 };
@@ -30,19 +40,19 @@ const styles = StyleSheet.create({
     height: '100%',
     alignContent: 'center',
     justifyContent: 'center',
-    width: '15%'
+    width: '15%',
   },
   title: {
     paddingRight: (screenWidth / 100) * 15,
     width: '85%',
     textAlign: 'center',
     fontSize: 20,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
   },
   headerContainer: {
-    height: '8.75%',
-    width: '100%', 
-    backgroundColor: theme.PRIMARY_COLOR,
+    height: HEADER_HEIGHT_PERCENTAGE,
+    width: '100%',
+    backgroundColor: HEADER_COLOR,
     flexDirection: 'row',
     alignItems: 'center',
   },

@@ -1,9 +1,9 @@
 import { StyleSheet, ScrollView } from 'react-native';
-import React, { useRef, useState } from 'react';
-import { 
-  DestinationCard, 
-  ScreenContainer, 
-  TripButton, 
+import React, { useState } from 'react';
+import {
+  DestinationCard,
+  ScreenContainer,
+  TripButton,
   TravellersCard,
   TransportCard,
   DatesCard,
@@ -11,7 +11,7 @@ import {
 } from '../components';
 import { DepartureCard } from '../components/createTripComponents';
 import { FCLocalized } from '../localization/FCLocalized';
-import { 
+import {
   clearTripBookingState,
   saveTrip,
   selectBookingTrip,
@@ -19,7 +19,7 @@ import {
   setDepartureAirportValidity,
   setDestinationsValidity,
   useAppDispatch,
-  useAppSelector 
+  useAppSelector,
 } from '../redux';
 import { useNavigation } from '@react-navigation/native';
 import { bookingFormValidator } from '../utils/bookingFormValidator';
@@ -40,11 +40,14 @@ export const CreateTripScreen = () => {
 
   const handleOnCreatePress = () => {
     const validation = bookingFormValidator(tripObj);
-    if (!validation.dates || !validation.destinations || !validation.departureAirport) {
+    if (
+      !validation.dates ||
+      !validation.destinations ||
+      !validation.departureAirport
+    ) {
       dispatch(setDatesValidity(validation.dates));
       dispatch(setDestinationsValidity(validation.destinations));
       dispatch(setDepartureAirportValidity(validation.departureAirport));
-      console.log(validation);
       return null;
     }
     dispatch(saveTrip(tripObj));
@@ -58,19 +61,23 @@ export const CreateTripScreen = () => {
   };
 
   return (
-    <ScreenContainer 
-      headerType='BackHeader' 
+    <ScreenContainer
+      headerType="BackHeader"
       headerTitle={FCLocalized('Create trip')}
       extraStyles={styles.screenContainerStyle}
-      onBackPressExtra={onBackPressExtra}
-    >
-      <ScrollView style={styles.scrollViewContainer} contentContainerStyle={styles.contentContainer}>
+      onBackPressExtra={onBackPressExtra}>
+      <ScrollView
+        style={styles.scrollViewContainer}
+        contentContainerStyle={styles.contentContainer}>
         <DepartureCard />
         <DatesCard />
         <DestinationCard />
         <TravellersCard />
         <TransportCard />
-        <TripButton title={FCLocalized('Create')} onPress={() => handleOnCreatePress()}/>
+        <TripButton
+          title={FCLocalized('Create')}
+          onPress={() => handleOnCreatePress()}
+        />
       </ScrollView>
       <TripModal
         title={''}
@@ -84,14 +91,14 @@ export const CreateTripScreen = () => {
 
 const styles = StyleSheet.create({
   screenContainerStyle: {
-    padding: 0
+    padding: 0,
   },
   scrollViewContainer: {
-    flex: 1, 
-    padding: 16
+    flex: 1,
+    padding: 16,
   },
   contentContainer: {
-    margin: -16, 
-    padding: 16
+    margin: -16,
+    padding: 16,
   },
 });

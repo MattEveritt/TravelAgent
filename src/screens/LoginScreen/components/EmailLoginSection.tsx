@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { View, TouchableOpacity, StyleSheet } from 'react-native';
 import { useSelector } from 'react-redux';
 import { useNavigation, NavigationProp } from '@react-navigation/native';
@@ -8,12 +8,12 @@ import { theme } from '../../../styles/theme';
 
 export const EmailLoginSection = () => {
   const navigation = useNavigation<NavigationProp<any>>();
-  const {runLogin} = useLogin();
+  const { runLogin } = useLogin();
   const [userNameInput, setUserNameInput] = useState();
   const [passwordInput, setPasswordInput] = useState();
   const [isValidInput, setIsValidInput] = useState(true);
   const logInError = useSelector(state => (state as any).userAuth.logInError);
-  
+
   const handleLogin = () => {
     if (!userNameInput || !passwordInput) {
       setIsValidInput(false);
@@ -24,11 +24,11 @@ export const EmailLoginSection = () => {
       runLogin(userNameInput, passwordInput);
     }
   };
-  
+
   const onPressHandler = (route: string) => {
     navigation.navigate(route);
   };
-  
+
   return (
     <>
       <View>
@@ -44,17 +44,20 @@ export const EmailLoginSection = () => {
           secureTextEntry
         />
         <TripButton title="Login" onPress={handleLogin} />
-        <TripText 
-          style={styles.loginErrorText} 
+        <TripText
+          style={styles.loginErrorText}
           text={
-            isValidInput === false 
-              ? 'Please input a valid username and password' 
+            isValidInput === false
+              ? 'Please input a valid username and password'
               : logInError && logInError
           }
         />
       </View>
       <TouchableOpacity onPress={() => onPressHandler('Forgot Password')}>
-        <TripText text={'Forgot password?'} style={styles.forgotPasswordButtonText} />
+        <TripText
+          text={'Forgot password?'}
+          style={styles.forgotPasswordButtonText}
+        />
       </TouchableOpacity>
     </>
   );
@@ -71,5 +74,5 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     alignSelf: 'center',
     fontSize: 18,
-  }
+  },
 });

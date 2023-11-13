@@ -1,2 +1,3 @@
 export { selectIsInApp } from './selectors/selectIsInApp';
-export { setIsInApp } from './app';
+export { selectShowOnboarding } from './selectors/selectShowOnboarding';
+export { setIsInApp, setShowOnboarding } from './app';

@@ -7,17 +7,23 @@ import {
   OnboardingScreen,
   ForgotPasswordScreen,
 } from '../screens';
+import { useSelector } from 'react-redux';
+import { selectShowOnboarding } from '../redux';
 
 const Stack = createNativeStackNavigator();
 
 export const AuthStack = () => {
+  const showOnboarding = useSelector(selectShowOnboarding());
+
   return (
     <Stack.Navigator>
-      <Stack.Screen
-        options={{ headerShown: false }}
-        name="Onboarding"
-        component={OnboardingScreen}
-      />
+      {showOnboarding && (
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="Onboarding"
+          component={OnboardingScreen}
+        />
+      )}
       {/* <Stack.Screen
         options={{headerShown: false}}
         name="Loading screen"

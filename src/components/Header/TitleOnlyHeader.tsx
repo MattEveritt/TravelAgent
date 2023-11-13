@@ -1,16 +1,16 @@
+import React from 'react';
 import { View, StyleSheet } from 'react-native';
-import { theme } from '../../styles/theme';
-import { useNavigation } from '@react-navigation/native';
 import { TripText } from '../travelUI/TripText';
+import { HEADER_HEIGHT_PERCENTAGE, HEADER_COLOR } from './constants';
 
-export const TitleOnlyHeader = ({titleText, headerDisabled}: {titleText: string, headerDisabled: boolean}) => {
-  const navigation = useNavigation();
-
+export const TitleOnlyHeader = ({
+  titleText,
+  headerDisabled,
+}: {
+  titleText: string;
+  headerDisabled: boolean;
+}) => {
   if (headerDisabled) return null;
-
-  const backButtonHandler = () => {
-    navigation.goBack();      
-  };
 
   return (
     <View style={styles.headerContainer}>
@@ -21,9 +21,9 @@ export const TitleOnlyHeader = ({titleText, headerDisabled}: {titleText: string,
 
 const styles = StyleSheet.create({
   headerContainer: {
-    height: '8.75%',
-    width: '100%', 
-    backgroundColor: theme.PRIMARY_COLOR,
+    height: HEADER_HEIGHT_PERCENTAGE,
+    width: '100%',
+    backgroundColor: HEADER_COLOR,
     flexDirection: 'row',
     alignItems: 'center',
   },
@@ -31,6 +31,6 @@ const styles = StyleSheet.create({
     width: '100%',
     textAlign: 'center',
     fontSize: 20,
-    fontWeight: 'bold'
-  }
+    fontWeight: 'bold',
+  },
 });
