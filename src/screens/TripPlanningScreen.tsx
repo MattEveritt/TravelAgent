@@ -29,7 +29,15 @@ export const TripPlanningScreen = () => {
         style={styles.scrollviewStyle}
         keyboardShouldPersistTaps="always"
         contentContainerStyle={styles.contentContainerStyle}>
-        {isLoggedIn ? <Trips /> : <RequestUserLogin />}
+        {isLoggedIn ? (
+          <Trips />
+        ) : (
+          <RequestUserLogin
+            text={FCLocalized(
+              'You will see all of your saved trips and be able to save a new trip to continue with later',
+            )}
+          />
+        )}
       </ScrollView>
       <TripButton
         title="Add new trip"

@@ -124,7 +124,7 @@ const BookingNavigator = () => {
       <topTab.Screen
         name="Hotels"
         component={AccomodationScreen}
-        options={getBookingTabLabelOptions('Hotels', 'hotel')}
+        options={getBookingTabLabelOptions('Hotels', 'home')}
       />
       <topTab.Screen
         name="Transport"

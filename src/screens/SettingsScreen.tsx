@@ -1,23 +1,39 @@
-import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
-import {useDispatch} from 'react-redux';
-import {TripButton, ScreenContainer} from '../components/travelUI';
-import {setSignOut} from '../redux/auth/authSlice';
-import { setIsInApp } from '../redux';
+import React, { useState } from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+import { useDispatch } from 'react-redux';
+import { TripButton, ScreenContainer } from '../components/travelUI';
+import { setSignOut } from '../redux/auth/authSlice';
+import { TripModal } from '../components/travelUI';
+import { FCLocalized } from '../localization/FCLocalized';
+import { selectIsLoggedIn, setIsInApp, useAppSelector } from '../redux';
 
-export const SettingsScreen = ({
-  navigation
-}: any) => {
+export const SettingsScreen = ({ navigation }: any) => {
   const dispatch = useDispatch();
+  const isLoggedIn = useAppSelector(selectIsLoggedIn());
+  const [modalVisible, setModalVisible] = useState(false);
+
   const onPressHandler = (value: any) => {
     navigation.navigate(value);
   };
 
-  const handleLogout = () => {
+  const handleSignOut = () => {
+    setModalVisible(true);
+  };
+
+  const handleSignIn = () => {
+    dispatch(setIsInApp(false));
+  };
+
+  const onModalCancelPress = () => {
+    setModalVisible(false);
+  };
+
+  const onModalOkPress = () => {
+    setModalVisible(false);
     dispatch(setSignOut());
   };
 
-  return(
+  return (
     <ScreenContainer headerDisabled>
       <Text style={styles.titleText}>SettingsScreen</Text>
       <View style={styles.tripButtonContainer}>
@@ -63,13 +79,32 @@ export const SettingsScreen = ({
           iconName="chevron-right"
           iconType="material"
         />
-        <TripButton
-          title="Logout"
-          onPress={() => handleLogout()}
-          iconName="chevron-right"
-          iconType="material"
-        />
+        {isLoggedIn ? (
+          <TripButton
+            title={FCLocalized('Sign out')}
+            onPress={() => handleSignOut()}
+            iconName="chevron-right"
+            iconType="material"
+          />
+        ) : (
+          <TripButton
+            title={FCLocalized('Sign in')}
+            onPress={() => handleSignIn()}
+            iconName="chevron-right"
+            iconType="material"
+          />
+        )}
       </View>
+      <TripModal
+        modalVisible={modalVisible}
+        title={FCLocalized('Sign out')}
+        onCancelPress={onModalCancelPress}
+        alertText={FCLocalized(
+          'If you sign out now you will not get info about current or saved trips. Are you sure you would like to sign out?',
+        )}
+        onOkPress={onModalOkPress}
+        isAlert
+      />
     </ScreenContainer>
   );
 };

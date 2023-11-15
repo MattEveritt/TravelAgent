@@ -3,7 +3,7 @@ import React from 'react';
 import { Card, TripButton, TripText } from '../travelUI';
 import { setIsInApp, useAppDispatch } from '../../redux';
 
-export const RequestUserLogin = () => {
+export const RequestUserLogin = ({ text }: { text: string }) => {
   const dispatch = useAppDispatch();
 
   const signInHandler = () => {
@@ -13,10 +13,7 @@ export const RequestUserLogin = () => {
   return (
     <Card extraStyles={styles.container}>
       <TripText style={styles.mainText} text="Sign in to your account" />
-      <TripText
-        style={styles.subText}
-        text="You will see all of your saved trips and be able to save a new trip to continue with later"
-      />
+      <TripText style={styles.subText} text={text} />
       <TripButton title="Sign in" onPress={signInHandler} />
     </Card>
   );

@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import { View, TouchableOpacity, StyleSheet } from 'react-native';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigation, NavigationProp } from '@react-navigation/native';
 import { useLogin } from '../../../hooks/useLogin';
 import { TripTextInput, TripButton, TripText } from '../../../components';
 import { theme } from '../../../styles/theme';
+import { FCLocalized } from '../../../localization/FCLocalized';
+import { setIsInApp } from '../../../redux';
 
 export const EmailLoginSection = () => {
+  const dispatch = useDispatch();
   const navigation = useNavigation<NavigationProp<any>>();
   const { runLogin } = useLogin();
   const [userNameInput, setUserNameInput] = useState();
@@ -23,6 +26,10 @@ export const EmailLoginSection = () => {
       }
       runLogin(userNameInput, passwordInput);
     }
+  };
+
+  const onSkipLogin = () => {
+    dispatch(setIsInApp(true));
   };
 
   const onPressHandler = (route: string) => {
@@ -43,7 +50,12 @@ export const EmailLoginSection = () => {
           placeHolder="Password"
           secureTextEntry
         />
-        <TripButton title="Login" onPress={handleLogin} />
+        <TripButton title={FCLocalized('Login')} onPress={handleLogin} />
+        <TripButton
+          title={FCLocalized('Skip login')}
+          onPress={onSkipLogin}
+          isWhite
+        />
         <TripText
           style={styles.loginErrorText}
           text={
