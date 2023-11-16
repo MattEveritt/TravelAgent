@@ -1,8 +1,18 @@
-import { StyleSheet, View, Alert, Image } from 'react-native';
-import React, {useCallback, useState} from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useState } from 'react';
+import {
+  StyleSheet,
+  View,
+  Alert,
+  Image,
+  KeyboardAvoidingView,
+} from 'react-native';
 import { resetPassword, useAppDispatch } from '../redux';
-import { ScreenContainer, TripButton, TripText, TripTextInput } from '../components';
+import {
+  ScreenContainer,
+  TripButton,
+  TripText,
+  TripTextInput,
+} from '../components';
 import { validateEmail } from '../utils/inputValidators';
 import { theme } from '../styles/theme';
 
@@ -17,9 +27,12 @@ export const ForgotPasswordScreen = () => {
       setIsValidEmail(true);
       const res = await dispatch(resetPassword(value)).unwrap();
       if (res === 200) {
-        Alert.alert('' ,`Reset password link sent to ${value}`);
+        Alert.alert('', `Reset password link sent to ${value}`);
       } else {
-        Alert.alert('', `The email address ${value}, does not belong to any registered account`);
+        Alert.alert(
+          '',
+          `The email address ${value}, does not belong to any registered account`,
+        );
       }
     } else {
       setIsValidEmail(false);
@@ -28,26 +41,36 @@ export const ForgotPasswordScreen = () => {
 
   return (
     <ScreenContainer headerDisabled>
-      <View style={styles.screenContainer}>
-        <Image 
-          style={styles.onboardingImg} 
-          source={{uri:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1ihW2UGUNhPn9pkXwXNSA2SFI0HXT8F6BXeT3HDPjX_tHBJKWBYBcAe27LTpOrJa8ItQ&usqp=CAU'}}
+      <KeyboardAvoidingView behavior="padding" style={styles.screenContainer}>
+        <Image
+          style={styles.onboardingImg}
+          source={{
+            uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1ihW2UGUNhPn9pkXwXNSA2SFI0HXT8F6BXeT3HDPjX_tHBJKWBYBcAe27LTpOrJa8ItQ&usqp=CAU',
+          }}
         />
-        <TripText 
-          text={'Please enter your email address so that we can send you a new password link'} 
-          style={styles.titleText} 
+        <TripText
+          text={
+            'Please enter your email address so that we can send you a new password link'
+          }
+          style={styles.titleText}
         />
         <View>
-          <TripTextInput value={value} onChangeText={setValue} placeHolder={'email'} />
+          <TripTextInput
+            value={value}
+            onChangeText={setValue}
+            placeHolder={'email'}
+          />
           <TripButton title={'Send link'} onPress={handleOnPress} />
         </View>
-        <View style={{height: 60}}>
+        <View style={{ height: 60 }}>
           {isValidEmail === false && (
-            <TripText text={'Please enter a valid email adress'} style={styles.loginErrorText} />
+            <TripText
+              text={'Please enter a valid email adress'}
+              style={styles.loginErrorText}
+            />
           )}
         </View>
-
-      </View>
+      </KeyboardAvoidingView>
     </ScreenContainer>
   );
 };
@@ -57,7 +80,7 @@ const styles = StyleSheet.create({
     paddingVertical: 20,
     color: theme.RED_ERROR,
     textAlign: 'center',
-    fontSize: 16
+    fontSize: 16,
   },
   titleText: {
     fontSize: 18,
@@ -70,6 +93,6 @@ const styles = StyleSheet.create({
     marginTop: 48,
     height: 127,
     width: 127,
-    alignSelf: 'center'
+    alignSelf: 'center',
   },
 });

@@ -1,5 +1,10 @@
 import React, { useState } from 'react';
-import { View, TouchableOpacity, StyleSheet } from 'react-native';
+import {
+  View,
+  TouchableOpacity,
+  StyleSheet,
+  KeyboardAvoidingView,
+} from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigation, NavigationProp } from '@react-navigation/native';
 import { useLogin } from '../../../hooks/useLogin';
@@ -37,7 +42,7 @@ export const EmailLoginSection = () => {
   };
 
   return (
-    <>
+    <KeyboardAvoidingView behavior="padding">
       <View>
         <TripTextInput
           value={userNameInput}
@@ -71,7 +76,7 @@ export const EmailLoginSection = () => {
           style={styles.forgotPasswordButtonText}
         />
       </TouchableOpacity>
-    </>
+    </KeyboardAvoidingView>
   );
 };
 

@@ -1,7 +1,12 @@
-import React, {useCallback, useState} from 'react';
-import {StyleSheet, Text, Image, TouchableOpacity, View} from 'react-native';
-import {useSelector} from 'react-redux';
-import {useRegister} from '../hooks/useRegister';
+import React, { useState } from 'react';
+import {
+  StyleSheet,
+  Image,
+  TouchableOpacity,
+  View,
+  KeyboardAvoidingView,
+} from 'react-native';
+import { useRegister } from '../hooks/useRegister';
 import {
   ScreenContainer,
   TripButton,
@@ -14,12 +19,11 @@ import { useNavigation, NavigationProp } from '@react-navigation/native';
 
 export const RegisterScreen = () => {
   const navigation = useNavigation<NavigationProp<any>>();
-  const {runRegister} = useRegister();
+  const { runRegister } = useRegister();
   const [emailInput, setEmailInput] = useState();
   const [userNameInput, setUserNameInput] = useState();
   const [passwordInput, setPasswordInput] = useState();
   const [error, setError] = useState('');
-  const logInError = useSelector(state => (state as any).userAuth.logInError);
 
   const handleRegister = async () => {
     const isEmailValid = validateEmail(emailInput);
@@ -37,8 +41,13 @@ export const RegisterScreen = () => {
 
   return (
     <ScreenContainer headerDisabled>
-      <View style={styles.screenContainer} >
-        <Image style={styles.onboardingImg} source={{uri:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1ihW2UGUNhPn9pkXwXNSA2SFI0HXT8F6BXeT3HDPjX_tHBJKWBYBcAe27LTpOrJa8ItQ&usqp=CAU'}}/>
+      <KeyboardAvoidingView behavior="padding" style={styles.screenContainer}>
+        <Image
+          style={styles.onboardingImg}
+          source={{
+            uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1ihW2UGUNhPn9pkXwXNSA2SFI0HXT8F6BXeT3HDPjX_tHBJKWBYBcAe27LTpOrJa8ItQ&usqp=CAU',
+          }}
+        />
         <View>
           <TripText text={'Create account'} style={styles.titleText} />
           <TripTextInput
@@ -58,12 +67,18 @@ export const RegisterScreen = () => {
           />
           <TripButton title="Register" onPress={handleRegister} />
         </View>
+
         <TripText text={error && error} style={styles.errorText} />
-        <TouchableOpacity style={styles.loginBtnSection} onPress={() => navigation.navigate('Login')}>
-          <TripText text={'Already have an account? '} style={styles.loginText} />
+        <TouchableOpacity
+          style={styles.loginBtnSection}
+          onPress={() => navigation.navigate('Login')}>
+          <TripText
+            text={'Already have an account? '}
+            style={styles.loginText}
+          />
           <TripText text={'Login'} style={styles.loginBtnText} />
         </TouchableOpacity>
-      </View>
+      </KeyboardAvoidingView>
     </ScreenContainer>
   );
 };
@@ -81,16 +96,16 @@ const styles = StyleSheet.create({
     paddingVertical: 20,
     color: 'red',
     textAlign: 'center',
-    fontSize: 16
+    fontSize: 16,
   },
   onboardingImg: {
     marginTop: 48,
     height: 127,
     width: 127,
-    alignSelf: 'center'
+    alignSelf: 'center',
   },
   loginBtnSection: {
-    flexDirection: 'row', 
+    flexDirection: 'row',
     alignSelf: 'center',
   },
   loginText: {
@@ -103,5 +118,5 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     fontSize: 18,
     color: theme.PRIMARY_COLOR,
-  }
+  },
 });
