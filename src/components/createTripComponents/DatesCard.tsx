@@ -1,24 +1,33 @@
-import { StyleSheet, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import React from 'react';
-import { selectTripType, setTripType, useAppDispatch, useAppSelector } from '../../redux';
+import {
+  selectTripType,
+  setTripType,
+  useAppDispatch,
+  useAppSelector,
+} from '../../redux';
 import { Card, InnerCard, TripText } from '../travelUI';
 import { DatesSelector, MultiCityDateSelector } from './DatesSelector';
 import { theme } from '../../styles/theme';
 
 type TripTypeButtonProps = {
-  type: string, 
-  selectedType: string, 
-  setType: (type: string) => void
-}
+  type: string;
+  selectedType: string;
+  setType: (type: string) => void;
+};
 
-const TripTypeButton = ({ type, selectedType, setType }: TripTypeButtonProps) => {
-  const backgroundColor = type === selectedType ? theme.PRIMARY_COLOR : theme.WHITE;
+const TripTypeButton = ({
+  type,
+  selectedType,
+  setType,
+}: TripTypeButtonProps) => {
+  const backgroundColor =
+    type === selectedType ? theme.PRIMARY_COLOR : theme.WHITE;
   return (
-    <InnerCard 
+    <InnerCard
       extraStyles={[styles.tripTypeButton, { backgroundColor }]}
       onPress={() => setType(type)}
-      pressDisabled={false}
-    >
+      pressDisabled={false}>
       <TripText text={type} style={styles.tripTypeText} />
     </InnerCard>
   );
@@ -36,27 +45,39 @@ export const DatesCard = () => {
 
   return (
     <Card>
-      <TripText text='Dates' style={styles.title} />
+      <TripText text="Dates" style={styles.title} />
       <View style={styles.tripTypeContainer}>
-        <TripTypeButton type={'One-way'} selectedType={tripType} setType={setType}/>
-        <TripTypeButton type={'Round-trip'} selectedType={tripType} setType={setType}/>
-        <TripTypeButton type={'Multi-city'} selectedType={tripType} setType={setType}/>
+        <TripTypeButton
+          type={'One-way'}
+          selectedType={tripType}
+          setType={setType}
+        />
+        <TripTypeButton
+          type={'Round-trip'}
+          selectedType={tripType}
+          setType={setType}
+        />
+        <TripTypeButton
+          type={'Multi-city'}
+          selectedType={tripType}
+          setType={setType}
+        />
       </View>
-      {tripType !== 'Multi-city'
-        ? <DatesSelector singleDate={isSingleDateSelector}/> 
-        : <MultiCityDateSelector />
-      }
+      {tripType !== 'Multi-city' ? (
+        <DatesSelector singleDate={isSingleDateSelector} />
+      ) : (
+        <MultiCityDateSelector />
+      )}
     </Card>
   );
 };
-
 
 const styles = StyleSheet.create({
   title: {
     textAlign: 'center',
     fontWeight: '800',
     fontSize: 18,
-    marginBottom: 3
+    marginBottom: 3,
   },
   tripTypeContainer: {
     flexDirection: 'row',

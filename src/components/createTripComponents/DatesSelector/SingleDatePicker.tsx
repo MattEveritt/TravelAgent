@@ -4,14 +4,20 @@ import { theme } from '../../../styles/theme';
 const { SingleDatepicker } = require('react-native-range-datepicker');
 
 type SingleDatePickerProps = {
-  startDate: string,
-  setDates: (startDateString: string) => void,
-  setModalVisible: Dispatch<SetStateAction<boolean>>,
-  setMinDate: Dispatch<SetStateAction<string>>,
-  minDate: string
-}
+  startDate: string;
+  setDates: (startDateString: string) => void;
+  setModalVisible: Dispatch<SetStateAction<boolean>>;
+  setMinDate: Dispatch<SetStateAction<string>>;
+  minDate: string;
+};
 
-export const SingleDatePicker = ({ startDate, setDates, setModalVisible, setMinDate, minDate }: SingleDatePickerProps) => {
+export const SingleDatePicker = ({
+  startDate,
+  setDates,
+  setModalVisible,
+  setMinDate,
+  minDate,
+}: SingleDatePickerProps) => {
   const handleOnSelect = (date: Date) => {
     if (setMinDate) {
       setMinDate(new Date(date).toISOString());

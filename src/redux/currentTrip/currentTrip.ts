@@ -1,4 +1,4 @@
-import {createSlice} from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {};
 
@@ -6,6 +6,7 @@ const currentTripSlice = createSlice({
   name: 'currentTrip',
   initialState,
   reducers: {
+    resetCurrentTripSlice: () => initialState,
     // connectedIdUpdated(state, action) {
     //   state.connectedId = action.payload.profileId;
     //   if (action.payload.deviceId) {
@@ -20,7 +21,6 @@ const currentTripSlice = createSlice({
   },
 });
 
-// export const {connectedIdUpdated, resetAccountReducerBackendError} =
-//   accountSlice.actions;
+export const { resetCurrentTripSlice } = currentTripSlice.actions;
 
 export default currentTripSlice.reducer;

@@ -19,6 +19,7 @@ const authSlice = createSlice({
   name: 'userAuth',
   initialState,
   reducers: {
+    resetAuthSlice: () => initialState,
     setSignIn: (state, action) => {
       state.email = action.payload.email;
       state.isLoggedIn = action.payload.isLoggedIn;
@@ -45,7 +46,7 @@ const authSlice = createSlice({
   },
 });
 
-export const { setSignIn, setSignOut } = authSlice.actions;
+export const { setSignIn, setSignOut, resetAuthSlice } = authSlice.actions;
 
 export const selectEmail = (state: any) => state.userAuth.email;
 export const selectUserName = (state: any) => state.userAuth.userName;

@@ -15,20 +15,27 @@ import {
   clearTripBookingState,
   saveTrip,
   selectBookingTrip,
+  selectIsLoggedIn,
   setDatesValidity,
   setDepartureAirportValidity,
   setDestinationsValidity,
+  setTravellersValidity,
   useAppDispatch,
   useAppSelector,
 } from '../redux';
-import { useNavigation } from '@react-navigation/native';
+import {
+  NavigationProp,
+  ParamListBase,
+  useNavigation,
+} from '@react-navigation/native';
 import { bookingFormValidator } from '../utils/bookingFormValidator';
 
 export const CreateTripScreen = () => {
-  const navigation = useNavigation();
+  const navigation: NavigationProp<ParamListBase> = useNavigation();
   const dispatch = useAppDispatch();
 
   const tripObj = useAppSelector(selectBookingTrip());
+  const isLoggedIn = useAppSelector(selectIsLoggedIn());
 
   const [modalVisible, setModalVisible] = useState(false);
 
@@ -39,15 +46,17 @@ export const CreateTripScreen = () => {
   };
 
   const handleOnCreatePress = () => {
-    const validation = bookingFormValidator(tripObj);
+    const validation = bookingFormValidator(tripObj, isLoggedIn);
     if (
       !validation.dates ||
       !validation.destinations ||
-      !validation.departureAirport
+      !validation.departureAirport ||
+      !validation.travellers
     ) {
       dispatch(setDatesValidity(validation.dates));
       dispatch(setDestinationsValidity(validation.destinations));
       dispatch(setDepartureAirportValidity(validation.departureAirport));
+      dispatch(setTravellersValidity(validation.travellers));
       return null;
     }
     dispatch(saveTrip(tripObj));
@@ -72,8 +81,8 @@ export const CreateTripScreen = () => {
         <DepartureCard />
         <DatesCard />
         <DestinationCard />
-        <TravellersCard />
         <TransportCard />
+        <TravellersCard />
         <TripButton
           title={FCLocalized('Create')}
           onPress={() => handleOnCreatePress()}

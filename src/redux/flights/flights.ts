@@ -1,18 +1,5 @@
-import {createSlice} from '@reduxjs/toolkit';
-import {
-  confirmFlightPrice, 
-  bookFlight, 
-  airlineNameLookup, 
-  deleteBooking, 
-  fetchBooking, 
-  fetchCheapestDates, 
-  fetchClosestAirport, 
-  fetchFlights, 
-  fetchFlightUpsells, 
-  fetchPriceAnalysis, 
-  fetchSeatMap, 
-  searchCity
-} from './thunks';
+import { createSlice } from '@reduxjs/toolkit';
+import { bookFlight, fetchFlights } from './thunks';
 
 const initialState = {
   itineraries: null,
@@ -23,7 +10,9 @@ const initialState = {
 const flightsSlice = createSlice({
   name: 'flights',
   initialState,
-  reducers: {},
+  reducers: {
+    resetFlightsSlice: () => initialState,
+  },
   extraReducers: builder => {
     builder.addCase(fetchFlights.fulfilled, (state: any, action: any) => {
       state.dictionaries = action.payload.dictionaries;
@@ -32,9 +21,9 @@ const flightsSlice = createSlice({
     builder.addCase(bookFlight.fulfilled, (state, action) => {
       state.bookedFlights = action.payload;
     });
-    builder.addCase(bookFlight.rejected, (state, action) => {
-    })
+    builder.addCase(bookFlight.rejected, () => {});
   },
 });
 
+export const { resetFlightsSlice } = flightsSlice.actions;
 export default flightsSlice.reducer;

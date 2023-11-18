@@ -5,10 +5,16 @@ import { TripButton, ScreenContainer } from '../components/travelUI';
 import { setSignOut } from '../redux/auth/authSlice';
 import { TripModal } from '../components/travelUI';
 import { FCLocalized } from '../localization/FCLocalized';
-import { selectIsLoggedIn, setIsInApp, useAppSelector } from '../redux';
+import {
+  selectIsLoggedIn,
+  setIsInApp,
+  useAppSelector,
+  useResetStore,
+} from '../redux';
 
 export const SettingsScreen = ({ navigation }: any) => {
   const dispatch = useDispatch();
+  const { resetStore } = useResetStore();
   const isLoggedIn = useAppSelector(selectIsLoggedIn());
   const [modalVisible, setModalVisible] = useState(false);
 
@@ -18,6 +24,7 @@ export const SettingsScreen = ({ navigation }: any) => {
 
   const handleSignOut = () => {
     setModalVisible(true);
+    resetStore();
   };
 
   const handleSignIn = () => {

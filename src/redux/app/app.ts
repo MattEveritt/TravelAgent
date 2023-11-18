@@ -14,6 +14,7 @@ const appSlice = createSlice({
   name: 'app',
   initialState,
   reducers: {
+    resetAppSlice: () => initialState,
     setIsInApp(state, action) {
       state.isInApp = action.payload;
       if (action.payload) {
@@ -31,6 +32,7 @@ const appSlice = createSlice({
   },
 });
 
-export const { setIsInApp, setShowOnboarding } = appSlice.actions;
+export const { setIsInApp, setShowOnboarding, resetAppSlice } =
+  appSlice.actions;
 
 export default appSlice.reducer;

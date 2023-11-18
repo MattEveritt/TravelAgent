@@ -1,7 +1,5 @@
-import {createSlice} from '@reduxjs/toolkit';
-import {
-  fetchHotels,
-} from './thunks';
+import { createSlice } from '@reduxjs/toolkit';
+import { fetchHotels } from './thunks';
 
 const initialState = {
   itineraries: null,
@@ -10,7 +8,9 @@ const initialState = {
 const hotelsSlice = createSlice({
   name: 'hotels',
   initialState,
-  reducers: {},
+  reducers: {
+    resetHotelsSlice: () => initialState,
+  },
   extraReducers: builder => {
     builder.addCase(fetchHotels.fulfilled, (state: any, action: any) => {
       state.dictionaries = action.payload.dictionaries;
@@ -19,4 +19,5 @@ const hotelsSlice = createSlice({
   },
 });
 
+export const { resetHotelsSlice } = hotelsSlice.actions;
 export default hotelsSlice.reducer;

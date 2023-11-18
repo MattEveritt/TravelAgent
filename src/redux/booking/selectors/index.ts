@@ -8,3 +8,10 @@ export { selectBookingTrip } from './selectBookingTrip';
 export { selectDestinationsValidity } from './selectDestinationsValidity';
 export { selectDepartureAirportValidity } from './selectDepartureAirportValidity';
 export { selectDatesValidity } from './selectDatesValidity';
+export { selectTravellersValidity } from './selectTravellersValidity';
+export {
+  selectAdults,
+  selectInfants,
+  selectYouth,
+  selectInfantsOnLap,
+} from './selectSignedOutTravellers';

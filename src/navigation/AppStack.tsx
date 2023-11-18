@@ -8,8 +8,8 @@ import {
   OnboardingScreen,
   SettingsScreen,
   SplashScreen,
-  TripPlanningScreen,
-  YourTripScreen,
+  TripsScreen,
+  CurrentTripScreen,
   AccomodationSettingsScreen,
   AccountScreen,
   FlightSettingsScreen,
@@ -63,12 +63,12 @@ const BottomTabNavigator = () => {
       />
       <topTab.Screen
         name="Book"
-        component={TripPlanningScreen}
+        component={TripsScreen}
         options={getMainTabScreenOptions('book', 'Book')}
       />
       <topTab.Screen
         name="Current trip"
-        component={YourTripScreen}
+        component={CurrentTripScreen}
         options={getMainTabScreenOptions('airplane', 'Current trip')}
       />
       <topTab.Screen

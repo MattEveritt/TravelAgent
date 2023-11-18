@@ -1,7 +1,7 @@
 import React from 'react';
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import {Icon} from '@rneui/base';
-import {theme} from '../../styles/theme';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Icon } from '@rneui/base';
+import { theme } from '../../styles/theme';
 
 export const TripButton = ({
   title,
@@ -10,17 +10,20 @@ export const TripButton = ({
   iconType,
   isWhite,
 }: any) => {
-
   const backgroundColor = isWhite ? theme.WHITE : theme.PRIMARY_COLOR;
-  const border = isWhite ? {
-    borderWidth: 1,
-    borderColor: theme.BLACK
-  } : null;
+  const border = isWhite
+    ? {
+        borderWidth: 1,
+        borderColor: theme.BLACK,
+      }
+    : null;
 
   return (
-    <TouchableOpacity onPress={onPress} style={[styles.container, {backgroundColor, ...border}]}>
+    <TouchableOpacity
+      onPress={onPress}
+      style={[styles.container, { backgroundColor, ...border }]}>
       <View style={styles.textContainer}>
-        <Text style={[styles.buttonText]}>{title}</Text>
+        <Text style={[styles.buttonText]}>{title.toUpperCase()}</Text>
       </View>
       <View style={styles.iconContainer}>
         <Icon name={iconName} type={iconType} />

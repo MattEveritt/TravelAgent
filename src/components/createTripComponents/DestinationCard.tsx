@@ -3,7 +3,15 @@ import React, { useState, useRef } from 'react';
 import { Icon } from '@rneui/themed';
 import { Card, InnerCard, TripText } from '../travelUI';
 import { useSelector } from 'react-redux';
-import { selectBookingDestinations, selectDestinationsValidity, selectTripType, setBookingDestinations, setDestinationsValidity, useAppDispatch, useAppSelector } from '../../redux';
+import {
+  selectBookingDestinations,
+  selectDestinationsValidity,
+  selectTripType,
+  setBookingDestinations,
+  setDestinationsValidity,
+  useAppDispatch,
+  useAppSelector,
+} from '../../redux';
 import { DestinationSearchModal } from './DestinationSearchModal';
 import { FCLocalized } from '../../localization/FCLocalized';
 import { DestinationSearchBox } from './DestinationSearchBox';
@@ -11,35 +19,40 @@ import { theme } from '../../styles/theme';
 
 type DestinationSearchBoxProps = {
   destination: {
-    destination: string
-  }, 
-  onDestinationCardPress: (index: number) => void, 
-  index: number,
+    destination: string;
+  };
+  onDestinationCardPress: (index: number) => void;
+  index: number;
 };
 
-export const MultiDestinationSearchBox = ({ destination, onDestinationCardPress, index }: DestinationSearchBoxProps) => {
+export const MultiDestinationSearchBox = ({
+  destination,
+  onDestinationCardPress,
+  index,
+}: DestinationSearchBoxProps) => {
   const destinationValid = useAppSelector(selectDestinationsValidity());
   return (
     <View key={index} style={styles.dateSelectorContainer}>
       <View style={styles.dateTextContainer}>
         <TripText text={index + 1} style={styles.dateText} />
       </View>
-      <InnerCard 
-        onPress={() => onDestinationCardPress(index)} 
+      <InnerCard
+        onPress={() => onDestinationCardPress(index)}
         pressDisabled={false}
-        extraStyles={[styles.container, !destinationValid && { borderColor: theme.RED_ERROR }]}
-      >
-        <Icon name='search' containerStyle={styles.iconContainer}/>
+        extraStyles={[
+          styles.container,
+          !destinationValid && { borderColor: theme.RED_ERROR },
+        ]}>
+        <Icon name="search" containerStyle={styles.iconContainer} />
         <View style={styles.titleContainer}>
-          <TripText text={destination.destination} style={styles.searchText}/>
+          <TripText text={destination.destination} style={styles.searchText} />
         </View>
       </InnerCard>
     </View>
-  );};
+  );
+};
 
-export const DestinationCard = ({
-  trip
-}: any) => {
+export const DestinationCard = () => {
   const dispatch = useAppDispatch();
   const indexRef = useRef(0);
   const tripType = useSelector(selectTripType());
@@ -65,16 +78,18 @@ export const DestinationCard = ({
   if (tripType === 'Multi-city') {
     return (
       <Card>
-        <TripText text={FCLocalized('Destinations')} style={styles.multiCityTitle} />
+        <TripText
+          text={FCLocalized('Destinations')}
+          style={styles.multiCityTitle}
+        />
         {destinations.map((destination, i) => (
-          <MultiDestinationSearchBox 
+          <MultiDestinationSearchBox
             key={i}
-            destination={destination} 
+            destination={destination}
             onDestinationCardPress={onDestinationCardPress}
             index={i}
           />
-        )
-        )}
+        ))}
         <DestinationSearchModal
           setDestination={setDestination}
           modalVisible={modalVisible}
@@ -86,9 +101,15 @@ export const DestinationCard = ({
 
   return (
     <Card>
-      <TripText text={FCLocalized('Destination')} style={styles.singleCityTitle} />
+      <TripText
+        text={FCLocalized('Destination')}
+        style={styles.singleCityTitle}
+      />
       <View style={styles.dateSelectorContainer}>
-        <DestinationSearchBox onDestinationCardPress={onDestinationCardPress} destination={destinations[0].destination}/>
+        <DestinationSearchBox
+          onDestinationCardPress={onDestinationCardPress}
+          destination={destinations[0].destination}
+        />
         <DestinationSearchModal
           setDestination={setDestination}
           modalVisible={modalVisible}
@@ -97,7 +118,6 @@ export const DestinationCard = ({
       </View>
     </Card>
   );
-  
 };
 
 const styles = StyleSheet.create({
@@ -105,23 +125,23 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontWeight: '800',
     fontSize: 18,
-    marginBottom: -10
+    marginBottom: -10,
   },
   singleCityTitle: {
     textAlign: 'center',
     fontWeight: '800',
     fontSize: 18,
-    marginBottom: 3
+    marginBottom: 3,
   },
   searchText: {
     fontSize: 16,
     textAlign: 'center',
-    width: '85%'
+    width: '85%',
   },
   singleSearchText: {
     fontSize: 16,
     textAlign: 'center',
-    width: '90%'
+    width: '90%',
   },
   titleContainer: {
     width: '90%',
@@ -129,16 +149,16 @@ const styles = StyleSheet.create({
   iconContainer: {
     width: '10%',
   },
-  dateTextContainer: { 
-    width: '5%', 
-    paddingTop: 10
+  dateTextContainer: {
+    width: '5%',
+    paddingTop: 10,
   },
   dateText: {
-    fontSize: 18
+    fontSize: 18,
   },
   dateSelectorContainer: {
-    flexDirection: 'row', 
-    alignItems: 'center'
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   container: {
     flexDirection: 'row',
@@ -146,7 +166,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginTop: 16,
     marginBottom: 0,
-    marginRight: 16
+    marginRight: 16,
   },
   singleContainer: {
     flexDirection: 'row',

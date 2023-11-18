@@ -7,14 +7,16 @@ import { formatTravellersName } from '../../../utils/formatTravellersName';
 export const Traveller = ({
   traveller,
   checkedTravellers,
-  setCheckedTravellers
+  setCheckedTravellers,
 }: any) => {
   const isChecked = checkedTravellers.includes(traveller.id);
   const [checked, setChecked] = useState(isChecked);
   const toggleCheckbox = () => {
     let newTravellers = [];
     if (checked) {
-      newTravellers = checkedTravellers.filter((travellerId: string) => travellerId !== traveller.id);
+      newTravellers = checkedTravellers.filter(
+        (travellerId: string) => travellerId !== traveller.id,
+      );
     } else {
       newTravellers = checkedTravellers.concat(traveller.id);
     }

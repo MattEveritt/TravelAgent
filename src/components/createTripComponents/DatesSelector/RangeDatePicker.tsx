@@ -5,20 +5,28 @@ import DatepickerRange from 'react-native-range-datepicker';
 import { theme } from '../../../styles/theme';
 
 type RangeDatePickerProps = {
-  startDate: string,
-  untilDate: string,
-  setDates: (startDateString: string, untilDateString: string) => void,
-}
+  startDate: string;
+  untilDate: string;
+  setDates: (startDateString: string, untilDateString: string) => void;
+};
 
-export const RangeDatePicker = ({ startDate, untilDate, setDates }: RangeDatePickerProps) => {
+export const RangeDatePicker = ({
+  startDate,
+  untilDate,
+  setDates,
+}: RangeDatePickerProps) => {
   const handleOnSelect = (startDate: Date, untilDate: Date) => {
-    const startDateString = !startDate ? FCLocalized('Outbound') : new Date(startDate).toISOString();
-    const untilDateString = !untilDate ? FCLocalized('Inbound') : new Date(untilDate).toISOString();
+    const startDateString = !startDate
+      ? FCLocalized('Outbound')
+      : new Date(startDate).toISOString();
+    const untilDateString = !untilDate
+      ? FCLocalized('Inbound')
+      : new Date(untilDate).toISOString();
     setDates(startDateString, untilDateString);
   };
 
   return (
-    <DatepickerRange 
+    <DatepickerRange
       startDate={startDate}
       untilDate={untilDate}
       showReset={false}

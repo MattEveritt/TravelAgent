@@ -1,5 +1,5 @@
-import {createSelector} from '@reduxjs/toolkit';
-import {selectSelf} from './selectSelf';
+import { createSelector } from '@reduxjs/toolkit';
+import { selectTrip } from './selectTrip';
 
 export const selectBookingTransport = () =>
-  createSelector(selectSelf, state => state.trip.transport);
+  createSelector(selectTrip, trip => trip.transport);

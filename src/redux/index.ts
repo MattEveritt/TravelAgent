@@ -57,16 +57,27 @@ export {
   setDatesValidity,
   setDepartureAirportValidity,
   setDestinationsValidity,
+  setBookingTravellers,
+  setAdults,
+  setYouth,
+  setInfants,
+  setInfantsOnLap,
+  setTravellersValidity,
   selectBookingDates,
   selectBookingDestinations,
   selectTripType,
   selectBookingTravellers,
+  selectAdults,
+  selectInfants,
+  selectYouth,
+  selectInfantsOnLap,
   selectBookingTransport,
   selectDepartureAirport,
   selectBookingTrip,
   selectDatesValidity,
   selectDepartureAirportValidity,
   selectDestinationsValidity,
+  selectTravellersValidity,
 } from './booking';
 export {
   setIsInApp,
@@ -74,4 +85,4 @@ export {
   selectIsInApp,
   selectShowOnboarding,
 } from './app';
-export { useAppSelector, useAppDispatch } from './store/hooks';
+export { useAppSelector, useAppDispatch, useResetStore } from './store/hooks';

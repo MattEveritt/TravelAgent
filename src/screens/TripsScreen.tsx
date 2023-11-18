@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, StyleSheet, Dimensions } from 'react-native';
+import { ScrollView, StyleSheet, Dimensions, View } from 'react-native';
 import {
   Trips,
   RequestUserLogin,
@@ -15,7 +15,8 @@ import {
 import { selectIsLoggedIn, useAppSelector } from '../redux';
 
 const windowHeight = Dimensions.get('window').height;
-export const TripPlanningScreen = () => {
+
+export const TripsScreen = () => {
   const navigation: NavigationProp<ParamListBase> = useNavigation();
   const isLoggedIn = useAppSelector(selectIsLoggedIn());
 
@@ -25,22 +26,26 @@ export const TripPlanningScreen = () => {
 
   return (
     <ScreenContainer headerTitle={FCLocalized('Trips')}>
-      <ScrollView
-        style={styles.scrollviewStyle}
-        keyboardShouldPersistTaps="always"
-        contentContainerStyle={styles.contentContainerStyle}>
+      <View style={styles.pageContentContainer}>
         {isLoggedIn ? (
-          <Trips />
+          <ScrollView
+            style={styles.scrollviewStyle}
+            keyboardShouldPersistTaps="always"
+            contentContainerStyle={styles.scrollViewContentContainerStyle}>
+            <Trips />
+          </ScrollView>
         ) : (
-          <RequestUserLogin
-            text={FCLocalized(
-              'You will see all of your saved trips and be able to save a new trip to continue with later',
-            )}
-          />
+          <View style={styles.requestUserLoginWrapper}>
+            <RequestUserLogin
+              text={FCLocalized(
+                'You will see all of your saved tripsa and travellers, booking will be much quicker',
+              )}
+            />
+          </View>
         )}
-      </ScrollView>
+      </View>
       <TripButton
-        title="Add new trip"
+        title={FCLocalized('Add Trip')}
         onPress={handleAddTrip}
         iconName="plus-circle-outline"
         iconType="material-community"
@@ -55,9 +60,15 @@ const styles = StyleSheet.create({
     marginHorizontal: -16,
     marginBottom: -((windowHeight / 100) * 10),
   },
-  contentContainerStyle: {
+  pageContentContainer: {
+    flex: 1,
+  },
+  scrollViewContentContainerStyle: {
     paddingHorizontal: 16,
     paddingTop: 16,
     height: windowHeight + (windowHeight / 100) * 34,
+  },
+  requestUserLoginWrapper: {
+    flex: 1,
   },
 });
