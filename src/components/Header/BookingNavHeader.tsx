@@ -1,23 +1,32 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { TouchableOpacity, StyleSheet, View } from 'react-native';
 import { Icon } from '@rneui/base';
 import { theme } from '../../styles/theme';
-import { useNavigation } from '@react-navigation/native';
+import {
+  NavigationProp,
+  ParamListBase,
+  useNavigation,
+} from '@react-navigation/native';
 import { TripText } from '../travelUI/TripText';
 import { TripModal } from '../travelUI/TripModal';
 import { FCLocalized } from '../../localization/FCLocalized';
 import { useState } from 'react';
 import { HEADER_COLOR, HEADER_HEIGHT_PERCENTAGE } from './constants';
+import { selectIsLoggedIn, useAppSelector } from '../../redux';
 
-export const BookingNavHeader = ({
-  headerDisabled,
-  titleText,
-}: {
+type BookingNavHeaderProps = {
   headerDisabled: boolean;
   titleText: string;
+  onBackPressExtra?: () => void | undefined;
+};
+export const BookingNavHeader: FC<BookingNavHeaderProps> = ({
+  headerDisabled,
+  titleText,
+  onBackPressExtra,
 }) => {
   const [modalVisible, setModalVisible] = useState(false);
-  const navigation = useNavigation();
+  const navigation: NavigationProp<ParamListBase> = useNavigation();
+  const isLoggedIn = useAppSelector(selectIsLoggedIn());
 
   if (headerDisabled) return null;
 
@@ -26,7 +35,10 @@ export const BookingNavHeader = ({
   };
 
   const onOkPress = () => {
-    navigation.goBack();
+    if (onBackPressExtra) {
+      onBackPressExtra();
+    }
+    navigation.navigate('Tab navigator');
     setModalVisible(false);
   };
 
@@ -57,16 +69,29 @@ export const BookingNavHeader = ({
           containerStyle={{ alignSelf: 'center' }}
         />
       </View>
-      <TripModal
-        isAlert
-        modalVisible={modalVisible}
-        title={FCLocalized('Exit booking flow')}
-        onCancelPress={onCancelPress}
-        alertText={FCLocalized(
-          'If you leave now your progress will be saved but prices might change.',
-        )}
-        onOkPress={onOkPress}
-      />
+      {isLoggedIn ? (
+        <TripModal
+          isAlert
+          modalVisible={modalVisible}
+          title={FCLocalized('Exit booking flow')}
+          onCancelPress={onCancelPress}
+          alertText={FCLocalized(
+            'If you leave now your progress will be saved but prices might change.',
+          )}
+          onOkPress={onOkPress}
+        />
+      ) : (
+        <TripModal
+          isAlert
+          modalVisible={modalVisible}
+          title={FCLocalized('Exit booking flow')}
+          onCancelPress={onCancelPress}
+          alertText={FCLocalized(
+            'If you leave now your progress will be saved but prices might change.',
+          )}
+          onOkPress={onOkPress}
+        />
+      )}
     </View>
   );
 };

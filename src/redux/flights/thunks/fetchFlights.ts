@@ -1,13 +1,25 @@
-import {createAsyncThunk} from '@reduxjs/toolkit';
+import { createAsyncThunk } from '@reduxjs/toolkit';
 import { axiosFlightsService } from '../../../api';
+import { convertIsoDateToYYYYMMDD } from './utils/convertIsoDateToYYYYMMDD';
 
-const getFlights = () =>
+type Action = {
+  departureAirport: {
+    iataCode: string;
+  };
+  dates: {
+    startDate: string;
+  }[];
+  destinations: {
+    iataCode: string;
+  }[];
+};
+const getFlights = (action: Action) =>
   axiosFlightsService({
     url: '/getflights',
     params: {
-      originLocationCode: 'HEL',
-      destinationLocationCode: 'AGP',
-      departureDate: '2023-10-15',
+      originLocationCode: action.departureAirport.iataCode,
+      destinationLocationCode: action.destinations[0].iataCode,
+      departureDate: convertIsoDateToYYYYMMDD(action.dates[0].startDate),
       adults: 1,
       max: 5,
     },
@@ -15,13 +27,13 @@ const getFlights = () =>
 
 export const fetchFlights = createAsyncThunk(
   'flights/fetchFlights',
-  async () => {
+  async (action: Action) => {
     try {
-      const res = await getFlights();
-      console.log('res: ', res.data);
-      return res.data;
+      const res = await getFlights(action);
+      const parsedData = JSON.parse(res.data);
+      return parsedData.data;
     } catch (e) {
-      console.log('error: ', e);
+      console.log('FetchFlights, error: ', e);
     }
   },
 );

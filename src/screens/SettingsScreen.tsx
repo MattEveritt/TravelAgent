@@ -30,7 +30,6 @@ export const SettingsScreen = ({ navigation }: any) => {
   const handleSignIn = () => {
     dispatch(setIsInApp(false));
   };
-
   const onModalCancelPress = () => {
     setModalVisible(false);
   };
@@ -45,20 +44,14 @@ export const SettingsScreen = ({ navigation }: any) => {
       <Text style={styles.titleText}>SettingsScreen</Text>
       <View style={styles.tripButtonContainer}>
         <TripButton
-          title="Profile"
-          onPress={() => onPressHandler('ProfileScreen')}
+          title="Account"
+          onPress={() => onPressHandler('AccountScreen')}
           iconName="chevron-right"
           iconType="material"
         />
         <TripButton
           title="Travellers"
           onPress={() => onPressHandler('TravellersScreen')}
-          iconName="chevron-right"
-          iconType="material"
-        />
-        <TripButton
-          title="Account"
-          onPress={() => onPressHandler('AccountScreen')}
           iconName="chevron-right"
           iconType="material"
         />

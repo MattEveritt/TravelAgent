@@ -1,12 +1,14 @@
 import React, { Dispatch, FC, SetStateAction } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { Traveller } from './Traveller';
-
+import { TravellerType } from './SelectSavedTravellers';
 type TravellersProps = {
   travellers: { [key: string]: {} }[];
-  checkedTravellers: string[];
+  checkedTravellers: TravellerType[];
   selectedTravellers: [];
-  setCheckedTravellers: Dispatch<SetStateAction<string[]>>;
+  setCheckedTravellers: Dispatch<
+    SetStateAction<{ firstName: string; lastName: string; id: string }[]>
+  >;
 };
 
 export const TravellersList: FC<TravellersProps> = ({

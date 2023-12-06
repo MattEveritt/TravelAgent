@@ -18,7 +18,6 @@ const HeaderComponent = React.memo(
   ({ setDestination, setModalVisible }: HeaderComponentProps) => (
     <GooglePlacesAutocomplete
       placeholder={FCLocalized('Search')}
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       onPress={(data, details) => {
         setModalVisible(false);
         setDestination(data.description, data.place_id);

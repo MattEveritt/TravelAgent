@@ -33,4 +33,5 @@ export {
   selectDatesValidity,
   selectDepartureAirportValidity,
   selectDestinationsValidity,
+  selectIncludeAccomodation,
 } from './selectors';

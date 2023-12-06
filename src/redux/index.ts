@@ -12,11 +12,12 @@ export {
   selectAllTrips,
   toggleBookingFlow,
   selectIsBooking,
+  selectTripById,
   getDestinationImg,
+  resetTripsSlice,
 } from './trips';
 export {
   fetchFlights,
-  fetchNearestAirport,
   searchAirport,
   fetchFlightUpsells,
   fetchSeatMap,
@@ -29,6 +30,7 @@ export {
   deleteBooking,
   airlineNameLookup,
   searchCity,
+  selectFlightOffers,
 } from './flights';
 export {
   fetchHotels,
@@ -78,6 +80,7 @@ export {
   selectDepartureAirportValidity,
   selectDestinationsValidity,
   selectTravellersValidity,
+  selectIncludeAccomodation,
 } from './booking';
 export {
   setIsInApp,

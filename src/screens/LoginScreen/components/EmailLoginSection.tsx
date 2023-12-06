@@ -17,19 +17,19 @@ export const EmailLoginSection = () => {
   const dispatch = useDispatch();
   const navigation = useNavigation<NavigationProp<any>>();
   const { runLogin } = useLogin();
-  const [userNameInput, setUserNameInput] = useState();
+  const [emailInput, setEmailInput] = useState();
   const [passwordInput, setPasswordInput] = useState();
   const [isValidInput, setIsValidInput] = useState(true);
   const logInError = useSelector(state => (state as any).userAuth.logInError);
 
   const handleLogin = () => {
-    if (!userNameInput || !passwordInput) {
+    if (!emailInput || !passwordInput) {
       setIsValidInput(false);
     } else {
       if (isValidInput === false) {
         setIsValidInput(true);
       }
-      runLogin(userNameInput, passwordInput);
+      runLogin(emailInput, passwordInput);
     }
   };
 
@@ -45,9 +45,9 @@ export const EmailLoginSection = () => {
     <KeyboardAvoidingView behavior="padding">
       <View>
         <TripTextInput
-          value={userNameInput}
-          onChangeText={setUserNameInput}
-          placeHolder="Username"
+          value={emailInput}
+          onChangeText={setEmailInput}
+          placeHolder="Email"
         />
         <TripTextInput
           value={passwordInput}

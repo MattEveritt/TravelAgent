@@ -7,17 +7,15 @@ export {
   TripText,
   Card,
 } from './travelUI';
-
 export {
   DestinationCard,
   DatesSelector,
   MultiCityDateSelector,
   TravellersCard,
-  FlightCard,
   TransportCard,
   DatesCard,
+  AccomodationCard,
 } from './createTripComponents';
-
 export { Trips, RequestUserLogin } from './trips';
-
 export { AddTravellerForm, TravellerInfo } from './settings';
+export { FlightCard } from './FlightCard';

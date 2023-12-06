@@ -45,27 +45,42 @@ export const TransportCard: FC = () => {
         ))}
       </Card>
     );
+  } else if (tripType === 'One-way') {
+    return (
+      <Card>
+        <TripText text={FCLocalized('Transport')} style={styles.title} />
+        <View style={[styles.tripTypeContainer, styles.alignSelf]}>
+          <TransportTypeButton
+            type={'Transfer'}
+            selectedType={selectedType[0]}
+            setType={setType}
+            index={0}
+            fullWidth
+          />
+        </View>
+      </Card>
+    );
+  } else {
+    return (
+      <Card>
+        <TripText text={FCLocalized('Transport')} style={styles.title} />
+        <View style={styles.tripTypeContainer}>
+          <TransportTypeButton
+            type={'Car-rental'}
+            selectedType={selectedType[0]}
+            setType={setType}
+            index={0}
+          />
+          <TransportTypeButton
+            type={'Transfer'}
+            selectedType={selectedType[0]}
+            setType={setType}
+            index={0}
+          />
+        </View>
+      </Card>
+    );
   }
-
-  return (
-    <Card>
-      <TripText text={FCLocalized('Transport')} style={styles.title} />
-      <View style={styles.tripTypeContainer}>
-        <TransportTypeButton
-          type={'Car-rental'}
-          selectedType={selectedType[0]}
-          setType={setType}
-          index={0}
-        />
-        <TransportTypeButton
-          type={'Transfer'}
-          selectedType={selectedType[0]}
-          setType={setType}
-          index={0}
-        />
-      </View>
-    </Card>
-  );
 };
 
 const styles = StyleSheet.create({
@@ -79,19 +94,22 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     width: '100%',
-    height: 40,
+    height: 60,
     marginBottom: 8,
   },
   multiTripTypeContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     width: '100%',
-    height: 40,
+    height: 60,
     marginBottom: 8,
   },
   typeText: {
     fontSize: 18,
     marginRight: 8,
     alignSelf: 'center',
+  },
+  alignSelf: {
+    justifyContent: 'center',
   },
 });

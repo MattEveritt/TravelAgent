@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { deleteTrip, getDestinationImg } from '../../redux';
 import { View, StyleSheet } from 'react-native';
 import { useAppDispatch } from '../../redux';
@@ -25,9 +25,10 @@ export interface Trip {
     untilDate: string;
   }[];
   flights: {};
+  travellers: [];
 }
 
-export const TripCard = ({ trip }: { trip: Trip }) => {
+export const TripCard: FC<{ trip: Trip }> = ({ trip }) => {
   const dispatch = useAppDispatch();
   const navigation: NavigationProp<ParamListBase> = useNavigation();
   const [photoReference, setPhotoReference] = useState();
@@ -41,8 +42,7 @@ export const TripCard = ({ trip }: { trip: Trip }) => {
       setPhotoReference(res.payload);
     };
     getGooglePhotoReference();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [dispatch, trip.destinations, trip.id]);
 
   const onOkPress = () => {
     dispatch(deleteTrip(trip.id));
@@ -71,7 +71,7 @@ export const TripCard = ({ trip }: { trip: Trip }) => {
           uri: `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${photoReference}&key=${Config.GOOGLE_API_KEY}`,
         }}
       />
-      <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+      <View style={styles.cardInfoContainer}>
         <View style={styles.destinationColumn}>
           {trip.destinations.map((destination: {}, i: number) => (
             <TripText
@@ -88,6 +88,14 @@ export const TripCard = ({ trip }: { trip: Trip }) => {
               color={theme.PRIMARY_COLOR}
             />
           </View>
+          <TripText
+            text={`${trip.travellers.length} ${
+              trip.travellers.length > 1
+                ? FCLocalized('Travellers')
+                : FCLocalized('Traveller')
+            }`}
+            style={styles.travellerText}
+          />
         </View>
         <Icon
           name="trash-can-outline"
@@ -149,4 +157,10 @@ const styles = StyleSheet.create({
     fontSize: 18,
     marginBottom: 10,
   },
+  travellerText: {
+    fontSize: 18,
+    color: theme.BLACK,
+    marginTop: 10,
+  },
+  cardInfoContainer: { flexDirection: 'row', justifyContent: 'space-between' },
 });

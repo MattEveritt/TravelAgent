@@ -1,4 +1,4 @@
-import {StyleSheet, TextInput, View} from 'react-native';
+import { StyleSheet, TextInput, View } from 'react-native';
 import React from 'react';
 
 export const TripTextInput = ({
@@ -26,9 +26,9 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     marginVertical: 12,
     borderWidth: 1,
-    width: '100%'
+    width: '100%',
   },
   textInput: {
-    paddingLeft: 20
-  }
+    paddingLeft: 20,
+  },
 });

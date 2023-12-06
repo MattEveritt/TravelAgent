@@ -9,6 +9,7 @@ export { selectDestinationsValidity } from './selectDestinationsValidity';
 export { selectDepartureAirportValidity } from './selectDepartureAirportValidity';
 export { selectDatesValidity } from './selectDatesValidity';
 export { selectTravellersValidity } from './selectTravellersValidity';
+export { selectIncludeAccomodation } from './selectIncludeAccomodation';
 export {
   selectAdults,
   selectInfants,

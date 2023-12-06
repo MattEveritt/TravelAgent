@@ -14,7 +14,6 @@ import {
   AccountScreen,
   FlightSettingsScreen,
   NotificationsSettingsScreen,
-  ProfileScreen,
   ReminderSettingsScreen,
   TravellersScreen,
   FlightsScreen,
@@ -168,11 +167,6 @@ export const AppStack = () => {
           options={{ headerShown: false }}
           name="CreateTripScreen"
           component={CreateTripScreen}
-        />
-        <Stack.Screen
-          options={{ headerShown: false }}
-          name="ProfileScreen"
-          component={ProfileScreen}
         />
         <Stack.Screen
           options={{ headerShown: false }}

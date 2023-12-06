@@ -5,12 +5,46 @@ import { deleteTrip, deleteTripCases } from './thunks/deleteTrip';
 import { updateTrip, updateTripCases } from './thunks/updateTrip';
 import { getDestinationImg } from './thunks';
 
-interface InitialState {
-  trips: [];
+export interface TripsType {
+  id?: string;
+  departureAirport: {
+    airportName: string;
+    iataCode: string;
+    cityName: string;
+  };
+  departureAirportValid: boolean;
+  type: string;
+  dates: {
+    startDate: string;
+    untilDate: string;
+  }[];
+  datesValid: boolean;
+  destinations: {
+    destination: string;
+    googlePlaceId: string;
+    iataCode: string;
+  }[];
+  destinationsValid: boolean;
+  travellers: [];
+  signedOutTravellers: {
+    adults: number;
+    youth: number;
+    infants: number;
+    infantsOnLap: number;
+  };
+  travellersValid: boolean;
+  transport: string[];
+  includeAccomodation: boolean;
+  userId?: string;
+  createdAt?: string;
+  updatedAt?: string;
+}
+interface TripStateType {
+  trips: TripsType[];
   isBooking: boolean;
 }
 
-const initialState: InitialState = {
+const initialState: TripStateType = {
   trips: [],
   isBooking: false,
 };

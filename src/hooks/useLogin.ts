@@ -3,8 +3,8 @@ import { getTrips, getTravellers, useAppDispatch } from '../redux';
 
 export const useLogin = () => {
   const dispatch = useAppDispatch();
-  const runLogin = async (username: string, password: string) => {
-    dispatch(login({ username, password })).then(() => {
+  const runLogin = async (email: string, password: string) => {
+    dispatch(login({ email, password })).then(() => {
       dispatch(getTrips());
       dispatch(getTravellers());
     });

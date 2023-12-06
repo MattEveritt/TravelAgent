@@ -21,18 +21,24 @@ export const RegisterScreen = () => {
   const navigation = useNavigation<NavigationProp<any>>();
   const { runRegister } = useRegister();
   const [emailInput, setEmailInput] = useState();
-  const [userNameInput, setUserNameInput] = useState();
+  const [firstNameInput, setFirstNameInput] = useState();
+  const [lastNameInput, setLastNameInput] = useState();
   const [passwordInput, setPasswordInput] = useState();
   const [error, setError] = useState('');
 
   const handleRegister = async () => {
     const isEmailValid = validateEmail(emailInput);
-    if (!isEmailValid) {
+    if (!isEmailValid || !emailInput) {
       setError('Please enter a valid email address');
-    } else if (!userNameInput || !passwordInput) {
-      setError('Please enter a valid username and password');
+    } else if (!firstNameInput || !lastNameInput || !passwordInput) {
+      setError('Please enter a valid name and password');
     } else {
-      const res = await runRegister(emailInput, userNameInput, passwordInput);
+      const res = await runRegister(
+        emailInput,
+        firstNameInput,
+        lastNameInput,
+        passwordInput,
+      );
       if (res === 400) {
         setError('This email address is already registered to an account');
       }
@@ -41,7 +47,10 @@ export const RegisterScreen = () => {
 
   return (
     <ScreenContainer headerDisabled>
-      <KeyboardAvoidingView behavior="padding" style={styles.screenContainer}>
+      <KeyboardAvoidingView
+        behavior="position"
+        style={styles.screenContainer}
+        keyboardVerticalOffset={-70}>
         <Image
           style={styles.onboardingImg}
           source={{
@@ -56,14 +65,20 @@ export const RegisterScreen = () => {
             placeHolder="Email"
           />
           <TripTextInput
-            value={userNameInput}
-            onChangeText={setUserNameInput}
-            placeHolder="UserName"
+            value={firstNameInput}
+            onChangeText={setFirstNameInput}
+            placeHolder="First name"
+          />
+          <TripTextInput
+            value={lastNameInput}
+            onChangeText={setLastNameInput}
+            placeHolder="Last name"
           />
           <TripTextInput
             value={passwordInput}
             onChangeText={setPasswordInput}
             placeHolder="Password"
+            secureTextEntry={true}
           />
           <TripButton title="Register" onPress={handleRegister} />
         </View>

@@ -8,6 +8,7 @@ import {
   TransportCard,
   DatesCard,
   TripModal,
+  AccomodationCard,
 } from '../components';
 import { DepartureCard } from '../components/createTripComponents';
 import { FCLocalized } from '../localization/FCLocalized';
@@ -45,7 +46,7 @@ export const CreateTripScreen = () => {
     setModalVisible(false);
   };
 
-  const handleOnCreatePress = () => {
+  const handleOnCreatePress = async () => {
     const validation = bookingFormValidator(tripObj, isLoggedIn);
     if (
       !validation.dates ||
@@ -59,10 +60,19 @@ export const CreateTripScreen = () => {
       dispatch(setTravellersValidity(validation.travellers));
       return null;
     }
-    dispatch(saveTrip(tripObj));
-    dispatch(clearTripBookingState());
 
-    navigation.navigate('Booking navigator');
+    if (isLoggedIn) {
+      const savedTrip = await dispatch(saveTrip(tripObj));
+      dispatch(clearTripBookingState());
+      navigation.navigate('Booking navigator', {
+        screen: 'Flights',
+        params: { tripId: savedTrip.payload.id },
+      });
+    } else {
+      dispatch(saveTrip(tripObj));
+      dispatch(clearTripBookingState());
+      navigation.navigate('Booking navigator');
+    }
   };
 
   const onBackPressExtra = () => {
@@ -82,6 +92,7 @@ export const CreateTripScreen = () => {
         <DatesCard />
         <DestinationCard />
         <TransportCard />
+        <AccomodationCard />
         <TravellersCard />
         <TripButton
           title={FCLocalized('Create')}

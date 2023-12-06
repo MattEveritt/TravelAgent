@@ -20,7 +20,6 @@ export {
   AccountScreen,
   FlightSettingsScreen,
   NotificationsSettingsScreen,
-  ProfileScreen,
   ReminderSettingsScreen,
   TravellersScreen,
 } from './settingsScreens';

@@ -17,7 +17,8 @@ interface InitialState {
     datesValid: boolean;
     destinations: {
       destination: string;
-      googlePlaceId?: string;
+      googlePlaceId: string;
+      iataCode: string;
     }[];
     destinationsValid: boolean;
     travellers: [];
@@ -29,6 +30,7 @@ interface InitialState {
     };
     travellersValid: boolean;
     transport: string[];
+    includeAccomodation: boolean;
   };
 }
 
@@ -48,7 +50,9 @@ const initialState: InitialState = {
     type: 'One-way',
     dates: [newDateObj],
     datesValid: true,
-    destinations: [{ destination: FCLocalized('Search') }],
+    destinations: [
+      { destination: FCLocalized('Search'), googlePlaceId: '', iataCode: '' },
+    ],
     destinationsValid: true,
     travellers: [],
     signedOutTravellers: {
@@ -59,6 +63,7 @@ const initialState: InitialState = {
     },
     travellersValid: true,
     transport: [''],
+    includeAccomodation: false,
   },
 };
 
@@ -74,7 +79,7 @@ const bookingSlice = createSlice({
       state.trip.dates = [...state.trip.dates, newDateObj];
       state.trip.destinations = [
         ...state.trip.destinations,
-        { destination: FCLocalized('Search') },
+        { destination: FCLocalized('Search'), googlePlaceId: '', iataCode: '' },
       ];
       state.trip.transport = [...state.trip.transport, ''];
     },
@@ -134,6 +139,9 @@ const bookingSlice = createSlice({
       const initialTrip = initialState.trip;
       state.trip = { ...initialTrip };
     },
+    setIncludeAccomodation: (state, action) => {
+      state.trip.includeAccomodation = action.payload;
+    },
   },
 });
 
@@ -155,6 +163,7 @@ export const {
   setDepartureAirportValidity,
   setDestinationsValidity,
   setTravellersValidity,
+  setIncludeAccomodation,
   resetBookingSlice,
 } = bookingSlice.actions;
 export const selectBookingObject = (state: any) => state.trip;

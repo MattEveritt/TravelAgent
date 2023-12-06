@@ -5,5 +5,5 @@ export {
   saveTrip,
   getDestinationImg,
 } from './thunks';
-export { selectAllTrips, selectIsBooking } from './selectors';
-export { toggleBookingFlow } from './trips';
+export { selectAllTrips, selectIsBooking, selectTripById } from './selectors';
+export { toggleBookingFlow, resetTripsSlice } from './trips';

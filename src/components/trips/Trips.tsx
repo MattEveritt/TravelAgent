@@ -5,7 +5,7 @@ import { StyleSheet, View } from 'react-native';
 import { TripCard, Trip } from './TripCard';
 
 export const Trips = () => {
-  const trips = useSelector(selectAllTrips());
+  const trips: [] = useSelector(selectAllTrips());
   if (!trips) return null;
 
   return (

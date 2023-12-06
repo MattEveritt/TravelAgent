@@ -1,11 +1,8 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
-import globalStyles from '../styles/globalStyles';
+import { Text } from 'react-native';
 import { ScreenContainer } from '../components';
 
-export const SplashScreen = ({
-  navigation
-}: any) => {
+export const SplashScreen = () => {
   return (
     <ScreenContainer headerDisabled>
       <Text>SplashScreen</Text>

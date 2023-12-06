@@ -5,13 +5,13 @@ import { setIsInApp } from '../../app';
 
 export const login = createAsyncThunk(
   'userAuth/login',
-  async (action: { username: string; password: string }, { dispatch }) => {
-    const { username, password } = action;
+  async (action: { email: string; password: string }, { dispatch }) => {
+    const { email, password } = action;
     try {
       const { data } = await axiosLogin({
         data: {
-          username: username,
-          password: password,
+          email,
+          password,
         },
       });
       if (data.refreshToken) {

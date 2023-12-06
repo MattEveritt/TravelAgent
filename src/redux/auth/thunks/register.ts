@@ -1,21 +1,28 @@
-import {createAsyncThunk} from '@reduxjs/toolkit';
-import {axiosUsersService} from '../../../api';
-import {login} from './login';
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import { axiosUsersService } from '../../../api';
+import { login } from './login';
 
+type Action = {
+  email: string;
+  firstName: string;
+  lastName: string;
+  password: string;
+};
 export const register = createAsyncThunk(
   'userAuth/register',
-  async (action: {email: string, username: string, password: string}, {rejectWithValue, dispatch}) => {
-    const {email, username, password} = action;
+  async (action: Action, { dispatch }) => {
+    const { email, firstName, lastName, password } = action;
     try {
       const res = await axiosUsersService({
         data: {
-          email: email,
-          username: username,
-          password: password,
+          email,
+          firstName,
+          lastName,
+          password,
         },
       });
       if (res.status === 201) {
-        dispatch(login({username, password}));
+        dispatch(login({ email, password }));
         return res.data;
       }
     } catch (e: any) {

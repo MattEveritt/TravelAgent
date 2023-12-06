@@ -1,5 +1,5 @@
 import { StyleSheet, View } from 'react-native';
-import React, { FC, memo, useState } from 'react';
+import React, { FC, memo, useEffect, useState } from 'react';
 import { Icon } from '@rneui/base';
 import { theme } from '../../../styles/theme';
 import { formatTravellersName } from '../../../utils/formatTravellersName';
@@ -19,17 +19,33 @@ import {
   setTravellersValidity,
 } from '../../../redux/booking';
 
+export type TravellerType = {
+  id: string;
+  firstName: string;
+  lastName: string;
+};
 const _SelectSavedTravellers: FC = () => {
   const dispatch = useAppDispatch();
   const [modalVisible, setModalVisible] = useState(false);
   const selectedTravellers = useAppSelector(selectBookingTravellers());
-  const [checkedTravellers, setCheckedTravellers] = useState<string[]>([]);
-  const allTravellers = useAppSelector(selectAllTravellers());
-  const isValid = useAppSelector(selectTravellersValidity);
-  const mainUserId = useAppSelector(selectUserId());
-  console.log(mainUserId);
-  console.log(allTravellers);
 
+  const mainUserId = useAppSelector(selectUserId());
+  const allTravellers: TravellerType[] = useAppSelector(selectAllTravellers());
+
+  const firstTraveller: TravellerType = allTravellers.find(
+    (traveller: TravellerType) => traveller.id === mainUserId,
+  ) as TravellerType;
+
+  const [checkedTravellers, setCheckedTravellers] = useState<TravellerType[]>([
+    firstTraveller,
+  ]);
+
+  useEffect(() => {
+    dispatch(setBookingTravellers(checkedTravellers));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const isValid = useAppSelector(selectTravellersValidity);
   const onOkPress = () => {
     dispatch(setBookingTravellers(checkedTravellers));
     setModalVisible(false);

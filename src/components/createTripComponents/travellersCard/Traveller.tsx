@@ -3,22 +3,26 @@ import React, { useState } from 'react';
 import { CheckBox } from '@rneui/base';
 import { TripText } from '../../travelUI';
 import { formatTravellersName } from '../../../utils/formatTravellersName';
+import { TravellerType } from './SelectSavedTravellers';
 
 export const Traveller = ({
   traveller,
   checkedTravellers,
   setCheckedTravellers,
 }: any) => {
-  const isChecked = checkedTravellers.includes(traveller.id);
+  const isChecked = !!checkedTravellers.find(
+    (travellerObject: TravellerType) => travellerObject.id === traveller.id,
+  );
   const [checked, setChecked] = useState(isChecked);
   const toggleCheckbox = () => {
     let newTravellers = [];
     if (checked) {
       newTravellers = checkedTravellers.filter(
-        (travellerId: string) => travellerId !== traveller.id,
+        (checkedTraveller: { id: string }) =>
+          checkedTraveller.id !== traveller.id,
       );
     } else {
-      newTravellers = checkedTravellers.concat(traveller.id);
+      newTravellers = checkedTravellers.concat(traveller);
     }
     setCheckedTravellers(newTravellers);
     setChecked(!checked);
