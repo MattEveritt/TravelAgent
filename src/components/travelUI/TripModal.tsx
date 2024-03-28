@@ -71,6 +71,8 @@ export const TripModal = React.memo(
     okButtonDisabled,
     cancelButtonDisabled,
     alertText,
+    modalStyles,
+    headerStyles,
   }: any) => {
     return (
       <Modal
@@ -81,8 +83,14 @@ export const TripModal = React.memo(
           onCancelPress();
         }}>
         <BlurView style={styles.blurView} blurType="dark" blurAmount={10} />
-        <View style={[styles.modalView, isAlert && { height: '30%' }]}>
-          <View style={[styles.modalHeader, isAlert && { height: null }]}>
+        <View
+          style={[styles.modalView, isAlert && { height: '30%' }, modalStyles]}>
+          <View
+            style={[
+              styles.modalHeader,
+              isAlert && { height: null },
+              headerStyles,
+            ]}>
             <TripText text={title?.toUpperCase()} style={styles.modalTitle} />
             {headerContent && headerContent()}
           </View>

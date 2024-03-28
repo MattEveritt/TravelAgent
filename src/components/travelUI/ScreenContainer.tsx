@@ -1,4 +1,4 @@
-import { StyleSheet, View, KeyboardAvoidingView } from 'react-native';
+import { StyleSheet, KeyboardAvoidingView } from 'react-native';
 import React, { ReactNode } from 'react';
 import * as Headers from '../header';
 

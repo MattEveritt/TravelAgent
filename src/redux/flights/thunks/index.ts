@@ -11,3 +11,4 @@ export { fetchBooking } from './fetchBooking';
 export { deleteBooking } from './deleteBooking';
 export { airlineNameLookup } from './airlineNameLookup';
 export { searchAirport } from './searchAirport';
+export { fetchAirportInfoByIATA } from './fetchAirportInfoByIATA';

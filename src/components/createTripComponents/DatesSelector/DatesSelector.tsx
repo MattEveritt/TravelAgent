@@ -59,14 +59,14 @@ export const DatesSelector = ({
       ? FCLocalized(startDate)
       : new Date(startDate).toDateString()
     : `${
-        startDate === 'Outbound'
-          ? FCLocalized(startDate)
-          : new Date(startDate).toDateString()
-      } - ${
-        untilDate === 'Inbound'
-          ? FCLocalized(untilDate)
-          : new Date(untilDate).toDateString()
-      }`;
+      startDate === 'Outbound'
+        ? FCLocalized(startDate)
+        : new Date(startDate).toDateString()
+    } - ${
+      untilDate === 'Inbound'
+        ? FCLocalized(untilDate)
+        : new Date(untilDate).toDateString()
+    }`;
 
   const onCancelPress = () => {
     const startDateString = FCLocalized('Outbound');

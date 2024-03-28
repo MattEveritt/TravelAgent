@@ -23,3 +23,9 @@ export {
   ReminderSettingsScreen,
   TravellersScreen,
 } from './settingsScreens';
+export { FlightsSummaryScreen } from './FlightsSummaryScreen';
+export { ChangesAndCancellationsScreen } from './ChangesAndCancellationsScreen';
+export { FlightsConfirmationScreen } from './FlightsConfirmationScreen';
+export { LuggageAndInsuranceScreen } from './LuggageAndInsuranceScreen';
+export { SelectSeatsScreen } from './SelectSeatsScreen';
+export { SeatMapScreen } from './SeatMapScreen';

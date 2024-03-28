@@ -1,8 +1,8 @@
-import {StyleSheet, View} from 'react-native';
-import React, {useCallback} from 'react';
-import {useAppDispatch} from '../../redux';
-const DatepickerRange = require ('react-native-range-datepicker');
-import {updateTrip} from '../../redux/trips/thunks/updateTrip';
+import { StyleSheet, View } from 'react-native';
+import React, { useCallback } from 'react';
+import { useAppDispatch } from '../../redux';
+const DatepickerRange = require('react-native-range-datepicker');
+import { updateTrip } from '../../redux/trips/thunks/updateTrip';
 
 export const TripDateTimePicker = ({
   startDate,
@@ -10,12 +10,12 @@ export const TripDateTimePicker = ({
   untilDate,
   setUntilDate,
   setModalVisible,
-  trip
+  trip,
 }: any) => {
   const dispatch = useAppDispatch();
   const handleSave = useCallback(
     (fromDate: any, toDate: any) => {
-      const updatedTrip = {...trip};
+      const updatedTrip = { ...trip };
       updatedTrip.from = Date.parse(fromDate);
       updatedTrip.to = Date.parse(toDate);
 
@@ -25,7 +25,7 @@ export const TripDateTimePicker = ({
     [trip],
   );
   return (
-    <View style={{height: '95%'}}>
+    <View style={{ height: '95%' }}>
       <DatepickerRange
         onConfirm={(fromDate: any, toDate: any) => {
           handleSave(fromDate, toDate);

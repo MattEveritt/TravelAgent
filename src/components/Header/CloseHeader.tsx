@@ -11,15 +11,21 @@ const screenWidth = Dimensions.get('screen').width;
 export const CloseHeader = ({
   headerDisabled,
   titleText,
+  onBackPressExtra,
 }: {
   headerDisabled: boolean;
   titleText: string;
+  onBackPressExtra?: () => void | undefined;
 }) => {
   const navigation = useNavigation();
 
   if (headerDisabled) return null;
 
   const backButtonHandler = () => {
+    if (onBackPressExtra) {
+      onBackPressExtra();
+      return;
+    }
     navigation.goBack();
   };
 

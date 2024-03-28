@@ -15,4 +15,7 @@ export {
   selectInfants,
   selectYouth,
   selectInfantsOnLap,
+  selectChildren,
+  selectSeniors,
+  selectStudents,
 } from './selectSignedOutTravellers';

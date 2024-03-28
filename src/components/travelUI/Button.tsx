@@ -1,27 +1,36 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Icon } from '@rneui/base';
 import { theme } from '../../styles/theme';
 
-export const TripButton = ({
+type Props = {
+  title: string;
+  onPress: () => void;
+  iconName?: string;
+  iconType?: string;
+  isWhite?: boolean;
+  style?: any;
+};
+export const TripButton: FC<Props> = ({
   title,
   onPress,
   iconName,
   iconType,
   isWhite,
+  style,
 }: any) => {
   const backgroundColor = isWhite ? theme.WHITE : theme.PRIMARY_COLOR;
   const border = isWhite
     ? {
-        borderWidth: 1,
-        borderColor: theme.BLACK,
-      }
+      borderWidth: 1,
+      borderColor: theme.BLACK,
+    }
     : null;
 
   return (
     <TouchableOpacity
       onPress={onPress}
-      style={[styles.container, { backgroundColor, ...border }]}>
+      style={[styles.container, { backgroundColor, ...border }, style]}>
       <View style={styles.textContainer}>
         <Text style={[styles.buttonText]}>{title.toUpperCase()}</Text>
       </View>

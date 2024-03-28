@@ -1,143 +1,23 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import { Icon } from '@rneui/base';
 
 import {
-  HomeScreen,
   OnboardingScreen,
-  SettingsScreen,
   SplashScreen,
-  TripsScreen,
-  CurrentTripScreen,
   AccomodationSettingsScreen,
   AccountScreen,
   FlightSettingsScreen,
   NotificationsSettingsScreen,
   ReminderSettingsScreen,
   TravellersScreen,
-  FlightsScreen,
-  ConfirmationScreen,
-  AccomodationScreen,
-  TransportScreen,
   CreateTripScreen,
+  SeatMapScreen,
 } from '../screens';
-import { theme } from '../styles/theme';
-import { Text, View } from 'react-native';
-import { FCLocalized } from '../localization/FCLocalized';
+import { FlightsTabNavigator } from './FlightsTabNavigator';
+import { MainTabNavigator } from './MainTabNavigator';
+import { BookingTabNavigator } from './BookingTabNavigator';
 
-const topTab = createMaterialTopTabNavigator();
 const Stack = createNativeStackNavigator();
-
-const getMainTabScreenOptions = (iconName: string, labelText: string) => ({
-  tabBarLabel: ({ focused }: { focused: boolean }) => (
-    <Text style={{ color: focused ? theme.PRIMARY_COLOR : theme.BLACK }}>
-      {FCLocalized(labelText)}
-    </Text>
-  ),
-  tabBarIcon: ({ focused }: { focused: boolean }) => (
-    <Icon
-      name={iconName}
-      type="material-community"
-      color={focused ? theme.PRIMARY_COLOR : theme.BLACK}
-    />
-  ),
-});
-
-const BottomTabNavigator = () => {
-  return (
-    <topTab.Navigator
-      screenOptions={() => ({
-        tabBarIndicatorStyle: {
-          height: 0,
-        },
-        tabBarActiveTintColor: theme.PRIMARY_COLOR,
-        tabBarShowIcon: true,
-      })}
-      tabBarPosition="bottom">
-      <topTab.Screen
-        name="Explore"
-        component={HomeScreen}
-        options={getMainTabScreenOptions('compass', 'Explore')}
-      />
-      <topTab.Screen
-        name="Book"
-        component={TripsScreen}
-        options={getMainTabScreenOptions('book', 'Book')}
-      />
-      <topTab.Screen
-        name="Current trip"
-        component={CurrentTripScreen}
-        options={getMainTabScreenOptions('airplane', 'Current trip')}
-      />
-      <topTab.Screen
-        name="Settings"
-        component={SettingsScreen}
-        options={getMainTabScreenOptions('account-cog', 'Settings')}
-      />
-    </topTab.Navigator>
-  );
-};
-
-const TabBarLabel: React.FC<{
-  focused: boolean;
-  screen: string;
-  icon: string;
-}> = ({ focused, screen, icon }) => {
-  return (
-    <View style={{ height: '100%' }}>
-      <Icon
-        name={icon}
-        type="material-community"
-        color={focused ? theme.BLACK : theme.SECONDARY_COLOR}
-      />
-      <Text style={{ color: focused ? theme.BLACK : theme.SECONDARY_COLOR }}>
-        {FCLocalized(screen)}
-      </Text>
-    </View>
-  );
-};
-
-const getBookingTabLabelOptions = (screen: string, icon: string) => ({
-  tabBarLabel: ({ focused }: { focused: boolean }) => (
-    <TabBarLabel focused={focused} screen={screen} icon={icon} />
-  ),
-});
-
-const BookingNavigator = () => {
-  return (
-    <topTab.Navigator
-      screenOptions={() => ({
-        headerShown: false,
-        tabBarIndicatorStyle: {
-          height: 0,
-        },
-        tabBarShowIcon: true,
-      })}
-      tabBarPosition="bottom">
-      <topTab.Screen
-        name="Flights"
-        component={FlightsScreen}
-        options={getBookingTabLabelOptions('Flights', 'airplane')}
-      />
-      <topTab.Screen
-        name="Hotels"
-        component={AccomodationScreen}
-        options={getBookingTabLabelOptions('Hotels', 'home')}
-      />
-      <topTab.Screen
-        name="Transport"
-        component={TransportScreen}
-        options={getBookingTabLabelOptions('Transport', 'bus')}
-      />
-      <topTab.Screen
-        name="Confirm"
-        component={ConfirmationScreen}
-        options={getBookingTabLabelOptions('Confirm', 'check')}
-      />
-    </topTab.Navigator>
-  );
-};
 
 export const AppStack = () => {
   return (
@@ -146,12 +26,12 @@ export const AppStack = () => {
         <Stack.Screen
           options={{ headerShown: false }}
           name="Tab navigator"
-          component={BottomTabNavigator}
+          component={MainTabNavigator}
         />
         <Stack.Screen
           options={{ headerShown: false }}
           name="Booking navigator"
-          component={BookingNavigator}
+          component={BookingTabNavigator}
         />
         <Stack.Screen
           options={{ headerShown: false }}
@@ -197,6 +77,16 @@ export const AppStack = () => {
           options={{ headerShown: false }}
           name="FlightsSettings"
           component={FlightSettingsScreen}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="FlightsTabNavigator"
+          component={FlightsTabNavigator}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="SeatMapScreen"
+          component={SeatMapScreen}
         />
       </Stack.Group>
     </Stack.Navigator>

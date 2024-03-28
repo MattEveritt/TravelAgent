@@ -1,3 +1,2 @@
-export { OneWayFlights } from './OneWayFlights';
-export { ReturnFlights } from './ReturnFlights';
-export { MultiCityFlights } from './MultiCityFlights';
+export { FlightOffers } from './FlightOffers';
+export { FlightConfirmedMessage } from './FlightConfirmedMessage';

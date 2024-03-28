@@ -14,12 +14,25 @@ import {
   setInfantsOnLap,
   setTravellersValidity,
   setYouth,
+  setChildren,
+  selectChildren,
+  setSeniors,
+  selectSeniors,
+  setStudents,
+  selectStudents,
   useAppDispatch,
   useAppSelector,
 } from '../../../redux';
 import { Action, Selector } from '@reduxjs/toolkit';
 
-type TravellerType = 'adults' | 'youth' | 'infants' | 'infantsOnLap';
+type TravellerType =
+  | 'adults'
+  | 'children'
+  | 'seniors'
+  | 'students'
+  | 'youth'
+  | 'infants'
+  | 'infantsOnLap';
 
 const _NumberSelector: FC<{ type: TravellerType }> = ({ type }) => {
   const dispatch = useAppDispatch();
@@ -35,8 +48,13 @@ const _NumberSelector: FC<{ type: TravellerType }> = ({ type }) => {
       selector = selectAdults;
       action = setAdults;
       break;
+    case 'children':
+      title = 'Children 3 - 11';
+      selector = selectChildren;
+      action = setChildren;
+      break;
     case 'youth':
-      title = 'Youth 3 - 17';
+      title = 'Youth 12 - 17';
       selector = selectYouth;
       action = setYouth;
       break;
@@ -49,6 +67,16 @@ const _NumberSelector: FC<{ type: TravellerType }> = ({ type }) => {
       title = 'Infants on lap under 2';
       selector = selectInfantsOnLap;
       action = setInfantsOnLap;
+      break;
+    case 'students':
+      title = 'Students';
+      selector = selectStudents;
+      action = setStudents;
+      break;
+    case 'seniors':
+      title = 'Seniors 60+';
+      selector = selectSeniors;
+      action = setSeniors;
       break;
   }
 

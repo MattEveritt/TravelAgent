@@ -12,6 +12,21 @@ export const selectAdults = createSelector(
   object => object.adults,
 );
 
+export const selectChildren = createSelector(
+  selectSignedOutTravellersObject,
+  object => object.children,
+);
+
+export const selectSeniors = createSelector(
+  selectSignedOutTravellersObject,
+  object => object.seniors,
+);
+
+export const selectStudents = createSelector(
+  selectSignedOutTravellersObject,
+  object => object.students,
+);
+
 export const selectYouth = createSelector(
   selectSignedOutTravellersObject,
   object => object.youth,

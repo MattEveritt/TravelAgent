@@ -1,4 +1,4 @@
-import {createAsyncThunk} from '@reduxjs/toolkit';
+import { createAsyncThunk } from '@reduxjs/toolkit';
 import { axiosFlightsService } from '../../../api';
 
 const deleteBookingReq = (flightOrderId: number) =>
@@ -6,7 +6,7 @@ const deleteBookingReq = (flightOrderId: number) =>
     url: '/deletebooking',
     method: 'delete',
     data: {
-        flightOrderId,
+      flightOrderId,
     },
   });
 

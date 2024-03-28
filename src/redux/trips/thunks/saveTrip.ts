@@ -13,6 +13,15 @@ interface ActionPayload {
   }[];
   dates: {}[];
   travellers: [];
+  signedOutTravellers: {
+    adults: number;
+    children: number;
+    seniors: number;
+    youth: number;
+    infants: number;
+    infantsOnLap: number;
+    students: number;
+  };
   transport: string[];
   includeAccomodation: boolean;
 }
@@ -48,7 +57,8 @@ export const saveTrip = createAsyncThunk(
         departureAirport: action.departureAirport,
         destinations: destinations,
         dates: action.dates,
-        travellers: isLoggedIn ? travellersIds : action.travellers,
+        travellers: travellersIds,
+        signedOutTravellers: action.signedOutTravellers,
         transport: action.transport,
         includeAccomodation: action.includeAccomodation,
         userId: userId,

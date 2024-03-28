@@ -1,4 +1,4 @@
-import {createAsyncThunk} from '@reduxjs/toolkit';
+import { createAsyncThunk } from '@reduxjs/toolkit';
 import { axiosFlightsService } from '../../../api';
 
 const fetchBookingReq = (flightOrderId: number) =>
@@ -6,7 +6,7 @@ const fetchBookingReq = (flightOrderId: number) =>
     url: '/fetchbooking',
     method: 'get',
     data: {
-        flightOrderId,
+      flightOrderId,
     },
   });
 

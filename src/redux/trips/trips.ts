@@ -13,7 +13,7 @@ export interface TripsType {
     cityName: string;
   };
   departureAirportValid: boolean;
-  type: string;
+  type: 'Round-trip' | 'One-way' | 'Multi-city';
   dates: {
     startDate: string;
     untilDate: string;

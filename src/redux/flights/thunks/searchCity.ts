@@ -1,4 +1,4 @@
-import {createAsyncThunk} from '@reduxjs/toolkit';
+import { createAsyncThunk } from '@reduxjs/toolkit';
 import { axiosFlightsService } from '../../../api';
 
 const searchCityReq = (searchString: string) =>
@@ -6,7 +6,7 @@ const searchCityReq = (searchString: string) =>
     url: '/searchcity',
     method: 'get',
     data: {
-        searchString,
+      searchString,
     },
   });
 

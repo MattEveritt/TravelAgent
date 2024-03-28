@@ -24,9 +24,12 @@ interface InitialState {
     travellers: [];
     signedOutTravellers: {
       adults: number;
+      children: number;
+      seniors: number;
       youth: number;
       infants: number;
       infantsOnLap: number;
+      students: number;
     };
     travellersValid: boolean;
     transport: string[];
@@ -57,9 +60,12 @@ const initialState: InitialState = {
     travellers: [],
     signedOutTravellers: {
       adults: 0,
+      children: 0,
+      seniors: 0,
       youth: 0,
       infants: 0,
       infantsOnLap: 0,
+      students: 0,
     },
     travellersValid: true,
     transport: [''],
@@ -120,6 +126,12 @@ const bookingSlice = createSlice({
     setAdults: (state, action) => {
       state.trip.signedOutTravellers.adults = action.payload;
     },
+    setChildren: (state, action) => {
+      state.trip.signedOutTravellers.children = action.payload;
+    },
+    setSeniors: (state, action) => {
+      state.trip.signedOutTravellers.seniors = action.payload;
+    },
     setYouth: (state, action) => {
       state.trip.signedOutTravellers.youth = action.payload;
     },
@@ -128,6 +140,9 @@ const bookingSlice = createSlice({
     },
     setInfantsOnLap: (state, action) => {
       state.trip.signedOutTravellers.infantsOnLap = action.payload;
+    },
+    setStudents: (state, action) => {
+      state.trip.signedOutTravellers.students = action.payload;
     },
     setBookingTransport: (state, action) => {
       state.trip.transport = action.payload;
@@ -153,6 +168,9 @@ export const {
   setTripType,
   setBookingTravellers,
   setAdults,
+  setChildren,
+  setSeniors,
+  setStudents,
   setYouth,
   setInfants,
   setInfantsOnLap,

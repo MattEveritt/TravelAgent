@@ -18,4 +18,7 @@ export {
 } from './createTripComponents';
 export { Trips, RequestUserLogin } from './trips';
 export { AddTravellerForm, TravellerInfo } from './settings';
-export { FlightCard } from './FlightCard';
+export { FlightCard } from '../screens/bookingScreens/FlightsScreen/components/FlightCard';
+export { BookingNavigationButtons } from './BookingNavigationButtons';
+export { FlightBookingCloseModal } from './FlightBookingCloseModal';
+export { FlightBookingScreensContainer } from './FlightBookingScreensContainer';

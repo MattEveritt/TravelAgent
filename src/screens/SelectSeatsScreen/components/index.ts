@@ -1,0 +1,1 @@
+export { SelectFlightSeatMap } from './SelectFlightSeatMap';
